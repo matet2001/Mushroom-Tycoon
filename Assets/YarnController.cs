@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class YarnController : MonoBehaviour
@@ -6,9 +7,16 @@ public class YarnController : MonoBehaviour
     [SerializeField, Range(1, 25f)] private float _sprintSpeed = 1;
     [SerializeField] private Vector2 _mousePosition;
     private Vector2 _targetPosition;
-    
+    private bool canMove;
+
+    private void Start()
+    {
+        canMove = true;
+    }
+
     void Update()
     {
+        if (!canMove) return;
         MoveYarn();
     }
 
@@ -36,11 +44,22 @@ public class YarnController : MonoBehaviour
         {
             case true:
                 transform.position += newYarnPosition * Time.deltaTime;
+                //TODO: resource csökkentése
                 break;
             case false:
                 transform.position += newYarnPosition * (Time.deltaTime * _sprintSpeed);
                 //TODO: ide majd valami olyasmi kell, hogy:  resoure -= x
                 break;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        //TODO: kicserélni egy állítható layerre
+        bool HasCollidedWithObstacle() => col.gameObject.layer == 2;
+
+        if (!HasCollidedWithObstacle()) return;
+        
+        canMove = false;
     }
 }
