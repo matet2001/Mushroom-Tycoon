@@ -9,30 +9,18 @@ public class YarnController : MonoBehaviour
     
     void Update()
     {
-        RotateYarnHead(_mousePosition);
         MoveYarn();
     }
 
-    private void RotateYarnHead(Vector2 targetPosition)
-    {
-        float FetchYarnDegree(Vector3 targetPosition)
-        {
-            Vector3 Direction() 
-                => (targetPosition - transform.position).normalized;
-            
-            return Vector2.Angle(transform.up ,Direction());
-        }
-    
-        transform.localEulerAngles = 
-            new Vector3(transform.rotation.x,transform.rotation.y,FetchYarnDegree(targetPosition));
-    }
-    
     private void MoveYarn()
     {
+        // Functions
         bool CameraNull() => !Camera.main;
 
         bool IsHoldingSprintInput()
             => !Input.GetMouseButton(0);
+        
+        // Logic
 
         if (CameraNull()) return;
         
@@ -43,9 +31,16 @@ public class YarnController : MonoBehaviour
             (worldMousePosition - transform.position).normalized * _movementSpeed;
 
         _mousePosition = worldMousePosition;
-        
-        transform.position += IsHoldingSprintInput() ?
-            newYarnPosition * Time.deltaTime :
-            (newYarnPosition * _sprintSpeed) * Time.deltaTime;
+
+        switch (IsHoldingSprintInput())
+        {
+            case true:
+                transform.position += newYarnPosition * Time.deltaTime;
+                break;
+            case false:
+                transform.position += newYarnPosition * (Time.deltaTime * _sprintSpeed);
+                //TODO: ide majd valami olyasmi kell, hogy:  resoure -= x
+                break;
+        }
     }
 }
