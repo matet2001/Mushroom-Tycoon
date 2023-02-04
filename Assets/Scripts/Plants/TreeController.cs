@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TreeController : PlantBase
 {
-    public ResourceDataSO resourceData;
+    
+    public ResourceData resourceData;
     [SerializeField] TreeTypeSO treeType;
 
     private SpriteRenderer spriteRenderer;
@@ -13,8 +15,9 @@ public class TreeController : PlantBase
  
     private void Awake()
     {
-        SetUpTreeType();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        SetUpTreeType();
+        
     }
     private void Start()
     {
@@ -28,7 +31,7 @@ public class TreeController : PlantBase
     }
     private void SetUpResources()
     {
-        resourceData = new ResourceDataSO(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), treeType.resourceAmount, treeType.resourceUsage, treeType.resourceGet, treeType.resourceAdd, treeType.resourceMax);
+        resourceData = new ResourceData(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), treeType.resourceAmount, treeType.resourceUsage, treeType.resourceGet, treeType.resourceAdd, treeType.resourceMax);
     }
     public override void Collision()
     {

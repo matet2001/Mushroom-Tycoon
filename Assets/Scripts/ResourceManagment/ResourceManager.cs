@@ -11,7 +11,7 @@ public class ResourceManager : MonoBehaviour
     public event Action<ResourceTypeSO[], float[]> OnResourceAmountChange;
     public event Action OnResourceAmountRefresh;
 
-    private ResourceDataSO resourceData;
+    private ResourceData resourceData;
     private ConnectionManager connectionManager;
 
     [SerializeField] float resourceRefreshTime = 3;
@@ -38,7 +38,7 @@ public class ResourceManager : MonoBehaviour
     }
     private void SetUpResources()
     {
-        resourceData = new ResourceDataSO(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), 0, 0, 0, 0, 0);
+        resourceData = new ResourceData(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), 0, 0, 0, 0, 0);
         resourceRefreshTimeMax = resourceRefreshTime;
     }
     private void Update()

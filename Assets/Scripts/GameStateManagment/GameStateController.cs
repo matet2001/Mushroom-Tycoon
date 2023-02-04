@@ -41,7 +41,7 @@ public class GameStateController : MonoBehaviour
         OnConquerStateEnter?.Invoke(); 
     }
 }
-public class GameStateControllerDataContainer : MonoBehaviour
+public class GameStateControllerDataContainer
 {
     public GameStateController gameStateController;
     public StateMachine stateMachine;

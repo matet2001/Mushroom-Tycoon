@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 22e81dfa1ab8a6948a09b07c7239fe2e, type: 3}
   m_Name: ResourceDataOakTree
   m_EditorClassIdentifier: Assembly-CSharp::ResourceData
-  resourceTypes: []
+  resourceTypes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

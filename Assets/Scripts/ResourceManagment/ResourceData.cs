@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ResourceDataSO", menuName = "ScriptableObjects/ResourceData")]
-public class ResourceDataSO : ScriptableObject
+[Serializable]
+public class ResourceData
 {
     [HideInInspector]
     public ResourceTypeSO[] resourceTypes;
@@ -15,7 +16,7 @@ public class ResourceDataSO : ScriptableObject
     public Dictionary<ResourceTypeSO, float> resourceMax;
 
     //Fill resource amounts with same value
-    public ResourceDataSO(ResourceTypeContainer resourceTypeContainer, float amount, float usage, float get, float add, float max)
+    public ResourceData(ResourceTypeContainer resourceTypeContainer, float amount, float usage, float get, float add, float max)
     {
         resourceTypes = resourceTypeContainer.resourceTypes;
 
@@ -35,7 +36,7 @@ public class ResourceDataSO : ScriptableObject
         }
     }
     //Fill resource amount with different values
-    public ResourceDataSO(ResourceTypeContainer resourceTypeContainer, float[] amount, float[] usage, float[] get, float[] add, float[] max)
+    public ResourceData(ResourceTypeContainer resourceTypeContainer, float[] amount, float[] usage, float[] get, float[] add, float[] max)
     {
         resourceTypes = resourceTypeContainer.resourceTypes;
         
