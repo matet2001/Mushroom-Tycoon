@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class GameStateManagement : GameState
 {
+    public GameObject managerVirtualCamera;
+    
     public override void OnEnter()
     {
         base.OnEnter();
+        gameStateControllerDataContainer.gameStateController.FireOnManagmentStateEnter();
     }
     public override void OnUpdate()
     {
