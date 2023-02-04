@@ -7,16 +7,16 @@ public class YarnController : MonoBehaviour
     [SerializeField, Range(1, 25f)] private float _sprintSpeed = 1;
     [SerializeField] private Vector2 _mousePosition;
     private Vector2 _targetPosition;
-    private bool canMove;
+    private bool _canMove;
 
     private void Start()
     {
-        canMove = true;
+        _canMove = true;
     }
 
     void Update()
     {
-        if (!canMove) return;
+        if (!_canMove) return;
         MoveYarn();
     }
 
@@ -44,11 +44,11 @@ public class YarnController : MonoBehaviour
         {
             case true:
                 transform.position += newYarnPosition * Time.deltaTime;
-                //TODO: resource csökkentése
+                ResourceManager.Instance.SubstractResourceAmountAll(1);
                 break;
             case false:
                 transform.position += newYarnPosition * (Time.deltaTime * _sprintSpeed);
-                //TODO: ide majd valami olyasmi kell, hogy:  resoure -= x
+                ResourceManager.Instance.SubstractResourceAmountAll(2);
                 break;
         }
     }
@@ -60,6 +60,6 @@ public class YarnController : MonoBehaviour
 
         if (!HasCollidedWithObstacle()) return;
         
-        canMove = false;
+        _canMove = false;
     }
 }

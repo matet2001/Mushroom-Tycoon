@@ -90,6 +90,18 @@ public class ResourceManager : MonoBehaviour
     {
         resourceAmount[resourceType] -= amount;
     }
+    public void SubstractResourceAmountAll(int amount)
+    {
+        int[] newResourceAmounts = new int[resourceAmount.Count];
+
+        for (int i = 0; i < resourceTypes.Length; i++)
+        {
+            SubstractResourceAmount(resourceTypes[i], amount);;
+            newResourceAmounts[i] = resourceAmount[resourceTypes[i]];
+        }
+
+        OnResourceAmountChange?.Invoke(resourceTypes, newResourceAmounts);
+    }
     public int GetResourceAmount(ResourceTypeSO resourceType)
     {
         return resourceAmount[resourceType];
