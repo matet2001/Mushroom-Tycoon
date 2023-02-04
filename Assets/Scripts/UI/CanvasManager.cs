@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -19,9 +20,9 @@ public class CanvasManager : MonoBehaviour
     private void SetUpResourceAmountUI()
     {
         string[] resourceNames = ResourceManager.Instance.GetResourceNames();
-        int[] currentResourceAmounts = ResourceManager.Instance.GetResourceAmounts();
-        int[] currentMaximumResourceAmounts = ResourceManager.Instance.GetCurrentMaximumResourceAmounts();
-        int[] maximumPossibleResourceAmounts = ResourceManager.Instance.GetMaximumResourceAmounts();
+        float[] currentResourceAmounts = ResourceManager.Instance.GetResourceAmounts();
+        float[] currentMaximumResourceAmounts = ResourceManager.Instance.GetCurrentMaximumResourceAmounts();
+        float[] maximumPossibleResourceAmounts = ResourceManager.Instance.GetMaximumResourceAmounts();
 
         for (int i = 0; i < resourceAmountTransforms.Length; i++)
         {
@@ -37,11 +38,11 @@ public class CanvasManager : MonoBehaviour
     {
 
     }
-    private void Instance_OnResourceAmountChange(ResourceTypeSO[] arg1, int[] resourceAmount)
+    private void Instance_OnResourceAmountChange(ResourceTypeSO[] arg1, float[] resourceAmount)
     {
         string[] resourceNames = ResourceManager.Instance.GetResourceNames();
-        int[] currentResourceAmounts = ResourceManager.Instance.GetResourceAmounts();
-        int[] currentMaximumResourceAmounts = ResourceManager.Instance.GetCurrentMaximumResourceAmounts();
+        float[] currentResourceAmounts = ResourceManager.Instance.GetResourceAmounts();
+        float[] currentMaximumResourceAmounts = ResourceManager.Instance.GetCurrentMaximumResourceAmounts();
         // int[] maximumPossibleResourceAmounts = ResourceManager.Instance.GetMaximumResourceAmounts();
         
         for (int i = 0; i < resourceAmountTransforms.Length; i++)
