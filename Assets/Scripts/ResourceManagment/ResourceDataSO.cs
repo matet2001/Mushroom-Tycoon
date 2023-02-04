@@ -12,7 +12,7 @@ public class ResourceDataSO : ScriptableObject
     public Dictionary<ResourceTypeSO, float> resourceUsage;
     public Dictionary<ResourceTypeSO, float> resourceGet;
     public Dictionary<ResourceTypeSO, float> resourceAdd;
-    public Dictionary<ResourceTypeSO, float> maxResourceAmount;
+    public Dictionary<ResourceTypeSO, float> resourceMax;
 
     //Fill resource amounts with same value
     public ResourceDataSO(ResourceTypeContainer resourceTypeContainer, float amount, float usage, float get, float add, float max)
@@ -23,7 +23,7 @@ public class ResourceDataSO : ScriptableObject
         resourceUsage = new Dictionary<ResourceTypeSO, float>();
         resourceGet = new Dictionary<ResourceTypeSO, float>();
         resourceAdd = new Dictionary<ResourceTypeSO, float>();
-        maxResourceAmount = new Dictionary<ResourceTypeSO, float>();
+        resourceMax = new Dictionary<ResourceTypeSO, float>();
 
         foreach (ResourceTypeSO resourceType in resourceTypeContainer.resourceTypes)
         {
@@ -31,7 +31,7 @@ public class ResourceDataSO : ScriptableObject
             resourceUsage[resourceType] = usage;
             resourceGet[resourceType] = get;
             resourceAdd[resourceType] = add;
-            maxResourceAmount[resourceType] = max;
+            resourceMax[resourceType] = max;
         }
     }
     //Fill resource amount with different values
@@ -43,7 +43,7 @@ public class ResourceDataSO : ScriptableObject
         resourceUsage = new Dictionary<ResourceTypeSO, float>();
         resourceGet = new Dictionary<ResourceTypeSO, float>();
         resourceAdd = new Dictionary<ResourceTypeSO, float>();
-        maxResourceAmount = new Dictionary<ResourceTypeSO, float>();
+        resourceMax = new Dictionary<ResourceTypeSO, float>();
 
         int resourceNumber = 0;
         
@@ -53,7 +53,7 @@ public class ResourceDataSO : ScriptableObject
             resourceUsage[resourceType] = usage[resourceNumber];
             resourceGet[resourceType] = get[resourceNumber];
             resourceAdd[resourceType] = add[resourceNumber];
-            maxResourceAmount[resourceType] = max[resourceNumber];
+            resourceMax[resourceType] = max[resourceNumber];
 
             resourceNumber++;
         }

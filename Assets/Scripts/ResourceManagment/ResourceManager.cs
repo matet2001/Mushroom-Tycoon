@@ -9,6 +9,7 @@ public class ResourceManager : MonoBehaviour
     public static ResourceManager Instance;
 
     public event Action<ResourceTypeSO[], float[]> OnResourceAmountChange;
+    public event Action OnResourceAmountRefresh;
 
     private ResourceDataSO resourceData;
     private ConnectionManager connectionManager;
@@ -54,6 +55,7 @@ public class ResourceManager : MonoBehaviour
     }
     private void RefreshResourceAmount()
     {
+        CalculateResourceValues();
         resourceRefreshTime = resourceRefreshTimeMax;
         
         float[] newResourceAmounts = new float[resourceData.resourceAmount.Count];
@@ -69,6 +71,7 @@ public class ResourceManager : MonoBehaviour
             newResourceAmounts[i] = resourceData.resourceAmount[resourceData.resourceTypes[i]];
         }
 
+        OnResourceAmountRefresh?.Invoke();
         OnResourceAmountChange?.Invoke(resourceData.resourceTypes, newResourceAmounts);
     }
     public void AddResourceAmount(ResourceTypeSO resourceType, float amount)
@@ -90,7 +93,9 @@ public class ResourceManager : MonoBehaviour
             foreach (ResourceTypeSO resourceType in resourceData.resourceTypes)
             {
                 resourceData.resourceUsage[resourceType] += connectionManager.treeControllerList[i].resourceData.resourceUsage[resourceType];
-                resourceData.resourceAdd[resourceType] += connectionManager.treeControllerList[i].resourceData.resourceUsage[resourceType];
+                resourceData.resourceAdd[resourceType] += connectionManager.treeControllerList[i].resourceData.resourceAdd[resourceType];
+                resourceData.resourceGet[resourceType] += connectionManager.treeControllerList[i].resourceData.resourceGet[resourceType];
+                resourceData.resourceMax[resourceType] += connectionManager.treeControllerList[i].resourceData.resourceMax[resourceType];
             }
         }
     }
