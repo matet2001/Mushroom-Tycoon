@@ -2,10 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CameraManager : MonoBehaviour
 {
+    [Range(1,50f)] public float cameraRotationSpeed;
     public static CameraManager Instance;
+    [Space]
+    public GameObject cameraParent;
+    [Space]
     public GameObject conquererStateVirtualCamera;
     public GameObject managementStateVirtualCamera;
 
@@ -18,6 +23,7 @@ public class CameraManager : MonoBehaviour
     private void Update()
     {
         SwapCameraState();
+        MoveCameraInManagementState();
     }
 
     private void SingletonPattern()
@@ -30,6 +36,19 @@ public class CameraManager : MonoBehaviour
         }
     }
 
+    private void MoveCameraInManagementState()
+    {
+        float RotationDegree(float playerInput)
+        {
+            var current = cameraParent.transform.localEulerAngles.z;
+            return current += (playerInput * Time.deltaTime * cameraRotationSpeed * -1f);
+        }
+        
+        var horizontalInput = Input.GetAxisRaw("Horizontal");
+
+        cameraParent.transform.localEulerAngles = new Vector3(0f, 0f, RotationDegree(horizontalInput));
+    }
+    
     private void SwapCameraState()
     {
         GameStateController.Instance.OnConquerStateEnter += SwapCameraToConquer;
@@ -52,6 +71,7 @@ public class CameraManager : MonoBehaviour
     {
         managementStateVirtualCamera = GameObject.FindGameObjectWithTag("ManagementCamera");
         conquererStateVirtualCamera = GameObject.FindGameObjectWithTag("ConquerCamera");
+        cameraParent = GameObject.FindGameObjectWithTag("CameraParent");
         SwapCameraToManagement();
     }
 }

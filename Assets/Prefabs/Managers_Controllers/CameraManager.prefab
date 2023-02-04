@@ -44,5 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3f9768ecacc384fa68e32b6cbd370d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraRotationSpeed: 15
+  cameraParent: {fileID: 0}
   conquererStateVirtualCamera: {fileID: 0}
   managementStateVirtualCamera: {fileID: 0}
