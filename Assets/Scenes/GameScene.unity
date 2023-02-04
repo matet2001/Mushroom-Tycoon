@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &5349177 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7470351940820420762, guid: 005fabaff0d00754a9359e38cda52e1b, type: 3}
-  m_PrefabInstance: {fileID: 98431045}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ba29c69570096347b36e42206910ef5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &17226977 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3692614244577959381, guid: dfc7538e9a671474aa97441c86bc0222, type: 3}
@@ -196,10 +185,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7686975287109531081, guid: 005fabaff0d00754a9359e38cda52e1b, type: 3}
-      propertyPath: managerState
-      value: 
-      objectReference: {fileID: 5349177}
     - target: {fileID: 8190643630210148272, guid: 005fabaff0d00754a9359e38cda52e1b, type: 3}
       propertyPath: m_Name
       value: GameStateController
@@ -426,7 +411,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 2.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -450,7 +435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 12.25, z: -10}
+  m_LocalPosition: {x: 0, y: 13.73, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -848,7 +833,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &936269214
 GameObject:
@@ -1023,10 +1008,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1141237223}
   - component: {fileID: 1141237224}
-  - component: {fileID: 1141237225}
   m_Layer: 0
   m_Name: EarthGraphics
-  m_TagString: Earth
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1098,22 +1082,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &1141237225
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1141237222}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5365424
 --- !u!1 &1272186309
 GameObject:
   m_ObjectHideFlags: 3
@@ -1516,7 +1484,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1581531841}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 5
+    OrthographicSize: 2.5
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -1555,7 +1523,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912901444}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.5303298, w: 0.8477914}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1563,7 +1531,7 @@ Transform:
   - {fileID: 1141237223}
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 64.055}
 --- !u!114 &1915900517 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6470839254115446603, guid: dfc7538e9a671474aa97441c86bc0222, type: 3}
@@ -1601,7 +1569,7 @@ Transform:
   m_GameObject: {fileID: 1967025970}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1181144, y: 1.1181144, z: 1.1181144}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 275944969}
@@ -1868,7 +1836,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 5
+    OrthographicSize: 2.5
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -1892,7 +1860,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2081894659}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 12.25, z: -10}
+  m_LocalPosition: {x: 0, y: 13.73, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2039,7 +2007,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7969061080770697221, guid: 011cfc8870d66784f86aaa32e582e964, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7969061080770697221, guid: 011cfc8870d66784f86aaa32e582e964, type: 3}
       propertyPath: m_LocalPosition.x
