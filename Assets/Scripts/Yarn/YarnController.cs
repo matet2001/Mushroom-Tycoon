@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Mono.Cecil.Cil;
 using Unity.Mathematics;
 using UnityEngine;
@@ -98,16 +99,13 @@ public class YarnController : MonoBehaviour
     {
         if (!collision.CompareTag("Earth")) return;
         GameObject mushroomGameObject = Resources.Load<GameObject>("PfMushroom");
+        Bounds bounds = collision.bounds;
 
-        Bounds bounds = collision.GetComponent<SpriteRenderer>().bounds;
-        
-        Vector2 earthWidthVector = new Vector2(bounds.extents.x, 0f);
-        Debug.DrawLine(bounds.center, (Vector2)bounds.center + earthWidthVector, Color.red, 100f);
-        Vector2 earthRotationVector = (transform.position - collision.transform.position).normalized;
-        Vector2 earthWidthVectorRotated = earthRotationVector * earthWidthVector.magnitude;
-        Vector2 placePoint = (Vector2)bounds.center + earthWidthVectorRotated;
-        Debug.DrawLine(bounds.center, (Vector2)bounds.center + earthWidthVectorRotated, Color.blue, 100f);
-        Quaternion placeRotation = Quaternion.FromToRotation(Vector2.up, earthRotationVector);
+        Vector3 widthVector = new Vector2(bounds.extents.x, 0);
+        Debug.DrawLine(bounds.center, bounds.center + widthVector, Color.red, 100f);
+        Vector2 rotationVector = (transform.position - bounds.center).normalized;
+        Vector2 finalVector = rotationVector * bounds.size;
+        Vector2 placePoint = (Vector2)bounds.center + finalVector;
 
         Instantiate(mushroomGameObject, placePoint, Quaternion.identity);
         CancelMovement();
@@ -116,8 +114,13 @@ public class YarnController : MonoBehaviour
     {
         UnMountStringTrail();
         _canMove = false;
-        transform.position = startPosition;
+        StartCoroutine(ResetPosition());
         GameStateController.Instance.ChangeToManagerState();
+    }
+    private IEnumerator ResetPosition()
+    {
+        yield return new WaitForSeconds(1f);
+        transform.position = startPosition;
     }
     private void Instance_OnManagementStateEnter()
     {

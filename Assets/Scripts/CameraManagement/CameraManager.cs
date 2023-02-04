@@ -36,7 +36,6 @@ public class CameraManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-
     private void MoveCameraInManagementState()
     {
         float RotationDegree(float playerInput)
@@ -52,27 +51,23 @@ public class CameraManager : MonoBehaviour
         
         cameraParent.transform.localEulerAngles = new Vector3(0f, 0f, RotationDegree(horizontalInput));
     }
-    
     private void SwapCameraState()
     {
         GameStateController.Instance.OnConquerStateEnter += SwapCameraToConquer;
         GameStateController.Instance.OnManagementStateEnter += SwapCameraToManagement;
     }
-    
     private void SwapCameraToConquer()
     {
         canMoveCamera = false;
         managementStateVirtualCamera.SetActive(false);
         conquererStateVirtualCamera.SetActive(true);
     }
-    
     private void SwapCameraToManagement()
     {
         canMoveCamera = true;
         managementStateVirtualCamera.SetActive(true);
         conquererStateVirtualCamera.SetActive(false);
     }
-
     private void PrefaceInstanceCameraSelect()
     {
         managementStateVirtualCamera = GameObject.FindGameObjectWithTag("ManagementCamera");
