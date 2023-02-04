@@ -86,25 +86,21 @@ public class YarnController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        bool HasCollidedWithObstacle() => col.gameObject.CompareTag(obstacleGOTag); //Obstacle layer
+        if (!col.CompareTag(obstacleGOTag)) return;
+        if (!col.CompareTag(resourceGOTag)) return;
 
-        bool HasCollidedWithResource() => col.gameObject.CompareTag(resourceGOTag); //Resource layer
-
-        if (HasCollidedWithResource())
-            Debug.Log("Collided with resource");
-        
-        if (!HasCollidedWithObstacle()) return;
-
+        col.GetComponent<CollidableBase>().Collision();
+        CancelMovement();
+    }
+    private void CancelMovement()
+    {
         UnMountStringTrail();
-        
         _canMove = false;
         transform.position = startPosition;
     }
     private void Instance_OnManagementStateEnter()
     {
-        _canMove = false;
-        transform.position = startPosition;
-        UnMountStringTrail();
+        CancelMovement();
     }
     private void Instance_OnConquerStateEnter()
     {

@@ -199,7 +199,7 @@ public class ResourceManager : MonoBehaviour
         foreach (ResourceTypeSO resourceType in resourceData.resourceTypes)
         {
             resourceAmounts[resourceNumber] = resourceAmount[resourceType];
-            print(resourceAmounts[resourceNumber]);
+            //print(resourceAmounts[resourceNumber]);
             resourceNumber++;
         }
 
