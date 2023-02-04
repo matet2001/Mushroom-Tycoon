@@ -17,7 +17,6 @@ public class GameStateConquer : GameState
     }
     public override void OnExit()
     {
-        conquererVirtualCamera.SetActive(false);
         base.OnExit();
     }
     public override bool TransitionToThisState()
