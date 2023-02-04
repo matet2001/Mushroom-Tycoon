@@ -1,5 +1,6 @@
 using System;
 using Mono.Cecil.Cil;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -14,10 +15,14 @@ public class YarnController : MonoBehaviour
     public string obstacleGOTag;
 
     public string resourceGOTag;
+    [Space] 
+    private GameObject trailInstance;
+    public GameObject trail;
 
     private void Start()
     {
         _canMove = true;
+        CreateStringTrail();
     }
 
     void Update()
@@ -26,6 +31,18 @@ public class YarnController : MonoBehaviour
         MoveYarn();
     }
 
+    public void CreateStringTrail()
+    {
+        trailInstance = Instantiate(trail, transform.position, quaternion.identity, transform);
+    }
+
+    public void UnMountStringTrail()
+    {
+        trailInstance.transform.parent = null;
+        trailInstance = null;
+    }
+    
+    
     private void MoveYarn()
     {
         // Functions
@@ -69,6 +86,8 @@ public class YarnController : MonoBehaviour
             Debug.Log("Collided with resource");
         
         if (!HasCollidedWithObstacle()) return;
+
+        UnMountStringTrail();
         
         _canMove = false;
     }
