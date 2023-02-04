@@ -92,6 +92,11 @@ public class YarnController : MonoBehaviour
             CancelMovement();
         }         
     }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Earth")) return;
+        CancelMovement();
+    }
     private void CancelMovement()
     {
         UnMountStringTrail();
