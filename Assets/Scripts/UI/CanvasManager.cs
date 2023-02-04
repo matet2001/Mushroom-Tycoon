@@ -10,6 +10,14 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] Transform[] resourceAmountTransforms;
     [Space] public Image[] resourceAmountSliders;
 
+    /// <summary>
+    /// Below: debug variables
+    /// TODO: delete later
+    /// </summary>
+    public TMPro.TextMeshProUGUI[] currentResourcesText;
+
+    public TMPro.TextMeshProUGUI[] maximumResourcesText;
+
     private ResourceData resourceData;
 
     private void Start()
@@ -30,8 +38,10 @@ public class CanvasManager : MonoBehaviour
 
         for (int i = 0; i < resourceAmountTransforms.Length; i++)
         {
+            currentResourcesText[i].text =$"current res. {ResourceManager.Instance.GetResourceAmounts()[i].ToString()}" ;
+            maximumResourcesText[i].text = $"max res. {ResourceManager.Instance.GetMaximumResourceAmounts()[i].ToString()}";
             TextMeshProUGUI[] resourceAmountTexts = resourceAmountTransforms[i].GetComponentsInChildren<TextMeshProUGUI>();
-            resourceAmountTexts[0].text = resourceNames[i];
+            resourceAmountTexts[i].text = resourceNames[i];
             resourceAmountSliders[i].fillAmount = 
                 // ReSharper disable once PossibleLossOfFraction
                 (currentResourceAmounts[i] / currentMaximumResourceAmounts[i]) /
@@ -51,6 +61,8 @@ public class CanvasManager : MonoBehaviour
         
         for (int i = 0; i < resourceAmountTransforms.Length; i++)
         {
+            currentResourcesText[i].text =$"current res. {ResourceManager.Instance.GetResourceAmounts()[i].ToString()}" ;
+            maximumResourcesText[i].text = $"max res. {ResourceManager.Instance.GetMaximumResourceAmounts()[i].ToString()}";
             TextMeshProUGUI[] resourceAmountTexts = resourceAmountTransforms[i].GetComponentsInChildren<TextMeshProUGUI>();
             resourceAmountTexts[0].text = resourceNames[i];
             resourceAmountSliders[i].fillAmount = 
