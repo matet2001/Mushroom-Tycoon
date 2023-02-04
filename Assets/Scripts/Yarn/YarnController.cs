@@ -31,6 +31,11 @@ public class YarnController : MonoBehaviour
         MoveYarn();
     }
 
+    public void SetNewYarnPosition(Vector3 newPos)
+    {
+        transform.position = newPos;
+    }
+
     public void CreateStringTrail()
     {
         trailInstance = Instantiate(trail, transform.position, quaternion.identity, transform);
