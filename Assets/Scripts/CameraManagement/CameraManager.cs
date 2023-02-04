@@ -13,6 +13,7 @@ public class CameraManager : MonoBehaviour
     [Space]
     public GameObject conquererStateVirtualCamera;
     public GameObject managementStateVirtualCamera;
+    [Space] public bool canMoveCamera;
 
     private void Awake()
     {
@@ -44,8 +45,10 @@ public class CameraManager : MonoBehaviour
             return current += (playerInput * Time.deltaTime * cameraRotationSpeed * -1f);
         }
         
+        if (!canMoveCamera) return;
+        
         var horizontalInput = Input.GetAxisRaw("Horizontal");
-
+        
         cameraParent.transform.localEulerAngles = new Vector3(0f, 0f, RotationDegree(horizontalInput));
     }
     
@@ -57,12 +60,14 @@ public class CameraManager : MonoBehaviour
     
     private void SwapCameraToConquer()
     {
+        canMoveCamera = false;
         managementStateVirtualCamera.SetActive(false);
         conquererStateVirtualCamera.SetActive(true);
     }
     
     private void SwapCameraToManagement()
     {
+        canMoveCamera = true;
         managementStateVirtualCamera.SetActive(true);
         conquererStateVirtualCamera.SetActive(false);
     }
