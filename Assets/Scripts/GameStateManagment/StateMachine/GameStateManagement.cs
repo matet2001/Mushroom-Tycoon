@@ -9,7 +9,7 @@ public class GameStateManagement : GameState
     public override void OnEnter()
     {
         base.OnEnter();
-        print("manager enter");
+        gameStateControllerDataContainer.gameStateController.FireOnManagmentStateEnter();
     }
     public override void OnUpdate()
     {
@@ -17,7 +17,6 @@ public class GameStateManagement : GameState
     }
     public override void OnExit()
     {
-        print("manager exit");
         base.OnExit();
     }
     public override bool TransitionToThisState()

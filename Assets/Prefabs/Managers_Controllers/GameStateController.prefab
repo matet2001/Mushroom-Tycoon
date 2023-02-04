@@ -47,6 +47,7 @@ MonoBehaviour:
   exitState: {fileID: 0}
   stateTransitions:
   - {fileID: 9068087267748021644}
+  managerVirtualCamera: {fileID: 0}
 --- !u!1 &3558990763420298617
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,6 +58,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3657410423962841099}
   - component: {fileID: 1112860889620390503}
+  - component: {fileID: 2767224927792612822}
   m_Layer: 0
   m_Name: StateMachine
   m_TagString: Untagged
@@ -94,6 +96,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: {fileID: 7470351940820420762}
+--- !u!114 &2767224927792612822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3558990763420298617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
+    _objectReferences: []
 --- !u!1 &4430398692267317525
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,6 +158,7 @@ MonoBehaviour:
   exitState: {fileID: 0}
   stateTransitions:
   - {fileID: 7470351940820420762}
+  conquererVirtualCamera: {fileID: 0}
 --- !u!1 &8190643630210148272
 GameObject:
   m_ObjectHideFlags: 0

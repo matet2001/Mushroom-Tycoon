@@ -9,7 +9,7 @@ public class GameStateConquer : GameState
     public override void OnEnter()
     {
         base.OnEnter();
-        conquererVirtualCamera.SetActive(true);
+        gameStateControllerDataContainer.gameStateController.FireOnConquerStateEnter();
     }
     public override void OnUpdate()
     {
