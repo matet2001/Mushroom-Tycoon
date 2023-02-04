@@ -1,5 +1,7 @@
 using System;
+using Mono.Cecil.Cil;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class YarnController : MonoBehaviour
 {
@@ -8,6 +10,10 @@ public class YarnController : MonoBehaviour
     [SerializeField] private Vector2 _mousePosition;
     private Vector2 _targetPosition;
     private bool _canMove;
+    [Space] 
+    public string obstacleGOTag;
+
+    public string resourceGOTag;
 
     private void Start()
     {
@@ -55,9 +61,13 @@ public class YarnController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        //TODO: kicserélni egy állítható layerre
-        bool HasCollidedWithObstacle() => col.gameObject.layer == 2;
+        bool HasCollidedWithObstacle() => col.gameObject.CompareTag(obstacleGOTag); //Obstacle layer
 
+        bool HasCollidedWithResource() => col.gameObject.CompareTag(resourceGOTag); //Resource layer
+
+        if (HasCollidedWithResource())
+            Debug.Log("Collided with resource");
+        
         if (!HasCollidedWithObstacle()) return;
         
         _canMove = false;
