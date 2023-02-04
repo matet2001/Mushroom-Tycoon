@@ -12,26 +12,26 @@ public class ResourceManager : MonoBehaviour
     public event Action OnResourceAmountRefresh;
 
 
-    private Dictionary<ResourceTypeSO, int> resourceAmount;
-    private Dictionary<ResourceTypeSO, int> resourceUsage;
-    private Dictionary<ResourceTypeSO, int> resourceGet;
-    private Dictionary<ResourceTypeSO, int> currentMaximumResource;
-    private Dictionary<ResourceTypeSO, int> maximumResource;
-    private Dictionary<ResourceTypeSO, int> maximumPossibleResource;
+    private Dictionary<ResourceTypeSO, float> resourceAmount;
+    private Dictionary<ResourceTypeSO, float> resourceUsage;
+    private Dictionary<ResourceTypeSO, float> resourceGet;
+    private Dictionary<ResourceTypeSO, float> currentMaximumResource;
+    private Dictionary<ResourceTypeSO, float> maximumResource;
+    private Dictionary<ResourceTypeSO, float> maximumPossibleResource;
 
     // public event Action<ResourceTypeSO[], int[]> OnResourceAmountChange;
-
-    private ResourceDataSO resourceData;
+    
+    public ResourceDataSO resourceData { get; private set; }
     private ConnectionManager connectionManager;
 
     [SerializeField] float resourceRefreshTime = 3;
     private float resourceRefreshTimeMax;
     [Space]
-    public List<int> maximumResourceCapacityLimit; //Ennél több resourcet nem lehet összeszedni.
+    public List<float> maximumResourceCapacityLimit; //Ennél több resourcet nem lehet összeszedni.
     [Space] 
-    [SerializeField] List<int> currentMaximumResourceCapacity; //Mennyi a személyes maximum (amikor kevesebb a fa, mint a kapacitás)
-    [SerializeField] List<int> resourceUsageAmount;
-    [SerializeField] List<int> resourceAdditionAmount;
+    [SerializeField] List<float> currentMaximumResourceCapacity; //Mennyi a személyes maximum (amikor kevesebb a fa, mint a kapacitás)
+    [SerializeField] List<float> resourceUsageAmount;
+    [SerializeField] List<float> resourceAdditionAmount;
 
     private void Awake()
     {
@@ -54,12 +54,12 @@ public class ResourceManager : MonoBehaviour
     }
     private void SetUpResources()
     {
-        resourceAmount = new Dictionary<ResourceTypeSO, int>();
-        resourceUsage = new Dictionary<ResourceTypeSO, int>();
-        resourceGet = new Dictionary<ResourceTypeSO, int>();
-        currentMaximumResource = new Dictionary<ResourceTypeSO, int>();
-        maximumResource = new Dictionary<ResourceTypeSO, int>();
-        maximumPossibleResource = new Dictionary<ResourceTypeSO, int>();
+        resourceAmount = new Dictionary<ResourceTypeSO, float>();
+        resourceUsage = new Dictionary<ResourceTypeSO, float>();
+        resourceGet = new Dictionary<ResourceTypeSO, float>();
+        currentMaximumResource = new Dictionary<ResourceTypeSO, float>();
+        maximumResource = new Dictionary<ResourceTypeSO, float>();
+        maximumPossibleResource = new Dictionary<ResourceTypeSO, float>();
 
         int limit = resourceData.resourceTypes.Length;
         int i = 0;
@@ -150,18 +150,18 @@ public class ResourceManager : MonoBehaviour
 
         return resourceNames;
     }
-    public int GetResourceCurrentMaximumAmount(ResourceTypeSO resourceType)
+    public float GetResourceCurrentMaximumAmount(ResourceTypeSO resourceType)
     {
         return currentMaximumResource[resourceType];
     }
     // elérhető maximum
-    public int GetMaximumResourceAmount(ResourceTypeSO resourceType)
+    public float GetMaximumResourceAmount(ResourceTypeSO resourceType)
     {
         return maximumPossibleResource[resourceType];
     }
-    public int[] GetMaximumResourceAmounts()
+    public float[] GetMaximumResourceAmounts()
     {
-        var _resourceAmount = new int[3];
+        var _resourceAmount = new float[3];
         for (int j = 0; j < maximumResourceCapacityLimit.Count; j++)
         {
             _resourceAmount[j] = maximumResourceCapacityLimit[j];
@@ -171,13 +171,13 @@ public class ResourceManager : MonoBehaviour
 
     }
     //Jelenlegi maximum
-    public int GetCurrentMaximumResourceAmount(ResourceTypeSO resourceType)
+    public float GetCurrentMaximumResourceAmount(ResourceTypeSO resourceType)
     {
         return maximumResource[resourceType];
     }
-    public int[] GetCurrentMaximumResourceAmounts()
+    public float[] GetCurrentMaximumResourceAmounts()
     {
-        var currentResourceAmount = new int[3];
+        var currentResourceAmount = new float[3];
         var i = 0;
         foreach (var items in currentMaximumResourceCapacity)
         {
@@ -188,13 +188,13 @@ public class ResourceManager : MonoBehaviour
         return currentResourceAmount;
     }
     //jelenlegi resource
-    public int GetResoruceAmount(ResourceTypeSO resourceType)
+    public float GetResoruceAmount(ResourceTypeSO resourceType)
     {
         return resourceAmount[resourceType];
     }
-    public int[] GetResourceAmounts()
+    public float[] GetResourceAmounts()
     {
-        int[] resourceAmounts = new int[3];
+        float[] resourceAmounts = new float[3];
         int resourceNumber = 0;
 
         foreach (ResourceTypeSO resourceType in resourceData.resourceTypes)
