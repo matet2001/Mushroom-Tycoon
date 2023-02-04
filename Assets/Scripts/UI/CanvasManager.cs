@@ -7,35 +7,49 @@ using UnityEngine.UI;
 public class CanvasManager : MonoBehaviour
 {
     [SerializeField] Transform[] resourceAmountTransforms;
+    [Space] public Image[] resourceAmountSliders;
 
-    //private void Start()
-    //{
-    //    SetUpResourceAmountUI();
+    private void Start()
+    {
+        SetUpResourceAmountUI();
 
-    //    ResourceManager.Instance.OnResourceAmountChange += Instance_OnResourceAmountChange;
-    //}
-    //private void SetUpResourceAmountUI()
-    //{
-    //    string[] resourceNames = ResourceManager.Instance.GetResourceNames();
-    //    int[] resourceAmounts = ResourceManager.Instance.GetResourceAmounts();
+        ResourceManager.Instance.OnResourceAmountChange += Instance_OnResourceAmountChange;
+    }
 
-    //    for (int i = 0; i < resourceAmountTransforms.Length; i++)
-    //    {
-    //        TextMeshProUGUI[] resourceAmountTexts = resourceAmountTransforms[i].GetComponentsInChildren<TextMeshProUGUI>();
-    //        resourceAmountTexts[0].text = resourceNames[i];
-    //        resourceAmountTexts[1].text = resourceAmounts[i].ToString();
-    //    }
-    //}
-    //private void RefreshResourceAmountUI()
-    //{
+    private void SetUpResourceAmountUI()
+    {
+        string[] resourceNames = ResourceManager.Instance.GetResourceNames();
+        int[] currentResourceAmounts = ResourceManager.Instance.GetResourceAmounts();
+        int[] currentMaximumResourceAmounts = ResourceManager.Instance.GetCurrentMaximumResourceAmounts();
+        int[] maximumPossibleResourceAmounts = ResourceManager.Instance.GetMaximumResourceAmounts();
 
-    //}
-    //private void Instance_OnResourceAmountChange(ResourceTypeSO[] arg1, int[] resourceAmount)
-    //{
-    //    for (int i = 0; i < resourceAmountTransforms.Length; i++)
-    //    {
-    //        TextMeshProUGUI[] resourceAmountTexts = resourceAmountTransforms[i].GetComponentsInChildren<TextMeshProUGUI>();
-    //        resourceAmountTexts[1].text = resourceAmount[i].ToString();
-    //    }
-    //}
+        for (int i = 0; i < resourceAmountTransforms.Length; i++)
+        {
+            TextMeshProUGUI[] resourceAmountTexts = resourceAmountTransforms[i].GetComponentsInChildren<TextMeshProUGUI>();
+            resourceAmountTexts[0].text = resourceNames[i];
+            resourceAmountSliders[i].fillAmount = 
+                // ReSharper disable once PossibleLossOfFraction
+                (currentResourceAmounts[i] / currentMaximumResourceAmounts[i]) /
+                                                   maximumPossibleResourceAmounts[i];
+        }
+    }
+    private void RefreshResourceAmountUI()
+    {
+
+    }
+    private void Instance_OnResourceAmountChange(ResourceTypeSO[] arg1, int[] resourceAmount)
+    {
+        string[] resourceNames = ResourceManager.Instance.GetResourceNames();
+        int[] currentResourceAmounts = ResourceManager.Instance.GetResourceAmounts();
+        int[] currentMaximumResourceAmounts = ResourceManager.Instance.GetCurrentMaximumResourceAmounts();
+        // int[] maximumPossibleResourceAmounts = ResourceManager.Instance.GetMaximumResourceAmounts();
+        
+        for (int i = 0; i < resourceAmountTransforms.Length; i++)
+        {
+            TextMeshProUGUI[] resourceAmountTexts = resourceAmountTransforms[i].GetComponentsInChildren<TextMeshProUGUI>();
+            resourceAmountTexts[0].text = resourceNames[i];
+            resourceAmountSliders[i].fillAmount = 
+               (currentResourceAmounts[i] / currentMaximumResourceAmounts[i]);
+        }
+    }
 }
