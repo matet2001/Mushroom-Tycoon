@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
 public class TreeController : PlantBase
@@ -33,6 +34,7 @@ public class TreeController : PlantBase
     private void Update()
     {
         SetSprite(isSelected, _selectedObjectSprite);
+        HandleObjectClick();
         switch (isSelected)
         {
             case true:
@@ -44,6 +46,15 @@ public class TreeController : PlantBase
         }
     }
 
+    private void HandleObjectClick()
+    {
+        bool IsSelected() => Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject();
+        
+        if (!IsSelected()) return;
+        
+        isSelected = !isSelected;
+    }
+    
     private void SetSprite(bool isSelected, Sprite selectedSprite)
         => selectedSpriteRenderer.sprite = isSelected 
             ? selectedSprite 
