@@ -8,6 +8,6 @@ public class TreeTypeSO : ScriptableObject
     public string treeName;
     public float[] resourceAmount, resourceUsage, resourceGet, resourceAdd, resourceMax;
 
-    public int growthTime;
+    public int growTime;
     public Sprite[] treeSprites;
 }
