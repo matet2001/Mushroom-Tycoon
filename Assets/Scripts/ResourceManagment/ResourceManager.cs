@@ -21,7 +21,7 @@ public class ResourceManager : MonoBehaviour
 
     // public event Action<ResourceTypeSO[], int[]> OnResourceAmountChange;
     
-    public ResourceDataSO resourceData { get; private set; }
+    // public ResourceDataSO resourceData { get; private set; }
     private ConnectionManager connectionManager;
 
     [SerializeField] float resourceRefreshTime = 3;
