@@ -8,7 +8,8 @@ public class GameStateManagement : GameState
     
     public override void OnEnter()
     {
-        base.OnEnter();
+        if (Time.timeSinceLevelLoad < 30) return;
+        
         gameStateControllerDataContainer.gameStateController.FireOnManagmentStateEnter();
     }
     public override void OnUpdate()

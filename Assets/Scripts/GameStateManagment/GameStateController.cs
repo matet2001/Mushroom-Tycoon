@@ -11,6 +11,8 @@ public class GameStateController : MonoBehaviour
     public event Action OnManagementStateEnter;
     public event Action OnConquerStateEnter;
 
+    [SerializeField] GameState managerState;
+
     private void Awake()
     {
         SingletonPattern();
@@ -39,6 +41,10 @@ public class GameStateController : MonoBehaviour
     public void FireOnConquerStateEnter() 
     {
         OnConquerStateEnter?.Invoke(); 
+    }
+    public void ChangeToManagerState()
+    {
+        gameStateControllerDataContainer.stateMachine.ChangeState(managerState);
     }
 }
 public class GameStateControllerDataContainer
