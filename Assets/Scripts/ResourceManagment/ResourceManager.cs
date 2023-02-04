@@ -8,14 +8,14 @@ public class ResourceManager : MonoBehaviour
 {
     public static ResourceManager Instance;
 
-    [SerializeField] ResourceTypeSO[] resourceTypes = new ResourceTypeSO[3];
+    private ResourceTypeSO[] resourceTypes = new ResourceTypeSO[3];
 
-    private Dictionary<ResourceTypeSO, int> resourceAmount;
-    private Dictionary<ResourceTypeSO, int> resourceUsage;
-    private Dictionary<ResourceTypeSO, int> resourceGet;
-    private Dictionary<ResourceTypeSO, int> maxResourceAmount;
+    private Dictionary<ResourceTypeSO, float> resourceAmount;
+    private Dictionary<ResourceTypeSO, float> resourceUsage;
+    private Dictionary<ResourceTypeSO, float> resourceGet;
+    private Dictionary<ResourceTypeSO, float> maxResourceAmount;
 
-    public event Action<ResourceTypeSO[], int[]> OnResourceAmountChange;
+    public event Action<ResourceTypeSO[], float[]> OnResourceAmountChange;
 
     [SerializeField] float resourceRefreshTime = 3;
     private float resourceRefreshTimeMax;
@@ -36,10 +36,12 @@ public class ResourceManager : MonoBehaviour
     }
     private void SetUpResources()
     {
-        resourceAmount = new Dictionary<ResourceTypeSO, int>();
-        resourceUsage = new Dictionary<ResourceTypeSO, int>();
-        resourceGet = new Dictionary<ResourceTypeSO, int>();
-        maxResourceAmount = new Dictionary<ResourceTypeSO, int>();
+        resourceTypes = Resources.Load<ResourceTypeContainer>("ResourceTypeContainer").resourceTypeArray;
+
+        resourceAmount = new Dictionary<ResourceTypeSO, float>();
+        resourceUsage = new Dictionary<ResourceTypeSO, float>();
+        resourceGet = new Dictionary<ResourceTypeSO, float>();
+        maxResourceAmount = new Dictionary<ResourceTypeSO, float>();
 
         foreach (ResourceTypeSO resourceType in resourceTypes)
         {
@@ -67,11 +69,11 @@ public class ResourceManager : MonoBehaviour
     private void RefreshResourceAmount()
     {
         resourceRefreshTime = resourceRefreshTimeMax;
-        int[] newResourceAmounts = new int[resourceAmount.Count];
+        float[] newResourceAmounts = new float[resourceAmount.Count];
 
         for(int i = 0; i < resourceTypes.Length; i++)
         {
-            int currentResourceAmount = resourceUsage[resourceTypes[i]];
+            float currentResourceAmount = resourceUsage[resourceTypes[i]];
             SubstractResourceAmount(resourceTypes[i], currentResourceAmount);
 
             currentResourceAmount = resourceGet[resourceTypes[i]];
@@ -82,17 +84,17 @@ public class ResourceManager : MonoBehaviour
 
         OnResourceAmountChange?.Invoke(resourceTypes, newResourceAmounts);
     }
-    public void AddResourceAmount(ResourceTypeSO resourceType, int amount)
+    public void AddResourceAmount(ResourceTypeSO resourceType, float amount)
     {
         resourceAmount[resourceType] += amount;
     }
-    public void SubstractResourceAmount(ResourceTypeSO resourceType, int amount)
+    public void SubstractResourceAmount(ResourceTypeSO resourceType, float amount)
     {
         resourceAmount[resourceType] -= amount;
     }
-    public void SubstractResourceAmountAll(int amount)
+    public void SubstractResourceAmountAll(float amount)
     {
-        int[] newResourceAmounts = new int[resourceAmount.Count];
+        float[] newResourceAmounts = new float[resourceAmount.Count];
 
         for (int i = 0; i < resourceTypes.Length; i++)
         {
@@ -102,7 +104,7 @@ public class ResourceManager : MonoBehaviour
 
         OnResourceAmountChange?.Invoke(resourceTypes, newResourceAmounts);
     }
-    public int GetResourceAmount(ResourceTypeSO resourceType)
+    public float GetResourceAmount(ResourceTypeSO resourceType)
     {
         return resourceAmount[resourceType];
     }
@@ -119,9 +121,9 @@ public class ResourceManager : MonoBehaviour
 
         return resourceNames;
     }
-    public int[] GetResourceAmounts()
+    public float[] GetResourceAmounts()
     {
-        int[] resourceAmounts = new int[3];
+        float[] resourceAmounts = new float[3];
         int resourceNumber = 0;
 
         foreach (ResourceTypeSO resourceType in resourceTypes)

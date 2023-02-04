@@ -14,13 +14,10 @@ public class CanvasManager : MonoBehaviour
 
         ResourceManager.Instance.OnResourceAmountChange += Instance_OnResourceAmountChange;
     }
-
-    
-
     private void SetUpResourceAmountUI()
     {
         string[] resourceNames = ResourceManager.Instance.GetResourceNames();
-        int[] resourceAmounts = ResourceManager.Instance.GetResourceAmounts();
+        float[] resourceAmounts = ResourceManager.Instance.GetResourceAmounts();
 
         for (int i = 0; i < resourceAmountTransforms.Length; i++)
         {
@@ -29,11 +26,7 @@ public class CanvasManager : MonoBehaviour
             resourceAmountTexts[1].text = resourceAmounts[i].ToString();
         }
     }
-    private void RefreshResourceAmountUI()
-    {
-
-    }
-    private void Instance_OnResourceAmountChange(ResourceTypeSO[] arg1, int[] resourceAmount)
+    private void Instance_OnResourceAmountChange(ResourceTypeSO[] arg1, float[] resourceAmount)
     {
         for (int i = 0; i < resourceAmountTransforms.Length; i++)
         {

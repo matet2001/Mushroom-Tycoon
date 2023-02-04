@@ -8,8 +8,6 @@ public class GameStateConquer : GameState
     
     public override void OnEnter()
     {
-        base.OnEnter();
-        gameStateControllerDataContainer.gameStateController.FireOnConquerStateEnter();
     }
     public override void OnUpdate()
     {
