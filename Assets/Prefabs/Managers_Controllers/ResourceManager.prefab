@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8749629590202746454}
   - component: {fileID: 5764323902531513114}
+  - component: {fileID: 1587302862836159164}
   m_Layer: 0
   m_Name: ResourceManager
   m_TagString: Untagged
@@ -44,8 +45,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa3004fdf0b2eb479534032b2929f34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceTypes:
-  - {fileID: 11400000, guid: 6357bc10f2e8c8f439e15cdfddffb417, type: 2}
-  - {fileID: 11400000, guid: 5e952cba2c36901468dda956f4f14871, type: 2}
-  - {fileID: 11400000, guid: cb878ba5792b4644a92d76c1bb2f5dd0, type: 2}
   resourceRefreshTime: 3
+--- !u!114 &1587302862836159164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5779964787740236142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88d995544006f774d90aa4ae0d3b833b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  treeControllerList: []

@@ -17,12 +17,11 @@ public class GameStateConquer : GameState
     }
     public override void OnExit()
     {
-        conquererVirtualCamera.SetActive(false);
         base.OnExit();
     }
     public override bool TransitionToThisState()
     {
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             return true;
         }
