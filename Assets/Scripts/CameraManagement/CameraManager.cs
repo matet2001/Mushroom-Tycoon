@@ -42,6 +42,7 @@ public class CameraManager : MonoBehaviour
         float RotationDegree(float playerInput)
         {
             var current = cameraParent.transform.localEulerAngles.z;
+            
             return current += (playerInput * Time.deltaTime * cameraRotationSpeed * -1f);
         }
         

@@ -174,18 +174,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7470351940820420762, guid: 005fabaff0d00754a9359e38cda52e1b, type: 3}
-      propertyPath: managerVirtualCamera
-      value: 
-      objectReference: {fileID: 2081894659}
     - target: {fileID: 8190643630210148272, guid: 005fabaff0d00754a9359e38cda52e1b, type: 3}
       propertyPath: m_Name
       value: GameStateController
       objectReference: {fileID: 0}
-    - target: {fileID: 9068087267748021644, guid: 005fabaff0d00754a9359e38cda52e1b, type: 3}
-      propertyPath: conquererVirtualCamera
-      value: 
-      objectReference: {fileID: 1585404214}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 005fabaff0d00754a9359e38cda52e1b, type: 3}
 --- !u!1 &474100373
