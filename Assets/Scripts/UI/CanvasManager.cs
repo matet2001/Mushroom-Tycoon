@@ -15,9 +15,8 @@ public class CanvasManager : MonoBehaviour
     /// Below: debug variables
     /// TODO: delete later
     /// </summary>
-    public TMPro.TextMeshProUGUI[] currentResourcesText;
-
-    public TMPro.TextMeshProUGUI[] maximumResourcesText;
+    public TextMeshProUGUI[] currentResourcesText;
+    public TextMeshProUGUI[] maximumResourcesText;
 
     private ResourceData resourceData;
 
@@ -26,7 +25,6 @@ public class CanvasManager : MonoBehaviour
         SetUpResourceAmountUI();
 
         ResourceManager.Instance.OnResourceAmountChange += Instance_OnResourceAmountChange;
-
         resourceData = ResourceManager.Instance.resourceData;
     }
 
@@ -42,10 +40,6 @@ public class CanvasManager : MonoBehaviour
                 $"{ResourceManager.Instance.GetResourceAmounts()[i]}/" +
                 $"{ResourceManager.Instance.GetMaximumResourceAmounts()[i]}");
         }
-    }
-    private void RefreshResourceAmountUI()
-    {
-
     }
     private void Instance_OnResourceAmountChange(ResourceTypeSO[] arg1, float[] resourceAmount)
     {

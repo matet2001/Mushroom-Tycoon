@@ -11,59 +11,60 @@ public class TreeController : PlantBase
     
     public ResourceData resourceData;
     [SerializeField] TreeTypeSO treeType;
-    [Space(5f), Header("Selected sprite attributes")]
-    public bool isSelected;
-
-    [Space, Range(1,35f)] public float rotationSpeed;
-    [SerializeField] private Sprite _selectedObjectSprite; //Ez vagy null
-    [SerializeField] private SpriteRenderer selectedSpriteRenderer;
+    
     private SpriteRenderer spriteRenderer;
+    private SpriteRenderer selectedUISpriteRenderer;
+    [SerializeField] GameObject selectedUI;
 
     private int growTime, growLevel;
+
+    private bool shouldDisplayUI;
+    [SerializeField] float showDistance = 4f;
  
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        GetComponents();
         SetUpTreeType();
+    }
+    private void GetComponents()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        selectedUISpriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
     private void Start()
     {
         ResourceManager.Instance.OnResourceAmountRefresh += Instance_OnResourceAmountRefresh;
     }
-
     private void Update()
     {
-        SetSprite(isSelected, _selectedObjectSprite);
-        HandleObjectClick();
-        switch (isSelected)
+        CheckShouldDisplayUI();
+        DisplayUI();
+    }
+
+    
+
+    private void CheckShouldDisplayUI()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        float distance = Vector2.Distance(transform.position, mousePosition);
+
+        if (distance <= showDistance)
         {
-            case true:
-                RotateSelectorSprite(rotationSpeed);
-                break;
-            case false:
-                selectedSpriteRenderer.transform.localEulerAngles = Vector3.zero;
-                break;
+            shouldDisplayUI = true;
+        }
+        else
+        {
+            shouldDisplayUI = false;
         }
     }
-
-    private void HandleObjectClick()
+    private void DisplayUI()
     {
-        bool IsSelected() => Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject();
-        
-        if (!IsSelected()) return;
-        
-        isSelected = !isSelected;
-    }
-    
-    private void SetSprite(bool isSelected, Sprite selectedSprite)
-        => selectedSpriteRenderer.sprite = isSelected 
-            ? selectedSprite 
-            : null;
+        if (selectedUI.activeSelf != shouldDisplayUI) selectedUI.SetActive(shouldDisplayUI);
 
-    private void RotateSelectorSprite(float degree)
-        => selectedSpriteRenderer.gameObject.transform.localEulerAngles =
-            new Vector3(0, 0, selectedSpriteRenderer.transform.localEulerAngles.z + degree * Time.deltaTime);
-    
+        if (!shouldDisplayUI) return;
+
+        selectedUI.transform.Rotate(0f, 0f, 50f * Time.deltaTime, Space.Self);
+    }
     private void SetUpTreeType()
     {
         spriteRenderer.sprite = treeType.treeSprites[0];
