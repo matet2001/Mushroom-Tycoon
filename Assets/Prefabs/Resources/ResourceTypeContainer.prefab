@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5779964787740236142
+--- !u!1 &4615804336509398331
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8749629590202746454}
-  - component: {fileID: 5764323902531513114}
-  - component: {fileID: 1587302862836159164}
+  - component: {fileID: 4615804336509398333}
+  - component: {fileID: 4615804336509398330}
   m_Layer: 0
-  m_Name: ResourceManager
+  m_Name: ResourceTypeContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8749629590202746454
+--- !u!4 &4615804336509398333
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5779964787740236142}
+  m_GameObject: {fileID: 4615804336509398331}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,29 +32,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5764323902531513114
+--- !u!114 &4615804336509398330
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5779964787740236142}
+  m_GameObject: {fileID: 4615804336509398331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aa3004fdf0b2eb479534032b2929f34, type: 3}
+  m_Script: {fileID: 11500000, guid: 148a4fb4bfa44d14d970166b078198ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceRefreshTime: 3
---- !u!114 &1587302862836159164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5779964787740236142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88d995544006f774d90aa4ae0d3b833b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  treeControllerList: []
+  resourceTypes:
+  - {fileID: 11400000, guid: 6357bc10f2e8c8f439e15cdfddffb417, type: 2}
+  - {fileID: 11400000, guid: cb878ba5792b4644a92d76c1bb2f5dd0, type: 2}
+  - {fileID: 11400000, guid: 5e952cba2c36901468dda956f4f14871, type: 2}

@@ -13,7 +13,7 @@ public class CanvasManager : MonoBehaviour
     {
         SetUpResourceAmountUI();
 
-        ResourceManager.Instance.OnResourceAmountChange += Instance_OnResourceAmountChange;
+        // ResourceManager.Instance.OnResourceAmountChange += Instance_OnResourceAmountChange;
     }
 
     private void SetUpResourceAmountUI()
