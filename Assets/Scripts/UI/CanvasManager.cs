@@ -10,11 +10,15 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] Transform[] resourceAmountTransforms;
     [Space] public Image[] resourceAmountSliders;
 
+    private ResourceData resourceData;
+
     private void Start()
     {
         SetUpResourceAmountUI();
 
         ResourceManager.Instance.OnResourceAmountChange += Instance_OnResourceAmountChange;
+
+        resourceData = ResourceManager.Instance.resourceData;
     }
 
     private void SetUpResourceAmountUI()

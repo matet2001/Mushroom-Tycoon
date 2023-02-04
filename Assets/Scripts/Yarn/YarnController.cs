@@ -19,12 +19,19 @@ public class YarnController : MonoBehaviour
     private GameObject trailInstance;
     public GameObject trail;
 
+    private Vector2 startPosition;
+
+    private void Awake()
+    {
+        startPosition = transform.position;
+    }
     private void Start()
     {
-        _canMove = true;
         CreateStringTrail();
-    }
 
+        GameStateController.Instance.OnConquerStateEnter += Instance_OnConquerStateEnter;
+        GameStateController.Instance.OnManagementStateEnter += Instance_OnManagementStateEnter;
+    }
     void Update()
     {
         if (!_canMove) return;
@@ -77,7 +84,6 @@ public class YarnController : MonoBehaviour
                 break;
         }
     }
-
     private void OnTriggerEnter2D(Collider2D col)
     {
         bool HasCollidedWithObstacle() => col.gameObject.CompareTag(obstacleGOTag); //Obstacle layer
@@ -92,5 +98,17 @@ public class YarnController : MonoBehaviour
         UnMountStringTrail();
         
         _canMove = false;
+        transform.position = startPosition;
+    }
+    private void Instance_OnManagementStateEnter()
+    {
+        _canMove = false;
+        transform.position = startPosition;
+        UnMountStringTrail();
+    }
+    private void Instance_OnConquerStateEnter()
+    {
+        _canMove = true;
+        trailInstance = Instantiate(trail, transform.position, quaternion.identity, transform);
     }
 }

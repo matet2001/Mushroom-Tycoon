@@ -11,6 +11,7 @@ public class ResourceManager : MonoBehaviour
     public event Action<ResourceTypeSO[], float[]> OnResourceAmountChange;
     public event Action OnResourceAmountRefresh;
 
+    public ResourceData resourceData { get; private set; }
 
     private Dictionary<ResourceTypeSO, float> resourceAmount;
     private Dictionary<ResourceTypeSO, float> resourceUsage;
@@ -19,9 +20,6 @@ public class ResourceManager : MonoBehaviour
     private Dictionary<ResourceTypeSO, float> maximumResource;
     private Dictionary<ResourceTypeSO, float> maximumPossibleResource;
 
-    // public event Action<ResourceTypeSO[], int[]> OnResourceAmountChange;
-    
-    // public ResourceDataSO resourceData { get; private set; }
     private ConnectionManager connectionManager;
 
     [SerializeField] float resourceRefreshTime = 3;
@@ -54,6 +52,8 @@ public class ResourceManager : MonoBehaviour
     }
     private void SetUpResources()
     {
+        resourceData = new ResourceData(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), 0, 0, 0, 0, 0);
+        
         resourceAmount = new Dictionary<ResourceTypeSO, float>();
         resourceUsage = new Dictionary<ResourceTypeSO, float>();
         resourceGet = new Dictionary<ResourceTypeSO, float>();
@@ -75,8 +75,7 @@ public class ResourceManager : MonoBehaviour
             maximumPossibleResource.Add(resourceType, maximumResourceCapacityLimit[i]);
             i++;
         }
-        
-        resourceData = new ResourceDataSO(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), 0, 0, 0, 0, 0);
+
         resourceRefreshTimeMax = resourceRefreshTime;
     }
     private void Update()
