@@ -71,11 +71,9 @@ public class YarnController : MonoBehaviour
         {
             case true:
                 transform.position += newYarnPosition * Time.deltaTime;
-                ResourceManager.Instance.SubstractResourceAmountAll(1);
                 break;
             case false:
                 transform.position += newYarnPosition * (Time.deltaTime * _sprintSpeed);
-                ResourceManager.Instance.SubstractResourceAmountAll(2);
                 break;
         }
     }

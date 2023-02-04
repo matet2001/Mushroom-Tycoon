@@ -8,37 +8,34 @@ public class CanvasManager : MonoBehaviour
 {
     [SerializeField] Transform[] resourceAmountTransforms;
 
-    private void Start()
-    {
-        SetUpResourceAmountUI();
+    //private void Start()
+    //{
+    //    SetUpResourceAmountUI();
 
-        ResourceManager.Instance.OnResourceAmountChange += Instance_OnResourceAmountChange;
-    }
+    //    ResourceManager.Instance.OnResourceAmountChange += Instance_OnResourceAmountChange;
+    //}
+    //private void SetUpResourceAmountUI()
+    //{
+    //    string[] resourceNames = ResourceManager.Instance.GetResourceNames();
+    //    int[] resourceAmounts = ResourceManager.Instance.GetResourceAmounts();
 
-    
+    //    for (int i = 0; i < resourceAmountTransforms.Length; i++)
+    //    {
+    //        TextMeshProUGUI[] resourceAmountTexts = resourceAmountTransforms[i].GetComponentsInChildren<TextMeshProUGUI>();
+    //        resourceAmountTexts[0].text = resourceNames[i];
+    //        resourceAmountTexts[1].text = resourceAmounts[i].ToString();
+    //    }
+    //}
+    //private void RefreshResourceAmountUI()
+    //{
 
-    private void SetUpResourceAmountUI()
-    {
-        string[] resourceNames = ResourceManager.Instance.GetResourceNames();
-        int[] resourceAmounts = ResourceManager.Instance.GetResourceAmounts();
-
-        for (int i = 0; i < resourceAmountTransforms.Length; i++)
-        {
-            TextMeshProUGUI[] resourceAmountTexts = resourceAmountTransforms[i].GetComponentsInChildren<TextMeshProUGUI>();
-            resourceAmountTexts[0].text = resourceNames[i];
-            resourceAmountTexts[1].text = resourceAmounts[i].ToString();
-        }
-    }
-    private void RefreshResourceAmountUI()
-    {
-
-    }
-    private void Instance_OnResourceAmountChange(ResourceTypeSO[] arg1, int[] resourceAmount)
-    {
-        for (int i = 0; i < resourceAmountTransforms.Length; i++)
-        {
-            TextMeshProUGUI[] resourceAmountTexts = resourceAmountTransforms[i].GetComponentsInChildren<TextMeshProUGUI>();
-            resourceAmountTexts[1].text = resourceAmount[i].ToString();
-        }
-    }
+    //}
+    //private void Instance_OnResourceAmountChange(ResourceTypeSO[] arg1, int[] resourceAmount)
+    //{
+    //    for (int i = 0; i < resourceAmountTransforms.Length; i++)
+    //    {
+    //        TextMeshProUGUI[] resourceAmountTexts = resourceAmountTransforms[i].GetComponentsInChildren<TextMeshProUGUI>();
+    //        resourceAmountTexts[1].text = resourceAmount[i].ToString();
+    //    }
+    //}
 }

@@ -8,14 +8,10 @@ public class ResourceManager : MonoBehaviour
 {
     public static ResourceManager Instance;
 
-    [SerializeField] ResourceTypeSO[] resourceTypes = new ResourceTypeSO[3];
+    public event Action<ResourceTypeSO[], float[]> OnResourceAmountChange;
 
-    private Dictionary<ResourceTypeSO, int> resourceAmount;
-    private Dictionary<ResourceTypeSO, int> resourceUsage;
-    private Dictionary<ResourceTypeSO, int> resourceGet;
-    private Dictionary<ResourceTypeSO, int> maxResourceAmount;
-
-    public event Action<ResourceTypeSO[], int[]> OnResourceAmountChange;
+    private ResourceDataSO resourceData;
+    private ConnectionManager connectionManager;
 
     [SerializeField] float resourceRefreshTime = 3;
     private float resourceRefreshTimeMax;
@@ -24,7 +20,12 @@ public class ResourceManager : MonoBehaviour
     {
         SingletonPattern();
         SetUpResources();
-    } 
+        GetComponents();
+    }
+    private void GetComponents()
+    {
+        connectionManager = GetComponent<ConnectionManager>();
+    }
     private void SingletonPattern()
     {
         if (Instance != null && Instance != this) Destroy(gameObject);
@@ -36,20 +37,7 @@ public class ResourceManager : MonoBehaviour
     }
     private void SetUpResources()
     {
-        resourceAmount = new Dictionary<ResourceTypeSO, int>();
-        resourceUsage = new Dictionary<ResourceTypeSO, int>();
-        resourceGet = new Dictionary<ResourceTypeSO, int>();
-        maxResourceAmount = new Dictionary<ResourceTypeSO, int>();
-
-        foreach (ResourceTypeSO resourceType in resourceTypes)
-        {
-            
-            resourceAmount.Add(resourceType, 50);
-            resourceUsage.Add(resourceType, 5);
-            resourceGet.Add(resourceType, 3);
-            maxResourceAmount.Add(resourceType, 100);
-        }
-
+        resourceData = new ResourceDataSO(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), 0, 0, 0, 0, 0);
         resourceRefreshTimeMax = resourceRefreshTime;
     }
     private void Update()
@@ -67,69 +55,43 @@ public class ResourceManager : MonoBehaviour
     private void RefreshResourceAmount()
     {
         resourceRefreshTime = resourceRefreshTimeMax;
-        int[] newResourceAmounts = new int[resourceAmount.Count];
+        
+        float[] newResourceAmounts = new float[resourceData.resourceAmount.Count];
 
-        for(int i = 0; i < resourceTypes.Length; i++)
+        for(int i = 0; i < resourceData.resourceTypes.Length; i++)
         {
-            int currentResourceAmount = resourceUsage[resourceTypes[i]];
-            SubstractResourceAmount(resourceTypes[i], currentResourceAmount);
+            float currentResourceAmount = resourceData.resourceUsage[resourceData.resourceTypes[i]];
+            SubstractResourceAmount(resourceData.resourceTypes[i], currentResourceAmount);
 
-            currentResourceAmount = resourceGet[resourceTypes[i]];
-            AddResourceAmount(resourceTypes[i], currentResourceAmount);
+            currentResourceAmount = resourceData.resourceGet[resourceData.resourceTypes[i]];
+            AddResourceAmount(resourceData.resourceTypes[i], currentResourceAmount);
 
-            newResourceAmounts[i] = resourceAmount[resourceTypes[i]];
+            newResourceAmounts[i] = resourceData.resourceAmount[resourceData.resourceTypes[i]];
         }
 
-        OnResourceAmountChange?.Invoke(resourceTypes, newResourceAmounts);
+        OnResourceAmountChange?.Invoke(resourceData.resourceTypes, newResourceAmounts);
     }
-    public void AddResourceAmount(ResourceTypeSO resourceType, int amount)
+    public void AddResourceAmount(ResourceTypeSO resourceType, float amount)
     {
-        resourceAmount[resourceType] += amount;
+        resourceData.resourceAmount[resourceType] += amount;
     }
-    public void SubstractResourceAmount(ResourceTypeSO resourceType, int amount)
+    public void SubstractResourceAmount(ResourceTypeSO resourceType, float amount)
     {
-        resourceAmount[resourceType] -= amount;
+        resourceData.resourceAmount[resourceType] -= amount;
     }
-    public void SubstractResourceAmountAll(int amount)
+    public float GetResourceAmount(ResourceTypeSO resourceType)
     {
-        int[] newResourceAmounts = new int[resourceAmount.Count];
-
-        for (int i = 0; i < resourceTypes.Length; i++)
+        return resourceData.resourceAmount[resourceType];
+    }
+    private void CalculateResourceValues()
+    {
+        for (int i = 0; i < connectionManager.treeControllerList.Count; i++)
         {
-            SubstractResourceAmount(resourceTypes[i], amount);;
-            newResourceAmounts[i] = resourceAmount[resourceTypes[i]];
+            foreach (ResourceTypeSO resourceType in resourceData.resourceTypes)
+            {
+                resourceData.resourceUsage[resourceType] += connectionManager.treeControllerList[i].resourceData.resourceUsage[resourceType];
+                resourceData.resourceAdd[resourceType] += connectionManager.treeControllerList[i].resourceData.resourceUsage[resourceType];
+            }
         }
-
-        OnResourceAmountChange?.Invoke(resourceTypes, newResourceAmounts);
-    }
-    public int GetResourceAmount(ResourceTypeSO resourceType)
-    {
-        return resourceAmount[resourceType];
-    }
-    public string[] GetResourceNames()
-    {
-        string[] resourceNames = new string[3];
-        int resourceNumber = 0;
-
-        foreach (ResourceTypeSO resourceType in resourceTypes)
-        {
-            resourceNames[resourceNumber] = resourceType.resourceName;
-            resourceNumber++;
-        }
-
-        return resourceNames;
-    }
-    public int[] GetResourceAmounts()
-    {
-        int[] resourceAmounts = new int[3];
-        int resourceNumber = 0;
-
-        foreach (ResourceTypeSO resourceType in resourceTypes)
-        {
-            resourceAmounts[resourceNumber] = resourceAmount[resourceType];
-            resourceNumber++;
-        }
-
-        return resourceAmounts;
     }
 }
