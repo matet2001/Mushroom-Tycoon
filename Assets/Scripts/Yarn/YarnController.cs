@@ -46,8 +46,7 @@ public class YarnController : MonoBehaviour
         trailInstance.transform.parent = null;
         trailInstance = null;
     }
-    
-    
+
     private void MoveYarn()
     {
         // Functions
