@@ -35,7 +35,7 @@ public class TreeController : PlantBase
     }
     public override void Collision()
     {
-
+        ResourceManager.Instance.connectionManager.AddToTreeControllerList(this);
     }
     private void Instance_OnResourceAmountRefresh()
     {

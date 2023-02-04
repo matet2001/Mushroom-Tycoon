@@ -20,7 +20,7 @@ public class ResourceManager : MonoBehaviour
     private Dictionary<ResourceTypeSO, float> maximumResource;
     private Dictionary<ResourceTypeSO, float> maximumPossibleResource;
 
-    private ConnectionManager connectionManager;
+    public ConnectionManager connectionManager { get; private set; }
 
     [SerializeField] float resourceRefreshTime = 3;
     private float resourceRefreshTimeMax;
