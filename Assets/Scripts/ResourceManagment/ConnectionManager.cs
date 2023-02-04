@@ -8,6 +8,8 @@ public class ConnectionManager : MonoBehaviour
 
     public void AddToTreeControllerList(TreeController treeController)
     {
+        if (treeControllerList.Contains(treeController)) return;
+        
         treeControllerList.Add(treeController);
     }
 }

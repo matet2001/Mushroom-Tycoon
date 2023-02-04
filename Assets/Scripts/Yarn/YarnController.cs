@@ -86,11 +86,11 @@ public class YarnController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (!col.CompareTag(obstacleGOTag)) return;
-        if (!col.CompareTag(resourceGOTag)) return;
-
-        col.GetComponent<CollidableBase>().Collision();
-        CancelMovement();
+        if (col.TryGetComponent(out CollidableBase collidableBase))
+        {
+            collidableBase.Collision();
+            CancelMovement();
+        }         
     }
     private void CancelMovement()
     {
