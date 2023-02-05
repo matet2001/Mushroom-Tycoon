@@ -51,14 +51,7 @@ public class TreeController : PlantBase
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         float distance = Vector2.Distance(transform.position, mousePosition);
 
-        if (distance <= showDistance)
-        {
-            shouldDisplayUI = true;
-        }
-        else
-        {
-            shouldDisplayUI = false;
-        }
+        shouldDisplayUI = distance <= showDistance;
     }
     private void DisplayUI()
     {

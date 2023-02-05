@@ -59,4 +59,28 @@ public class ResourceData
             resourceNumber++;
         }
     }
+    //Fill resource amount from started resource data
+    public ResourceData(ResourceTypeContainer resourceTypeContainer, StartResourceDataSO startResourceData)
+    {
+        resourceTypes = resourceTypeContainer.resourceTypes;
+
+        resourceAmount = new Dictionary<ResourceTypeSO, float>();
+        resourceUsage = new Dictionary<ResourceTypeSO, float>();
+        resourceGet = new Dictionary<ResourceTypeSO, float>();
+        resourceProduce = new Dictionary<ResourceTypeSO, float>();
+        resourceMax = new Dictionary<ResourceTypeSO, float>();
+
+        int resourceNumber = 0;
+
+        foreach (ResourceTypeSO resourceType in resourceTypeContainer.resourceTypes)
+        {
+            resourceAmount[resourceType] = startResourceData.resourceAmount[resourceNumber];
+            resourceUsage[resourceType] = startResourceData.resourceUsage[resourceNumber];
+            resourceGet[resourceType] = startResourceData.resourceUse[resourceNumber];
+            resourceProduce[resourceType] = startResourceData.resourceProduce[resourceNumber];
+            resourceMax[resourceType] = startResourceData.resourceMax[resourceNumber];
+
+            resourceNumber++;
+        }
+    }
 }
