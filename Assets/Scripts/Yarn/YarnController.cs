@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Mono.Cecil.Cil;
 using Unity.Mathematics;
 using Unity.VisualScripting;
@@ -11,6 +12,7 @@ public class YarnController : MonoBehaviour
     [SerializeField, Range(0,25f)] private float _movementSpeed;
     [SerializeField, Range(1, 25f)] private float _sprintSpeed = 1;
     [SerializeField] private Vector2 _mousePosition;
+    [SerializeField] private Vector3 camPosition;
     private Vector2 _targetPosition;
     private bool _canMove;
     [Space] 
@@ -23,6 +25,7 @@ public class YarnController : MonoBehaviour
     public GameObject trail;
 
     private Vector2 startPosition;
+    [Space] public List<Vector3> positions = new List<Vector3>();
     [FormerlySerializedAs("globeRadius")] [Space(15f), Range(0f,65f)] public float radiusOffset;
     [Space, Range(0, 35f)] public float mushroomAreaCheckRadius;
     [Space] public LayerMask mushroomLayermask;
@@ -89,6 +92,8 @@ public class YarnController : MonoBehaviour
         // Logic
         
         if (CameraNull()) return;
+
+        camPosition = Camera.main.transform.position;
         
         Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(
             new Vector3(Input.mousePosition.x, Input.mousePosition.y));
@@ -167,11 +172,24 @@ public class YarnController : MonoBehaviour
     }
     private void Instance_OnManagementStateEnter()
     {
+        positions = ResourceManager.Instance.connectionManager.mushroomPositions;
         CancelMovement();
     }
     private void Instance_OnConquerStateEnter()
     {
+        positions = ResourceManager.Instance.connectionManager.mushroomPositions;
         _canMove = true;
+        var closestDist = 0f;
+        foreach (var VARIABLE in positions)
+        {
+            if (closestDist < (VARIABLE - camPosition).magnitude)
+            {
+                closestDist = (VARIABLE - transform.position).magnitude;
+                SetStartPosition(VARIABLE);
+            }
+        }
+        
+        SetNewYarnPosition(startPosition);
     }
 
     private void OnDrawGizmosSelected()
