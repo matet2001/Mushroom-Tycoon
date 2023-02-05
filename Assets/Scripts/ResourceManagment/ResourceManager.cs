@@ -11,7 +11,7 @@ public class ResourceManager : MonoBehaviour
     public ResourceData resourceData { get; private set; }
     [SerializeField] StartResourceDataSO startResourceData;
 
-    public event Action<ResourceTypeSO[], float[]> OnResourceAmountChange;
+    public event Action OnResourceAmountChange;
     public event Action OnResourceAmountRefresh;
 
     public ConnectionManager connectionManager { get; private set; }
@@ -94,7 +94,7 @@ public class ResourceManager : MonoBehaviour
         }
 
         OnResourceAmountRefresh?.Invoke();
-        OnResourceAmountChange?.Invoke(resourceData.resourceTypes, newResourceAmounts);
+        OnResourceAmountChange?.Invoke();
     }
     public void AddResourceAmount(ResourceTypeSO resourceType, float amount)
     {
@@ -104,4 +104,12 @@ public class ResourceManager : MonoBehaviour
     {
         resourceData.resourceAmount[resourceType] -= amount;
     }  
+    public void ConsumeResource(float[] resourceToConsume)
+    {
+        for (int i = 0; i < resourceData.resourceTypes.Length; i++)
+        {
+            SubstractResourceAmount(resourceData.resourceTypes[i], resourceToConsume[i]);
+        }
+        OnResourceAmountChange?.Invoke();
+    }
 }

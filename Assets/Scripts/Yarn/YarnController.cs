@@ -29,6 +29,8 @@ public class YarnController : MonoBehaviour
     [FormerlySerializedAs("globeRadius")] [Space(15f), Range(0f,65f)] public float radiusOffset;
     [Space, Range(0, 35f)] public float mushroomAreaCheckRadius;
     [Space] public LayerMask mushroomLayermask;
+
+    public float[] yarnResourceConsume;
     
     private void Awake()
     {
@@ -108,9 +110,11 @@ public class YarnController : MonoBehaviour
         {
             case true:
                 transform.position += newYarnPosition * Time.deltaTime;
+                ResourceManager.Instance.ConsumeResource(yarnResourceConsume);
                 break;
             case false:
                 transform.position += newYarnPosition * (Time.deltaTime * _sprintSpeed);
+                ResourceManager.Instance.ConsumeResource(yarnResourceConsume);
                 break;
         }
     }

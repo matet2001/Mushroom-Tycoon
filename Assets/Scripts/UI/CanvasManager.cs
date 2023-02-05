@@ -30,8 +30,10 @@ public class CanvasManager : MonoBehaviour
             resourceSliderControllers[i].SetIconImage(resourceData.resourceTypes[i].resourceImageUI);
         }
     }
-    private void Instance_OnResourceAmountChange(ResourceTypeSO[] arg1, float[] resourceAmount)
+    private void Instance_OnResourceAmountChange()
     {
+        resourceData = ResourceManager.Instance.resourceData;
+        
         for (int i = 0; i < resourceData.resourceTypes.Length; i++)
         {
             float maxValue = resourceData.resourceMax[resourceData.resourceTypes[i]];
@@ -50,7 +52,7 @@ public class CanvasManager : MonoBehaviour
 
             resourceSliderControllers[i].SetSliderMaxValue(maxValue);
             resourceSliderControllers[i].SetSliderValue(currentValue);
-            resourceSliderControllers[i].SetSliderText(currentValue.ToString() + "/" + maxValue.ToString());
+            resourceSliderControllers[i].SetSliderText(currentValue.ToString("0") + "/" + maxValue.ToString());
         }
     }
 }
