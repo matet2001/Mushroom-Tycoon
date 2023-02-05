@@ -24,7 +24,9 @@ public class YarnController : MonoBehaviour
 
     private Vector2 startPosition;
     [FormerlySerializedAs("globeRadius")] [Space(15f), Range(0f,65f)] public float radiusOffset;
-
+    [Space, Range(0, 35f)] public float mushroomAreaCheckRadius;
+    [Space] public LayerMask mushroomLayermask;
+    
     private void Awake()
     {
         startPosition = transform.position;
@@ -114,8 +116,21 @@ public class YarnController : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        bool HasCollidedWithOtherMooshie()
+        {
+            Collider2D[] cols = Physics2D.OverlapCircleAll(
+                transform.position, 
+                mushroomAreaCheckRadius, 
+                mushroomLayermask);
+            return cols.Length > 0;
+        }
+        
         if (!collision.CompareTag("Earth")) return;
-        GameObject plantObject = Resources.Load<GameObject>("PfTreeOak");
+        
+        if (HasCollidedWithOtherMooshie()) CancelMovement();
+        if (HasCollidedWithOtherMooshie()) return;
+        
+        GameObject plantObject = Resources.Load<GameObject>("PfMushroom");
 
         var plantOffset = new Vector3(radiusOffset, radiusOffset);
         
@@ -154,5 +169,11 @@ public class YarnController : MonoBehaviour
     private void Instance_OnConquerStateEnter()
     {
         _canMove = true;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, mushroomAreaCheckRadius);
     }
 }
