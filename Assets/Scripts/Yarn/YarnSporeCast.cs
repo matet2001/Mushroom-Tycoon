@@ -40,7 +40,7 @@ public class YarnSporeCast : MonoBehaviour
                         (
                             transform.position.x - spawnCircleRadius
                         )
-                        -
+                        +
                         (
                             -_direction.x * 2
                         )
@@ -48,7 +48,7 @@ public class YarnSporeCast : MonoBehaviour
                         (
                             transform.position.x + spawnCircleRadius
                         )
-                        -
+                        +
                         (
                             -_direction.x * 2
                         )
@@ -58,7 +58,7 @@ public class YarnSporeCast : MonoBehaviour
                         (
                             transform.position.y - spawnCircleRadius
                         )
-                        -
+                        +
                         (
                             -_direction.x * 2
                         )
@@ -66,7 +66,7 @@ public class YarnSporeCast : MonoBehaviour
                         (
                             transform.position.y + spawnCircleRadius
                         )
-                        -
+                        +
                         (
                             -_direction.x * 2
                         )
@@ -87,6 +87,6 @@ public class YarnSporeCast : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position - (-(transform.up - transform.position).normalized  * 2), spawnCircleRadius);
+        Gizmos.DrawWireSphere(transform.position + -_direction, spawnCircleRadius);
     }
 }
