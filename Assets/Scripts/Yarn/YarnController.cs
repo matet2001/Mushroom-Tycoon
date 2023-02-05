@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Mono.Cecil.Cil;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -115,13 +116,20 @@ public class YarnController : MonoBehaviour
         if (!collision.CompareTag("Earth")) return;
         GameObject mushroomGameObject = Resources.Load<GameObject>("PfMushroom");
 
-        // Vector3 widthVector = new Vector2(bounds.extents.x, 0);
-        // Debug.DrawLine(bounds.center, bounds.center + widthVector, Color.red, 100f);
-        Vector2 rotationVector = (transform.position - Vector3.zero).normalized;
-        var finalVector = rotationVector * globeRadius;
-        var placePoint = finalVector;
+        var plantOffset = new Vector3(globeRadius, globeRadius);
+        
+        var placePoint = transform.position + plantOffset;
+        
+        Vector3 diff = transform.position - Vector3.zero;
+        
+        diff.Normalize();
+ 
+        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        
+        GameObject plant = Instantiate(mushroomGameObject, placePoint, Quaternion.identity);
+        
+        plant.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
 
-        Instantiate(mushroomGameObject, transform.position, Quaternion.identity);
         CancelMovement();
     }
     private void CancelMovement()
@@ -145,11 +153,5 @@ public class YarnController : MonoBehaviour
     private void Instance_OnConquerStateEnter()
     {
         _canMove = true;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawLine(Vector3.zero, globeRadius * transform.right.normalized);
     }
 }
