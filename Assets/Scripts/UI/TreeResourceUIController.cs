@@ -25,7 +25,8 @@ public class TreeResourceUIController : MonoBehaviour
             float barValue = resourceData.resourceAmount[resourceData.resourceTypes[i]];
             float barMaxValue = resourceData.resourceMax[resourceData.resourceTypes[i]];
 
-            slider.SetBarValue(barValue, barMaxValue);
+            slider.SetBarValueMax(barMaxValue);
+            slider.SetBarValue(barValue);
             slider.SetBarText(barValue.ToString() + "/" + barMaxValue.ToString());
             slider.SetBarIcon(resourceData.resourceTypes[i].resourceImageUI);
         }
@@ -40,11 +41,23 @@ public class TreeResourceUIController : MonoBehaviour
         {
             ResourcesSliderWorldController slider = resourceSliderControllers[i];
 
-            float barValue = resourceData.resourceAmount[resourceData.resourceTypes[i]];
-            float barMaxValue = resourceData.resourceMax[resourceData.resourceTypes[i]];
+            float currentValue = resourceData.resourceAmount[resourceData.resourceTypes[i]];
+            float maxValue = resourceData.resourceMax[resourceData.resourceTypes[i]];
 
-            slider.SetBarValue(barValue, barMaxValue);
-            slider.SetBarText(barValue.ToString() + "/" + barMaxValue.ToString());
+            if (currentValue <= 0)
+            {
+                currentValue = 0;
+                Debug.Log("Min amount of " + resourceData.resourceTypes[i].resourceName + " reached, at tree resource manager");
+            }
+            if (currentValue >= maxValue)
+            {
+                currentValue = maxValue;
+                Debug.Log("Max amount of " + resourceData.resourceTypes[i].resourceName + " reached, at tree resource manager");
+            }
+
+            slider.SetBarValueMax(maxValue);
+            slider.SetBarValue(currentValue);
+            slider.SetBarText(currentValue.ToString() + "/" + maxValue.ToString());
         }
     }
 }

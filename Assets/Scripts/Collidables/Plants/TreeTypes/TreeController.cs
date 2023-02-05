@@ -6,13 +6,12 @@ using UnityEngine;
 
 public class TreeController : PlantBase
 {
-    
     public ResourceData resourceData;
     [SerializeField] TreeTypeSO treeType;
     
     private SpriteRenderer spriteRenderer;
 
-    [SerializeField] GameObject selectedUI, resourceValuesUI;
+    [SerializeField] GameObject selectedUI, resourceValuesUI, treeMenusUI;
 
     private int growTime, growLevel;
 
@@ -36,7 +35,7 @@ public class TreeController : PlantBase
     }
     private void SetUpResources()
     {
-        resourceData = new ResourceData(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), treeType.resourceAmount, treeType.resourceUsage, treeType.resourceGet, treeType.resourceAdd, treeType.resourceMax);
+        resourceData = new ResourceData(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), treeType.resourceAmount, treeType.resourceUsage, treeType.resourceGet, treeType.resourceProduce, treeType.resourceMax);
     }
     private void Start()
     {
@@ -65,7 +64,8 @@ public class TreeController : PlantBase
     {
         if (selectedUI.activeSelf != shouldDisplayUI) selectedUI.SetActive(shouldDisplayUI);
         if (resourceValuesUI.activeSelf != shouldDisplayUI) resourceValuesUI.SetActive(shouldDisplayUI);
-        
+        if (treeMenusUI.activeSelf != shouldDisplayUI) treeMenusUI.SetActive(shouldDisplayUI);
+
         if (!shouldDisplayUI) return;
 
         selectedUI.transform.Rotate(0f, 0f, 50f * Time.deltaTime, Space.Self);
@@ -76,13 +76,36 @@ public class TreeController : PlantBase
     }
     private void Instance_OnResourceAmountRefresh()
     {
+        GrowCounter();
+        RefreshResourceAmounts();
+    }
+    private void GrowCounter()
+    {
         growTime--;
 
-        if(growTime <= 0)
+        if (growTime <= 0)
         {
             growLevel++;
             spriteRenderer.sprite = treeType.treeSprites[growLevel];
             growTime = treeType.growTime * growLevel;
+
+        }
+    }
+    private void RefreshResourceAmounts()
+    {
+        int number = 0;
+
+        foreach (ResourceTypeSO resourceType in resourceData.resourceTypes)
+        {
+            float resourceProduce = resourceData.resourceProduce[resourceType];
+            float resourceGet = resourceData.resourceGet[resourceType];
+
+            resourceData.resourceUsage[resourceType] = treeType.resourceUsage[number] * growLevel + resourceProduce + resourceGet;
+            resourceData.resourceMax[resourceType] += treeType.resourceMax[number] * growLevel;
+
+            resourceData.resourceAmount[resourceType] += resourceData.resourceUsage[resourceType];
+
+            number++;
         }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class TreeTypeSO : ScriptableObject
 {
     public string treeName;
-    public float[] resourceAmount, resourceUsage, resourceGet, resourceAdd, resourceMax;
+    public float[] resourceAmount, resourceUsage, resourceGet, resourceProduce, resourceMax;
 
     public int growTime;
     public Sprite[] treeSprites;

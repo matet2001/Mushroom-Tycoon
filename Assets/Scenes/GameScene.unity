@@ -1057,30 +1057,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 236651028542222708, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 236651028542222708, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 236651028737861561, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 236651028737861561, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 236651028856690618, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 236651028856690618, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2022488831803297170, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
       propertyPath: m_Name
       value: PfTreeOak
@@ -44468,6 +44444,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1934813110}
     m_Modifications:
+    - target: {fileID: 987510137972805347, guid: e707fc030ce84d54b8629648a2a31362, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 987510137972805347, guid: e707fc030ce84d54b8629648a2a31362, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 987510137972805347, guid: e707fc030ce84d54b8629648a2a31362, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2517867730209678866, guid: e707fc030ce84d54b8629648a2a31362, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -51244,7 +51232,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a43840dbc9e888749861eb63f84377b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceSliderControllers: []
 --- !u!114 &2108699849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51741,6 +51728,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ResourceAmountContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 93734893049586846, guid: e23e60ded49841e4eba15ba5824b837e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6736838916078187497, guid: e23e60ded49841e4eba15ba5824b837e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -51764,6 +51755,10 @@ PrefabInstance:
     - target: {fileID: 6736838916258174247, guid: e23e60ded49841e4eba15ba5824b837e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786172229895743460, guid: e23e60ded49841e4eba15ba5824b837e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e23e60ded49841e4eba15ba5824b837e, type: 3}
@@ -51905,6 +51900,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7969061080770697220, guid: 011cfc8870d66784f86aaa32e582e964, type: 3}
+      propertyPath: cameraParent
+      value: 
+      objectReference: {fileID: 936269214}
+    - target: {fileID: 7969061080770697220, guid: 011cfc8870d66784f86aaa32e582e964, type: 3}
+      propertyPath: conquererStateVirtualCamera
+      value: 
+      objectReference: {fileID: 2081894659}
+    - target: {fileID: 7969061080770697220, guid: 011cfc8870d66784f86aaa32e582e964, type: 3}
+      propertyPath: managementStateVirtualCamera
+      value: 
+      objectReference: {fileID: 1585404214}
     - target: {fileID: 7969061080770697221, guid: 011cfc8870d66784f86aaa32e582e964, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -51962,6 +51969,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5764323902531513114, guid: 5be3abad7c45e924f8fc0e6eb68c671f, type: 3}
+      propertyPath: resourceRefreshTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5764323902531513114, guid: 5be3abad7c45e924f8fc0e6eb68c671f, type: 3}
       propertyPath: resourceUsageAmount.Array.size
       value: 3
