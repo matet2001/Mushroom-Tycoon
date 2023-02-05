@@ -10,6 +10,7 @@ TagManager:
   - ManagementCamera
   - CameraParent
   - Earth
+  - Mushrooms
   layers:
   - Default
   - TransparentFX
