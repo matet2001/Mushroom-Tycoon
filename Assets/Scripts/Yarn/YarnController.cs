@@ -23,7 +23,7 @@ public class YarnController : MonoBehaviour
     public GameObject trail;
 
     private Vector2 startPosition;
-    [Space(15f), Range(0f,65f)] public float globeRadius;
+    [FormerlySerializedAs("globeRadius")] [Space(15f), Range(0f,65f)] public float radiusOffset;
 
     private void Awake()
     {
@@ -117,7 +117,7 @@ public class YarnController : MonoBehaviour
         if (!collision.CompareTag("Earth")) return;
         GameObject mushroomGameObject = Resources.Load<GameObject>("PfMushroom");
 
-        var plantOffset = new Vector3(globeRadius, globeRadius);
+        var plantOffset = new Vector3(radiusOffset, radiusOffset);
         
         var placePoint = transform.position + plantOffset;
         
