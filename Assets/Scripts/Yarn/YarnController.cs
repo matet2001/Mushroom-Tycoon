@@ -18,6 +18,7 @@ public class YarnController : MonoBehaviour
     public string resourceGOTag;
     [Space] 
     private GameObject trailInstance;
+    private TrailRenderer _trail;
     public GameObject trail;
 
     private Vector2 startPosition;
@@ -37,8 +38,21 @@ public class YarnController : MonoBehaviour
     {
         if (!_canMove) return;
         MoveYarn();
+        if (trailInstance) return;
+        trailInstance = Instantiate(trail, transform.position, quaternion.identity, transform);
     }
 
+    public bool GetMoveStatus() 
+        => _canMove;
+
+    public Vector3 GetDirection()
+        => (Camera.main.ScreenToWorldPoint(
+            new Vector2(
+                Input.mousePosition.x, 
+                Input.mousePosition.y)) 
+            - 
+            transform.position).normalized;
+    
     public void SetNewYarnPosition(Vector3 newPos)
     {
         transform.position = newPos;
@@ -47,12 +61,12 @@ public class YarnController : MonoBehaviour
     public void CreateStringTrail()
     {
         trailInstance = Instantiate(trail, transform.position, quaternion.identity, transform);
+        _trail = trailInstance.GetComponent<TrailRenderer>();
     }
 
     public void UnMountStringTrail()
     {
         if (trailInstance == null) return;
-        
         trailInstance.transform.parent = null;
         trailInstance = null;
     }
@@ -70,7 +84,7 @@ public class YarnController : MonoBehaviour
         if (CameraNull()) return;
         
         var worldMousePosition = Camera.main.ScreenToWorldPoint(
-            new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+            new Vector3(Input.mousePosition.x, Input.mousePosition.y,-10f));
 
         var newYarnPosition = 
             (worldMousePosition - transform.position).normalized * _movementSpeed;
@@ -112,15 +126,16 @@ public class YarnController : MonoBehaviour
     }
     private void CancelMovement()
     {
-        UnMountStringTrail();
         _canMove = false;
+        trailInstance.GetComponent<TrailRenderer>().emitting = false;
+        UnMountStringTrail();
         StartCoroutine(ResetPosition());
-        GameStateController.Instance.ChangeToManagerState();
     }
     private IEnumerator ResetPosition()
     {
         yield return new WaitForSeconds(1f);
-        transform.position = startPosition;
+        SetNewYarnPosition(startPosition);
+        GameStateController.Instance.ChangeToManagerState();
     }
     private void Instance_OnManagementStateEnter()
     {
@@ -129,6 +144,5 @@ public class YarnController : MonoBehaviour
     private void Instance_OnConquerStateEnter()
     {
         _canMove = true;
-        trailInstance = Instantiate(trail, transform.position, quaternion.identity, transform);
     }
 }
