@@ -11,8 +11,6 @@ public class GameStateManagement : GameState
         if (Time.timeSinceLevelLoad < 30) return;
         
         gameStateControllerDataContainer.gameStateController.FireOnManagmentStateEnter();
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
         base.OnEnter();
     }
     public override void OnUpdate()
@@ -21,7 +19,6 @@ public class GameStateManagement : GameState
     }
     public override void OnExit()
     {
-        Cursor.visible = false;
         base.OnExit();
     }
     public override bool TransitionToThisState()

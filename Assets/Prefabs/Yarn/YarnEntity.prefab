@@ -178,6 +178,10 @@ MonoBehaviour:
   resourceGOTag: Resource
   trail: {fileID: 514241884618455770, guid: d5c771c966c150d40a2a324f1b454bc9, type: 3}
   radiusOffset: 0
+  mushroomAreaCheckRadius: 13
+  mushroomLayermask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &7189475262900720497
 MonoBehaviour:
   m_ObjectHideFlags: 0
