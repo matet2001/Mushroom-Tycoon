@@ -137,6 +137,9 @@ public class YarnController : MonoBehaviour
                 mushroomLayermask);
             return cols.Length > 0;
         }
+
+        if (!_canMove) return;
+        if (GameStateController.Instance.CanShowUI()) return;
         
         if (!collision.CompareTag("Earth")) return;
         
@@ -185,6 +188,7 @@ public class YarnController : MonoBehaviour
     }
     private void Instance_OnManagementStateEnter()
     {
+        if (!_canMove) return;
         positions = ResourceManager.Instance.connectionManager.mushroomPositions;
         CancelMovement();
     }

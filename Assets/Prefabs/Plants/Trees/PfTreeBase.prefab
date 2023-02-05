@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5080281960942304625
 Transform:
   m_ObjectHideFlags: 0
@@ -555,6 +555,10 @@ PrefabInstance:
     - target: {fileID: 9213167250285406338, guid: 1504692aa0dde6746986c397210046ea, type: 3}
       propertyPath: m_Name
       value: PfTreeResources
+      objectReference: {fileID: 0}
+    - target: {fileID: 9213167250285406338, guid: 1504692aa0dde6746986c397210046ea, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1504692aa0dde6746986c397210046ea, type: 3}
