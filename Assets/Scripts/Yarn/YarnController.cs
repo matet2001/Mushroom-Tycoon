@@ -84,7 +84,7 @@ public class YarnController : MonoBehaviour
         if (CameraNull()) return;
         
         var worldMousePosition = Camera.main.ScreenToWorldPoint(
-            new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+            new Vector3(Input.mousePosition.x, Input.mousePosition.y,-10f));
 
         var newYarnPosition = 
             (worldMousePosition - transform.position).normalized * _movementSpeed;

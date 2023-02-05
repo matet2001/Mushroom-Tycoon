@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 10
-  _sprintSpeed: 1.2
+  _sprintSpeed: 3
   _mousePosition: {x: 0, y: 0}
   obstacleGOTag: Obstacle
   resourceGOTag: Resource
@@ -188,5 +188,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sporeInstance: {fileID: 8624053533818030753, guid: acbd7f1e7fb2a7143921d1198324f40c, type: 3}
-  spawnCircleRadius: 0.45
-  maximumTimeBtwCast: 0.5
+  spawnCircleRadius: 1
+  maximumTimeBtwCast: 0.7
