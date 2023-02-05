@@ -46,6 +46,9 @@ public class YarnController : MonoBehaviour
         trailInstance = Instantiate(trail, transform.position, quaternion.identity, transform);
     }
 
+    public void SetStartPosition(Vector3 startPos)
+        => startPosition = startPos;
+    
     public bool GetMoveStatus() 
         => _canMove;
 
