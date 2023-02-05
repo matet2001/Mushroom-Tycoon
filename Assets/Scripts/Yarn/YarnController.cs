@@ -136,6 +136,9 @@ public class YarnController : MonoBehaviour
                 mushroomLayermask);
             return cols.Length > 0;
         }
+
+        if (!_canMove) return;
+        if (GameStateController.Instance.CanShowUI()) return;
         
         if (!collision.CompareTag("Earth")) return;
         
@@ -166,16 +169,12 @@ public class YarnController : MonoBehaviour
         if (trailInstance != null)
             trailInstance.GetComponent<TrailRenderer>().emitting = false;
         UnMountStringTrail();
-        StartCoroutine(ResetPosition());
-    }
-    private IEnumerator ResetPosition()
-    {
-        yield return new WaitForSeconds(1f);
         SetNewYarnPosition(startPosition);
         GameStateController.Instance.ChangeToManagerState();
     }
     private void Instance_OnManagementStateEnter()
     {
+        if (!_canMove) return;
         positions = ResourceManager.Instance.connectionManager.mushroomPositions;
         CancelMovement();
     }
