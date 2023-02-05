@@ -11,7 +11,7 @@ public class ResourceData
 
     public Dictionary<ResourceTypeSO, float> resourceAmount;
     public Dictionary<ResourceTypeSO, float> resourceUsage;
-    public Dictionary<ResourceTypeSO, float> resourceGet;
+    public Dictionary<ResourceTypeSO, float> resourceUse;
     public Dictionary<ResourceTypeSO, float> resourceProduce;
     public Dictionary<ResourceTypeSO, float> resourceMax;
 
@@ -22,7 +22,7 @@ public class ResourceData
 
         resourceAmount = new Dictionary<ResourceTypeSO, float>();
         resourceUsage = new Dictionary<ResourceTypeSO, float>();
-        resourceGet = new Dictionary<ResourceTypeSO, float>();
+        resourceUse = new Dictionary<ResourceTypeSO, float>();
         resourceProduce = new Dictionary<ResourceTypeSO, float>();
         resourceMax = new Dictionary<ResourceTypeSO, float>();
 
@@ -30,7 +30,7 @@ public class ResourceData
         {
             resourceAmount[resourceType] = amount;
             resourceUsage[resourceType] = usage;
-            resourceGet[resourceType] = get;
+            resourceUse[resourceType] = get;
             resourceProduce[resourceType] = add;
             resourceMax[resourceType] = max;
         }
@@ -42,7 +42,7 @@ public class ResourceData
         
         resourceAmount = new Dictionary<ResourceTypeSO, float>();
         resourceUsage = new Dictionary<ResourceTypeSO, float>();
-        resourceGet = new Dictionary<ResourceTypeSO, float>();
+        resourceUse = new Dictionary<ResourceTypeSO, float>();
         resourceProduce = new Dictionary<ResourceTypeSO, float>();
         resourceMax = new Dictionary<ResourceTypeSO, float>();
 
@@ -52,7 +52,7 @@ public class ResourceData
         {
             resourceAmount[resourceType] = amount[resourceNumber];
             resourceUsage[resourceType] = usage[resourceNumber];
-            resourceGet[resourceType] = get[resourceNumber];
+            resourceUse[resourceType] = get[resourceNumber];
             resourceProduce[resourceType] = add[resourceNumber];
             resourceMax[resourceType] = max[resourceNumber];
 
@@ -66,7 +66,7 @@ public class ResourceData
 
         resourceAmount = new Dictionary<ResourceTypeSO, float>();
         resourceUsage = new Dictionary<ResourceTypeSO, float>();
-        resourceGet = new Dictionary<ResourceTypeSO, float>();
+        resourceUse = new Dictionary<ResourceTypeSO, float>();
         resourceProduce = new Dictionary<ResourceTypeSO, float>();
         resourceMax = new Dictionary<ResourceTypeSO, float>();
 
@@ -76,7 +76,7 @@ public class ResourceData
         {
             resourceAmount[resourceType] = startResourceData.resourceAmount[resourceNumber];
             resourceUsage[resourceType] = startResourceData.resourceUsage[resourceNumber];
-            resourceGet[resourceType] = startResourceData.resourceUse[resourceNumber];
+            resourceUse[resourceType] = startResourceData.resourceUse[resourceNumber];
             resourceProduce[resourceType] = startResourceData.resourceProduce[resourceNumber];
             resourceMax[resourceType] = startResourceData.resourceMax[resourceNumber];
 

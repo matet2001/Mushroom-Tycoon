@@ -91,7 +91,7 @@ public class TreeController : PlantBase
         foreach (ResourceTypeSO resourceType in resourceData.resourceTypes)
         {
             float resourceProduce = resourceData.resourceProduce[resourceType];
-            float resourceGet = resourceData.resourceGet[resourceType];
+            float resourceGet = resourceData.resourceUse[resourceType];
 
             resourceData.resourceUsage[resourceType] = treeType.resourceUsage[number] * growLevel + resourceProduce + resourceGet;
             resourceData.resourceMax[resourceType] += treeType.resourceMax[number] * growLevel;

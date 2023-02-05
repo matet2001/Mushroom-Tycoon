@@ -6,6 +6,12 @@ public class ConnectionManager : MonoBehaviour
 {
     public List<TreeController> treeControllerList;
     public List<MushroomController> mushroomControllerList;
+    
+    private void Awake()
+    {
+        treeControllerList = new List<TreeController>();
+        mushroomControllerList = new List<MushroomController>();
+    }
 
     public void AddToTreeControllerList(TreeController treeController)
     {
