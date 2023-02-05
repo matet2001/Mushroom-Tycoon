@@ -76,8 +76,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1005159791
-  m_SortingLayer: 1
+  m_SortingLayerID: 2076581001
+  m_SortingLayer: 2
   m_SortingOrder: 100
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &6287916228164300261
@@ -223,6 +223,8 @@ MonoBehaviour:
   barTransform: {fileID: 2901812795067948146}
   barText: {fileID: 6287916228164300261}
   iconSpriteRenderer: {fileID: 7174087587244943272}
+  resourceType: {fileID: 0}
+  barValueMax: 0
 --- !u!1 &4904351942715362070
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,8 +295,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1300880093
-  m_SortingLayer: 0
+  m_SortingLayerID: 2076581001
+  m_SortingLayer: 2
   m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: 1b1fb2f0295360f44b3f64ca9a358595, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -377,8 +379,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1300880093
-  m_SortingLayer: 0
+  m_SortingLayerID: 2076581001
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2844df0a4bf624044a01f4718057803e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -493,8 +495,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2076581001
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8946643f2479fb543877686458ba546d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

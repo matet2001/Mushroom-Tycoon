@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1005159791
-  m_SortingLayer: 1
+  m_SortingLayerID: 2076581001
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b5b073dbd86995f428538f6093f48490, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -92,6 +92,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6607445053948906036}
     m_Modifications:
+    - target: {fileID: 225037216980276576, guid: 6c3378148f190a042955e18d2d485485, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 225037216980276576, guid: 6c3378148f190a042955e18d2d485485, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 2076581001
+      objectReference: {fileID: 0}
     - target: {fileID: 2152246737330957575, guid: 6c3378148f190a042955e18d2d485485, type: 3}
       propertyPath: m_Name
       value: PfSliderMenu
@@ -140,9 +148,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4609682461721801395, guid: 6c3378148f190a042955e18d2d485485, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4609682461721801395, guid: 6c3378148f190a042955e18d2d485485, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 2076581001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5749887523116578288, guid: 6c3378148f190a042955e18d2d485485, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5749887523116578288, guid: 6c3378148f190a042955e18d2d485485, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 2076581001
+      objectReference: {fileID: 0}
     - target: {fileID: 5987831421875718676, guid: 6c3378148f190a042955e18d2d485485, type: 3}
       propertyPath: distanceToClick
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215265160580219146, guid: 6c3378148f190a042955e18d2d485485, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6215265160580219146, guid: 6c3378148f190a042955e18d2d485485, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 2076581001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7524912237793274608, guid: 6c3378148f190a042955e18d2d485485, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7524912237793274608, guid: 6c3378148f190a042955e18d2d485485, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 2076581001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8375018213703685647, guid: 6c3378148f190a042955e18d2d485485, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8375018213703685647, guid: 6c3378148f190a042955e18d2d485485, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 2076581001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c3378148f190a042955e18d2d485485, type: 3}
