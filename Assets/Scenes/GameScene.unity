@@ -1527,6 +1527,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: YarnEntity
       objectReference: {fileID: 0}
+    - target: {fileID: 2724874833430038538, guid: abab837fa462d5242818aa8a664c4d68, type: 3}
+      propertyPath: globeRadius
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 2724874833430038539, guid: abab837fa462d5242818aa8a664c4d68, type: 3}
       propertyPath: m_RootOrder
       value: 11
