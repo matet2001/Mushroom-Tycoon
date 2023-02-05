@@ -8,7 +8,7 @@ public class GameStateConquer : GameState
     
     public override void OnEnter()
     {
-        base.OnEnter();
+        StartCoroutine(ResourceManager.Instance.connectionManager.yarn.spawnProtection());
         gameStateControllerDataContainer.gameStateController.FireOnConquerStateEnter();
     }
     public override void OnUpdate()

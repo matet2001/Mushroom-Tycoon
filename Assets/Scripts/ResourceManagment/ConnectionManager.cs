@@ -8,7 +8,7 @@ public class ConnectionManager : MonoBehaviour
     public List<TreeController> treeControllerList;
     public List<MushroomController> mushroomControllerList;
     public List<Vector3> mushroomPositions;
-    [Space] private YarnController yarn;
+    [Space, HideInInspector] public YarnController yarn;
 
     private void Awake()
     {
