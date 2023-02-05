@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PlayerStarterResourceData
   m_EditorClassIdentifier: 
   resourceAmount:
-  - 0
-  - 0
-  - 0
+  - 100
+  - 100
+  - 100
   resourceUsage:
   - 0
   - 0
@@ -29,6 +29,6 @@ MonoBehaviour:
   - 0
   - 0
   resourceMax:
-  - 100
-  - 100
-  - 100
+  - 1000
+  - 1000
+  - 1000

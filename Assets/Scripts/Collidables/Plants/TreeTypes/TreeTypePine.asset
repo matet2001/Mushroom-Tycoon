@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f360b843fc1cf24b9f8cf0dbbc6fde3, type: 3}
-  m_Name: TreeTypeOak
+  m_Name: TreeTypePine
   m_EditorClassIdentifier: 
   treeName: Oak
   resourceAmount:
@@ -35,6 +35,6 @@ MonoBehaviour:
   - 500
   growTime: 25
   treeSprites:
-  - {fileID: 21300000, guid: 79af227bcf442c44ea97257f854e2342, type: 3}
-  - {fileID: 21300000, guid: d96a15b6a408e0045986a7db80c52130, type: 3}
-  - {fileID: 21300000, guid: 829d8f96dd6e10643a075a96bb9e8d85, type: 3}
+  - {fileID: 21300000, guid: 8b89d4d0f99ff294cbb39b2a74882ea0, type: 3}
+  - {fileID: 21300000, guid: 134e7568524f029498f25516f67539a9, type: 3}
+  - {fileID: 21300000, guid: 928ad14536ae6e248a49f520ab5dec8f, type: 3}

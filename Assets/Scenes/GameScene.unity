@@ -39087,7 +39087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5076285880134345917, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.56
+      value: 14.08
       objectReference: {fileID: 0}
     - target: {fileID: 5076285880134345917, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -47689,6 +47689,22 @@ PrefabInstance:
     - target: {fileID: 2724874833430038537, guid: abab837fa462d5242818aa8a664c4d68, type: 3}
       propertyPath: m_Name
       value: YarnEntity
+      objectReference: {fileID: 0}
+    - target: {fileID: 2724874833430038538, guid: abab837fa462d5242818aa8a664c4d68, type: 3}
+      propertyPath: yarnResourceConsume.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2724874833430038538, guid: abab837fa462d5242818aa8a664c4d68, type: 3}
+      propertyPath: yarnResourceConsume.Array.data[0]
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2724874833430038538, guid: abab837fa462d5242818aa8a664c4d68, type: 3}
+      propertyPath: yarnResourceConsume.Array.data[1]
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2724874833430038538, guid: abab837fa462d5242818aa8a664c4d68, type: 3}
+      propertyPath: yarnResourceConsume.Array.data[2]
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 2724874833430038539, guid: abab837fa462d5242818aa8a664c4d68, type: 3}
       propertyPath: m_RootOrder
