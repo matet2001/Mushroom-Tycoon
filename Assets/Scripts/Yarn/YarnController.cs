@@ -15,6 +15,7 @@ public class YarnController : MonoBehaviour
     [SerializeField] private Vector3 camPosition;
     private Vector2 _targetPosition;
     private bool _canMove;
+    public bool canDie;
     [Space] 
     public string obstacleGOTag;
 
@@ -120,7 +121,7 @@ public class YarnController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.TryGetComponent(out CollidableBase collidableBase))
+        if (col.TryGetComponent(out CollidableBase collidableBase) && canDie)
         {
             collidableBase.Collision();
             GameStateController.Instance.FireOnManagmentStateEnter();
@@ -169,7 +170,20 @@ public class YarnController : MonoBehaviour
         if (trailInstance != null)
             trailInstance.GetComponent<TrailRenderer>().emitting = false;
         UnMountStringTrail();
+        StartCoroutine(ResetPosition());
+    }
+
+    public IEnumerator spawnProtection()
+    {
+        yield return new WaitForSeconds(1f);
+        canDie = true;
+    }
+    
+    private IEnumerator ResetPosition()
+    {
+        yield return new WaitForSeconds(1f);
         SetNewYarnPosition(startPosition);
+        canDie = false;
         GameStateController.Instance.ChangeToManagerState();
     }
     private void Instance_OnManagementStateEnter()
