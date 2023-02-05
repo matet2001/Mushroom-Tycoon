@@ -199,41 +199,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 236651028542222708, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 236651028542222708, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 236651028737861561, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 236651028737861561, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 236651028856690618, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 236651028856690618, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2022488831803297170, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
       propertyPath: m_Name
       value: PfTreeOak
       objectReference: {fileID: 0}
-    - target: {fileID: 4629240347231236471, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4629240347231236471, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 159
+    - target: {fileID: 4927826174214841355, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
+      propertyPath: showDistance
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5076285880134345917, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
       propertyPath: m_RootOrder
@@ -449,7 +421,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 2.5
+  orthographic size: 5.2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -473,7 +445,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 12.9, z: -30}
+  m_LocalPosition: {x: 0, y: 13.73, z: -50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -866,6 +838,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 987510137972805347, guid: e707fc030ce84d54b8629648a2a31362, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 987510137972805347, guid: e707fc030ce84d54b8629648a2a31362, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 987510137972805347, guid: e707fc030ce84d54b8629648a2a31362, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2517867730209678866, guid: e707fc030ce84d54b8629648a2a31362, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1416,7 +1400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a43840dbc9e888749861eb63f84377b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceSliderControllers: []
 --- !u!114 &2108699849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1594,6 +1577,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ResourceAmountContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 93734893049586846, guid: e23e60ded49841e4eba15ba5824b837e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6736838916078187497, guid: e23e60ded49841e4eba15ba5824b837e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1617,6 +1604,10 @@ PrefabInstance:
     - target: {fileID: 6736838916258174247, guid: e23e60ded49841e4eba15ba5824b837e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786172229895743460, guid: e23e60ded49841e4eba15ba5824b837e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e23e60ded49841e4eba15ba5824b837e, type: 3}
@@ -1696,6 +1687,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7969061080770697220, guid: 011cfc8870d66784f86aaa32e582e964, type: 3}
+      propertyPath: cameraParent
+      value: 
+      objectReference: {fileID: 936269214}
+    - target: {fileID: 7969061080770697220, guid: 011cfc8870d66784f86aaa32e582e964, type: 3}
+      propertyPath: conquererStateVirtualCamera
+      value: 
+      objectReference: {fileID: 2081894659}
+    - target: {fileID: 7969061080770697220, guid: 011cfc8870d66784f86aaa32e582e964, type: 3}
+      propertyPath: managementStateVirtualCamera
+      value: 
+      objectReference: {fileID: 1585404214}
     - target: {fileID: 7969061080770697221, guid: 011cfc8870d66784f86aaa32e582e964, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -1753,6 +1756,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5764323902531513114, guid: 5be3abad7c45e924f8fc0e6eb68c671f, type: 3}
+      propertyPath: resourceRefreshTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5764323902531513114, guid: 5be3abad7c45e924f8fc0e6eb68c671f, type: 3}
       propertyPath: resourceUsageAmount.Array.size
       value: 3

@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class CanvasManager : MonoBehaviour
 {
     private ResourceData resourceData;
-    [SerializeField] ResourceSliderController[] resourceSliderControllers;
+    private ResourceSliderController[] resourceSliderControllers;
 
     private void Start()
     {
@@ -34,9 +34,23 @@ public class CanvasManager : MonoBehaviour
     {
         for (int i = 0; i < resourceData.resourceTypes.Length; i++)
         {
-            resourceSliderControllers[i].SetSliderMaxValue(resourceData.resourceMax[resourceData.resourceTypes[i]]);
-            resourceSliderControllers[i].SetSliderValue(resourceData.resourceAmount[resourceData.resourceTypes[i]]);
-            resourceSliderControllers[i].SetSliderText(resourceData.resourceAmount[resourceData.resourceTypes[i]].ToString() + "/" + resourceData.resourceMax[resourceData.resourceTypes[i]].ToString());
+            float maxValue = resourceData.resourceMax[resourceData.resourceTypes[i]];
+            float currentValue = resourceData.resourceAmount[resourceData.resourceTypes[i]];
+
+            if(currentValue <= 0)
+            {
+                currentValue = 0;
+                Debug.Log("Min amount of " + resourceData.resourceTypes[i].resourceName + " reached, at resource manager");
+            }
+            if (currentValue >= maxValue)
+            {
+                currentValue = maxValue;
+                Debug.Log("Max amount of " + resourceData.resourceTypes[i].resourceName + " reached, at resource manager");
+            }
+
+            resourceSliderControllers[i].SetSliderMaxValue(maxValue);
+            resourceSliderControllers[i].SetSliderValue(currentValue);
+            resourceSliderControllers[i].SetSliderText(currentValue.ToString() + "/" + maxValue.ToString());
         }
     }
 }

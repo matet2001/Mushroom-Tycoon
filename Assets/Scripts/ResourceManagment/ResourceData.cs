@@ -12,7 +12,7 @@ public class ResourceData
     public Dictionary<ResourceTypeSO, float> resourceAmount;
     public Dictionary<ResourceTypeSO, float> resourceUsage;
     public Dictionary<ResourceTypeSO, float> resourceGet;
-    public Dictionary<ResourceTypeSO, float> resourceAdd;
+    public Dictionary<ResourceTypeSO, float> resourceProduce;
     public Dictionary<ResourceTypeSO, float> resourceMax;
 
     //Fill resource amounts with same value
@@ -23,7 +23,7 @@ public class ResourceData
         resourceAmount = new Dictionary<ResourceTypeSO, float>();
         resourceUsage = new Dictionary<ResourceTypeSO, float>();
         resourceGet = new Dictionary<ResourceTypeSO, float>();
-        resourceAdd = new Dictionary<ResourceTypeSO, float>();
+        resourceProduce = new Dictionary<ResourceTypeSO, float>();
         resourceMax = new Dictionary<ResourceTypeSO, float>();
 
         foreach (ResourceTypeSO resourceType in resourceTypeContainer.resourceTypes)
@@ -31,7 +31,7 @@ public class ResourceData
             resourceAmount[resourceType] = amount;
             resourceUsage[resourceType] = usage;
             resourceGet[resourceType] = get;
-            resourceAdd[resourceType] = add;
+            resourceProduce[resourceType] = add;
             resourceMax[resourceType] = max;
         }
     }
@@ -43,7 +43,7 @@ public class ResourceData
         resourceAmount = new Dictionary<ResourceTypeSO, float>();
         resourceUsage = new Dictionary<ResourceTypeSO, float>();
         resourceGet = new Dictionary<ResourceTypeSO, float>();
-        resourceAdd = new Dictionary<ResourceTypeSO, float>();
+        resourceProduce = new Dictionary<ResourceTypeSO, float>();
         resourceMax = new Dictionary<ResourceTypeSO, float>();
 
         int resourceNumber = 0;
@@ -53,22 +53,10 @@ public class ResourceData
             resourceAmount[resourceType] = amount[resourceNumber];
             resourceUsage[resourceType] = usage[resourceNumber];
             resourceGet[resourceType] = get[resourceNumber];
-            resourceAdd[resourceType] = add[resourceNumber];
+            resourceProduce[resourceType] = add[resourceNumber];
             resourceMax[resourceType] = max[resourceNumber];
 
             resourceNumber++;
         }
-    }
-    public float[] GetResourceUsage()
-    {
-        float[] returnValue = new float[3];
-        int index = 0;
-        
-        foreach (ResourceTypeSO resourceType in resourceTypes)
-        {
-            returnValue[index] = resourceUsage[resourceType];
-            index++;
-        }
-        return returnValue;
     }
 }

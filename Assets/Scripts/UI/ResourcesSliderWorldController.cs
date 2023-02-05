@@ -8,10 +8,22 @@ public class ResourcesSliderWorldController : MonoBehaviour
     [SerializeField] Transform barTransform;
     [SerializeField] TextMeshPro barText;
     [SerializeField] SpriteRenderer iconSpriteRenderer;
+    public ResourceTypeSO resourceType;
 
-    public void SetBarValue(float value, float maxValue)
+    public float barValueMax;
+
+    public void SetBarValueMax(float value) => barValueMax = value;
+    public void SetBarValue(float value)
     {
-        barTransform.localScale = new Vector3(value / maxValue, barTransform.localScale.y, barTransform.localScale.z);
+        if(value == 0)
+        {
+            barTransform.localScale = new Vector3(0f, barTransform.localScale.y, barTransform.localScale.z);
+        }
+        else
+        {
+            barTransform.localScale = new Vector3(value / barValueMax, barTransform.localScale.y, barTransform.localScale.z);
+        }
+        
     } 
     public void SetBarText(string text) => barText.text = text;
     public void SetBarIcon(Sprite sprite) => iconSpriteRenderer.sprite = sprite;
