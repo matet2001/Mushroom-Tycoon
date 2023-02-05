@@ -33,6 +33,8 @@ MonoBehaviour:
   - 500
   - 500
   - 500
-  growTime: 99
+  growTime: 25
   treeSprites:
+  - {fileID: 21300000, guid: 11562de4cba5fe741a51437d7ec67201, type: 3}
+  - {fileID: 21300000, guid: da2980825b9637a489d969f9fe33edb8, type: 3}
   - {fileID: 21300000, guid: 9cd102e6dd28f5a468af8f931f83b25a, type: 3}

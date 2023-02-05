@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameStateController : MonoBehaviour
 {
@@ -24,7 +25,6 @@ public class GameStateController : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
     private void SetUpGameStateControllerDataContainer()
