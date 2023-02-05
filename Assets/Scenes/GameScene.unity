@@ -174,6 +174,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7470351940820420762, guid: 005fabaff0d00754a9359e38cda52e1b, type: 3}
+      propertyPath: managerVirtualCamera
+      value: 
+      objectReference: {fileID: 2081894659}
     - target: {fileID: 7686975287109531081, guid: 005fabaff0d00754a9359e38cda52e1b, type: 3}
       propertyPath: managerState
       value: 
@@ -182,6 +186,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameStateController
       objectReference: {fileID: 0}
+    - target: {fileID: 9068087267748021644, guid: 005fabaff0d00754a9359e38cda52e1b, type: 3}
+      propertyPath: conquererVirtualCamera
+      value: 
+      objectReference: {fileID: 1585404214}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 005fabaff0d00754a9359e38cda52e1b, type: 3}
 --- !u!1001 &160973861
@@ -273,50 +281,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
---- !u!1 &118440053
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 118440055}
-  - component: {fileID: 118440054}
-  m_Layer: 0
-  m_Name: RootSplineManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &118440054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 118440053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88b12d7cd2b959546b83d9d1a7be7535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &118440055
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 118440053}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.24791484, y: 12.004966, z: -3.2129755}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &258414433
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,7 +449,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5.2
+  orthographic size: 2.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -509,7 +473,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 13.73, z: -50}
+  m_LocalPosition: {x: 0, y: 12.9, z: -30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -841,17 +805,21 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 987510137972805347, guid: aed601544bc026443ba33ff1f305a1d9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ec225fbc7f990a6418249de367d3ad63, type: 3}
     - target: {fileID: 2517867730209678866, guid: aed601544bc026443ba33ff1f305a1d9, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2517867730209678866, guid: aed601544bc026443ba33ff1f305a1d9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.231
+      value: 2.32
       objectReference: {fileID: 0}
     - target: {fileID: 2517867730209678866, guid: aed601544bc026443ba33ff1f305a1d9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.466
+      value: 11.19
       objectReference: {fileID: 0}
     - target: {fileID: 2517867730209678866, guid: aed601544bc026443ba33ff1f305a1d9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1130,6 +1098,14 @@ PrefabInstance:
     - target: {fileID: 2724874833430038537, guid: abab837fa462d5242818aa8a664c4d68, type: 3}
       propertyPath: m_Name
       value: YarnEntity
+      objectReference: {fileID: 0}
+    - target: {fileID: 2724874833430038538, guid: abab837fa462d5242818aa8a664c4d68, type: 3}
+      propertyPath: _sprintSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2724874833430038538, guid: abab837fa462d5242818aa8a664c4d68, type: 3}
+      propertyPath: _movementSpeed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2724874833430038539, guid: abab837fa462d5242818aa8a664c4d68, type: 3}
       propertyPath: m_RootOrder

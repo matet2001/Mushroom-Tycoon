@@ -16,27 +16,27 @@ public class CanvasManager : MonoBehaviour
         SetUpResourceAmountUI();
 
         ResourceManager.Instance.OnResourceAmountChange += Instance_OnResourceAmountChange;
-        
     }
-
     private void SetUpResourceAmountUI()
     {
         resourceData = ResourceManager.Instance.resourceData;
         resourceSliderControllers = GetComponentsInChildren<ResourceSliderController>();
 
-        int number = 0;
-
         for (int i = 0; i < resourceData.resourceTypes.Length; i++)
         {
-            resourceSliderControllers[number].SetSliderMaxValue(resourceData.resourceMax[resourceData.resourceTypes[i]]);
-            resourceSliderControllers[number].SetSliderValue(resourceData.resourceAmount[resourceData.resourceTypes[i]]);
-            resourceSliderControllers[number].SetSliderText(resourceData.resourceAmount[resourceData.resourceTypes[i]].ToString() + "/" + resourceData.resourceMax[resourceData.resourceTypes[i]].ToString());
-            resourceSliderControllers[number].SetIconImage(resourceData.resourceTypes[i].resourceImageUI);
-            number++;
+            resourceSliderControllers[i].SetSliderMaxValue(resourceData.resourceMax[resourceData.resourceTypes[i]]);
+            resourceSliderControllers[i].SetSliderValue(resourceData.resourceAmount[resourceData.resourceTypes[i]]);
+            resourceSliderControllers[i].SetSliderText(resourceData.resourceAmount[resourceData.resourceTypes[i]].ToString() + "/" + resourceData.resourceMax[resourceData.resourceTypes[i]].ToString());
+            resourceSliderControllers[i].SetIconImage(resourceData.resourceTypes[i].resourceImageUI);
         }
     }
     private void Instance_OnResourceAmountChange(ResourceTypeSO[] arg1, float[] resourceAmount)
     {
-        
+        for (int i = 0; i < resourceData.resourceTypes.Length; i++)
+        {
+            resourceSliderControllers[i].SetSliderMaxValue(resourceData.resourceMax[resourceData.resourceTypes[i]]);
+            resourceSliderControllers[i].SetSliderValue(resourceData.resourceAmount[resourceData.resourceTypes[i]]);
+            resourceSliderControllers[i].SetSliderText(resourceData.resourceAmount[resourceData.resourceTypes[i]].ToString() + "/" + resourceData.resourceMax[resourceData.resourceTypes[i]].ToString());
+        }
     }
 }
