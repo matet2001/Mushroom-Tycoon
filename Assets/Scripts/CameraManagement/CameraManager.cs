@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class CameraManager : MonoBehaviour
@@ -33,7 +34,6 @@ public class CameraManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
     private void MoveCameraInManagementState()
@@ -70,9 +70,14 @@ public class CameraManager : MonoBehaviour
     }
     private void PrefaceInstanceCameraSelect()
     {
+        FetchCameras();
+        SwapCameraToManagement();
+    }
+
+    private void FetchCameras()
+    {
         managementStateVirtualCamera = GameObject.FindGameObjectWithTag("ManagementCamera");
         conquererStateVirtualCamera = GameObject.FindGameObjectWithTag("ConquerCamera");
         cameraParent = GameObject.FindGameObjectWithTag("CameraParent");
-        SwapCameraToManagement();
     }
 }

@@ -47,7 +47,6 @@ public class ResourceManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
     private void SetUpResources()
