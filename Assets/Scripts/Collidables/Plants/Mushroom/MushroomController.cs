@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class MushroomController : PlantBase
 {
+    [SerializeField] StartResourceDataSO startResourceData;
+    public ResourceData resourceData { get; private set; }
+
+    private void Start()
+    {
+        resourceData = new ResourceData(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), startResourceData);
+    }
     public override void Collision()
     {
         

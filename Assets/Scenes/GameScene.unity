@@ -39121,6 +39121,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6245830275125585087, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245830275125585087, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245830275125585087, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ceffa45745bdd8643bdaca7d383e33d8, type: 3}
 --- !u!1001 &176242014
@@ -41385,7 +41397,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: afe50bb000000000917a16c4
+  m_ApplyToSortingLayers: afe50bb000000000917a16c4891cc67b
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -51969,6 +51981,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5764323902531513114, guid: 5be3abad7c45e924f8fc0e6eb68c671f, type: 3}
+      propertyPath: startResourceData
+      value: 
+      objectReference: {fileID: 11400000, guid: 946b5c423ca415840829bc0f97e48884, type: 2}
     - target: {fileID: 5764323902531513114, guid: 5be3abad7c45e924f8fc0e6eb68c671f, type: 3}
       propertyPath: resourceRefreshTime
       value: 1

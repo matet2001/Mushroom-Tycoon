@@ -51,14 +51,7 @@ public class TreeController : PlantBase
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         float distance = Vector2.Distance(transform.position, mousePosition);
 
-        if (distance <= showDistance)
-        {
-            shouldDisplayUI = true;
-        }
-        else
-        {
-            shouldDisplayUI = false;
-        }
+        shouldDisplayUI = distance <= showDistance;
     }
     private void DisplayUI()
     {
@@ -98,7 +91,7 @@ public class TreeController : PlantBase
         foreach (ResourceTypeSO resourceType in resourceData.resourceTypes)
         {
             float resourceProduce = resourceData.resourceProduce[resourceType];
-            float resourceGet = resourceData.resourceGet[resourceType];
+            float resourceGet = resourceData.resourceUse[resourceType];
 
             resourceData.resourceUsage[resourceType] = treeType.resourceUsage[number] * growLevel + resourceProduce + resourceGet;
             resourceData.resourceMax[resourceType] += treeType.resourceMax[number] * growLevel;

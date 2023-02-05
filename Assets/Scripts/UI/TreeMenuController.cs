@@ -24,12 +24,12 @@ public class TreeMenuController : MonoBehaviour
             {
                 if (currentSlider.IsMouseCloseToPlus())
                 {
-                    if (currentSlider.barValueMax > treeController.resourceData.resourceGet[currentSlider.resourceType])
+                    if (currentSlider.barValueMax > treeController.resourceData.resourceUse[currentSlider.resourceType])
                         IncreaseResource(currentSlider.resourceType);
                 }
                 else if (currentSlider.IsMouseCloseToMinus())
                 {
-                    if (0 < treeController.resourceData.resourceGet[currentSlider.resourceType])
+                    if (0 < treeController.resourceData.resourceUse[currentSlider.resourceType])
                         DecreaseResource(currentSlider.resourceType);
                 }
             }
@@ -51,7 +51,7 @@ public class TreeMenuController : MonoBehaviour
             resourceSliderMenuControllers[i].SetBarValueMax(barValueMax);
             resourceSliderMenuControllers[i].SetBarValue(resourceGet);
             resourceSliderMenuControllers[i].resourceType = resourceType;
-            resourceData.resourceGet[resourceType] = resourceGet;
+            resourceData.resourceUse[resourceType] = resourceGet;
             i++;
         }
     }
@@ -60,7 +60,7 @@ public class TreeMenuController : MonoBehaviour
         int i = 0;
         foreach (ResourceTypeSO resourceType in resourceData.resourceTypes)
         {
-            float resourceGet = resourceData.resourceGet[resourceType];
+            float resourceGet = resourceData.resourceUse[resourceType];
 
             resourceSliderMenuControllers[i].SetBarText(resourceGet.ToString());
             resourceSliderMenuControllers[i].SetBarValue(resourceGet);
@@ -69,12 +69,12 @@ public class TreeMenuController : MonoBehaviour
     }
     public void IncreaseResource(ResourceTypeSO resourceType)
     {
-        treeController.resourceData.resourceGet[resourceType]++;
+        treeController.resourceData.resourceUse[resourceType]++;
         RefreshSliderMenu();
     }
     public void DecreaseResource(ResourceTypeSO resourceType)
     {
-        treeController.resourceData.resourceGet[resourceType]--;
+        treeController.resourceData.resourceUse[resourceType]--;
         RefreshSliderMenu();
     }
 }

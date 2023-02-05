@@ -9,3 +9,4 @@ public class ResourceTypeSO : ScriptableObject
     public string resourceName;
     public Sprite resourceImageUI;
 }
+
