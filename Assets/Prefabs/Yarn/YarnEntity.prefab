@@ -73,15 +73,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 0.99827164, b: 0.81509435, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2724874833430038537
@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 2724874833430038541}
   - component: {fileID: 2724874833430038540}
   - component: {fileID: 2724874833430038538}
+  - component: {fileID: 7189475262900720497}
   m_Layer: 0
   m_Name: YarnEntity
   m_TagString: Untagged
@@ -174,3 +175,18 @@ MonoBehaviour:
   obstacleGOTag: Obstacle
   resourceGOTag: Resource
   trail: {fileID: 514241884618455770, guid: d5c771c966c150d40a2a324f1b454bc9, type: 3}
+--- !u!114 &7189475262900720497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724874833430038537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ae63c648740c7943a72842a5ef74200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sporeInstance: {fileID: 8624053533818030753, guid: acbd7f1e7fb2a7143921d1198324f40c, type: 3}
+  spawnCircleRadius: 0.45
+  maximumTimeBtwCast: 0.5
