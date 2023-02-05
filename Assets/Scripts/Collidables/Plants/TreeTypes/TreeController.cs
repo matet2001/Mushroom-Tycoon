@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 
 public class TreeController : PlantBase
 {
@@ -13,8 +11,8 @@ public class TreeController : PlantBase
     [SerializeField] TreeTypeSO treeType;
     
     private SpriteRenderer spriteRenderer;
-    private SpriteRenderer selectedUISpriteRenderer;
-    [SerializeField] GameObject selectedUI;
+
+    [SerializeField] GameObject selectedUI, resourceValuesUI;
 
     private int growTime, growLevel;
 
@@ -29,7 +27,16 @@ public class TreeController : PlantBase
     private void GetComponents()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        selectedUISpriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+    }
+    private void SetUpTreeType()
+    {
+        spriteRenderer.sprite = treeType.treeSprites[0];
+        growTime = treeType.growTime;
+        SetUpResources();
+    }
+    private void SetUpResources()
+    {
+        resourceData = new ResourceData(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), treeType.resourceAmount, treeType.resourceUsage, treeType.resourceGet, treeType.resourceAdd, treeType.resourceMax);
     }
     private void Start()
     {
@@ -40,9 +47,6 @@ public class TreeController : PlantBase
         CheckShouldDisplayUI();
         DisplayUI();
     }
-
-    
-
     private void CheckShouldDisplayUI()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -60,20 +64,11 @@ public class TreeController : PlantBase
     private void DisplayUI()
     {
         if (selectedUI.activeSelf != shouldDisplayUI) selectedUI.SetActive(shouldDisplayUI);
-
+        if (resourceValuesUI.activeSelf != shouldDisplayUI) resourceValuesUI.SetActive(shouldDisplayUI);
+        
         if (!shouldDisplayUI) return;
 
         selectedUI.transform.Rotate(0f, 0f, 50f * Time.deltaTime, Space.Self);
-    }
-    private void SetUpTreeType()
-    {
-        spriteRenderer.sprite = treeType.treeSprites[0];
-        growTime = treeType.growTime;
-        SetUpResources();
-    }
-    private void SetUpResources()
-    {
-        resourceData = new ResourceData(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), treeType.resourceAmount, treeType.resourceUsage, treeType.resourceGet, treeType.resourceAdd, treeType.resourceMax);
     }
     public override void Collision()
     {

@@ -7,5 +7,5 @@ using UnityEngine.UI;
 public class ResourceTypeSO : ScriptableObject
 {
     public string resourceName;
-    public Image resourceImageUI;
+    public Sprite resourceImageUI;
 }
