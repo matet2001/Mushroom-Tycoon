@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 5234435066111777338}
   m_Layer: 0
   m_Name: YarnEntity
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -174,9 +174,11 @@ MonoBehaviour:
   _movementSpeed: 1
   _sprintSpeed: 2
   _mousePosition: {x: 0, y: 0}
+  camPosition: {x: 0, y: 0, z: 0}
   obstacleGOTag: Obstacle
   resourceGOTag: Resource
   trail: {fileID: 514241884618455770, guid: d5c771c966c150d40a2a324f1b454bc9, type: 3}
+  positions: []
   radiusOffset: 0
   mushroomAreaCheckRadius: 4.5
   mushroomLayermask:
