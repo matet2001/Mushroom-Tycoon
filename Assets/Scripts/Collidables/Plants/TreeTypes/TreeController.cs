@@ -3,67 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 
 public class TreeController : PlantBase
 {
     
     public ResourceData resourceData;
     [SerializeField] TreeTypeSO treeType;
-    [Space(5f), Header("Selected sprite attributes")]
-    public bool isSelected;
-
-    [Space, Range(1,35f)] public float rotationSpeed;
-    [SerializeField] private Sprite _selectedObjectSprite; //Ez vagy null
-    [SerializeField] private SpriteRenderer selectedSpriteRenderer;
+    
     private SpriteRenderer spriteRenderer;
 
+    [SerializeField] GameObject selectedUI, resourceValuesUI;
+
     private int growTime, growLevel;
+
+    private bool shouldDisplayUI;
+    [SerializeField] float showDistance = 4f;
  
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        GetComponents();
         SetUpTreeType();
     }
-    private void Start()
+    private void GetComponents()
     {
-        ResourceManager.Instance.OnResourceAmountRefresh += Instance_OnResourceAmountRefresh;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
-    private void Update()
-    {
-        SetSprite(isSelected, _selectedObjectSprite);
-        HandleObjectClick();
-        switch (isSelected)
-        {
-            case true:
-                RotateSelectorSprite(rotationSpeed);
-                break;
-            case false:
-                selectedSpriteRenderer.transform.localEulerAngles = Vector3.zero;
-                break;
-        }
-    }
-
-    private void HandleObjectClick()
-    {
-        bool IsSelected() => Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject();
-        
-        if (!IsSelected()) return;
-        
-        isSelected = !isSelected;
-    }
-    
-    private void SetSprite(bool isSelected, Sprite selectedSprite)
-        => selectedSpriteRenderer.sprite = isSelected 
-            ? selectedSprite 
-            : null;
-
-    private void RotateSelectorSprite(float degree)
-        => selectedSpriteRenderer.gameObject.transform.localEulerAngles =
-            new Vector3(0, 0, selectedSpriteRenderer.transform.localEulerAngles.z + degree * Time.deltaTime);
-    
     private void SetUpTreeType()
     {
         spriteRenderer.sprite = treeType.treeSprites[0];
@@ -73,6 +37,38 @@ public class TreeController : PlantBase
     private void SetUpResources()
     {
         resourceData = new ResourceData(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), treeType.resourceAmount, treeType.resourceUsage, treeType.resourceGet, treeType.resourceAdd, treeType.resourceMax);
+    }
+    private void Start()
+    {
+        ResourceManager.Instance.OnResourceAmountRefresh += Instance_OnResourceAmountRefresh;
+    }
+    private void Update()
+    {
+        CheckShouldDisplayUI();
+        DisplayUI();
+    }
+    private void CheckShouldDisplayUI()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        float distance = Vector2.Distance(transform.position, mousePosition);
+
+        if (distance <= showDistance)
+        {
+            shouldDisplayUI = true;
+        }
+        else
+        {
+            shouldDisplayUI = false;
+        }
+    }
+    private void DisplayUI()
+    {
+        if (selectedUI.activeSelf != shouldDisplayUI) selectedUI.SetActive(shouldDisplayUI);
+        if (resourceValuesUI.activeSelf != shouldDisplayUI) resourceValuesUI.SetActive(shouldDisplayUI);
+        
+        if (!shouldDisplayUI) return;
+
+        selectedUI.transform.Rotate(0f, 0f, 50f * Time.deltaTime, Space.Self);
     }
     public override void Collision()
     {

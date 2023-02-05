@@ -7,7 +7,7 @@ public class ResourceNodeController : CollidableBase
     [SerializeField] private ResourceTypeSO resourceType;
     [SerializeField] private int resourceAmount;
 
-    private CapsuleCollider2D collider;
+    private Collider2D collider;
     private SpriteRenderer spriteRenderer;
 
     public float alpha, disappeareTime = 2f, timeElapsed;
@@ -15,7 +15,7 @@ public class ResourceNodeController : CollidableBase
 
     private void Awake()
     {
-        collider = GetComponent<CapsuleCollider2D>();
+        collider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     public override void Collision()

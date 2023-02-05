@@ -52,7 +52,7 @@ public class ResourceManager : MonoBehaviour
     }
     private void SetUpResources()
     {
-        resourceData = new ResourceData(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), 0, 0, 0, 0, 0);
+        resourceData = new ResourceData(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), 10, 1, 0, 0, 50);
         
         resourceAmount = new Dictionary<ResourceTypeSO, float>();
         resourceUsage = new Dictionary<ResourceTypeSO, float>();
@@ -61,7 +61,6 @@ public class ResourceManager : MonoBehaviour
         maximumResource = new Dictionary<ResourceTypeSO, float>();
         maximumPossibleResource = new Dictionary<ResourceTypeSO, float>();
 
-        int limit = resourceData.resourceTypes.Length;
         int i = 0;
 
         foreach (ResourceTypeSO resourceType in resourceData.resourceTypes)
@@ -199,7 +198,6 @@ public class ResourceManager : MonoBehaviour
         foreach (ResourceTypeSO resourceType in resourceData.resourceTypes)
         {
             resourceAmounts[resourceNumber] = resourceAmount[resourceType];
-            //print(resourceAmounts[resourceNumber]);
             resourceNumber++;
         }
 

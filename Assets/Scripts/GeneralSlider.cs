@@ -14,20 +14,12 @@ public class GeneralSlider : MonoBehaviour
     public Image slider;
     public Image sliderIcon;
 
-    private void SliderSetup()
-    {
-        FillSlider();
-    }
-
     public void SetSliderFill(float currentValue, float maximumValue) 
-        => sliderProgress = currentValue / maximumValue;
+        => slider.fillAmount = currentValue / maximumValue;
 
     public void SetSliderText(string textContent)
         => sliderText.text = textContent;
 
     public void SetSliderIcon(Sprite icon)
         => sliderIcon.sprite = icon;
-    
-    private void FillSlider() 
-        => slider.fillAmount = sliderProgress;
 }

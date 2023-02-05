@@ -8,56 +8,35 @@ using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
-    [SerializeField] Transform[] resourceAmountTransforms;
-    [Space] public GeneralSlider[] resourceSliders;
-
-    /// <summary>
-    /// Below: debug variables
-    /// TODO: delete later
-    /// </summary>
-    public TMPro.TextMeshProUGUI[] currentResourcesText;
-
-    public TMPro.TextMeshProUGUI[] maximumResourcesText;
-
     private ResourceData resourceData;
+    [SerializeField] ResourceSliderController[] resourceSliderControllers;
 
     private void Start()
     {
         SetUpResourceAmountUI();
 
         ResourceManager.Instance.OnResourceAmountChange += Instance_OnResourceAmountChange;
-
-        resourceData = ResourceManager.Instance.resourceData;
     }
-
     private void SetUpResourceAmountUI()
     {
-        for (int i = 0; i < resourceAmountTransforms.Length; i++)
-        {
-            //Slider
-            resourceSliders[i].SetSliderFill(
-                ResourceManager.Instance.GetResourceAmounts()[i],
-                ResourceManager.Instance.GetMaximumResourceAmounts()[i]);
-            resourceSliders[i].SetSliderText(
-                $"{ResourceManager.Instance.GetResourceAmounts()[i]}/" +
-                $"{ResourceManager.Instance.GetMaximumResourceAmounts()[i]}");
-        }
-    }
-    private void RefreshResourceAmountUI()
-    {
+        resourceData = ResourceManager.Instance.resourceData;
+        resourceSliderControllers = GetComponentsInChildren<ResourceSliderController>();
 
+        for (int i = 0; i < resourceData.resourceTypes.Length; i++)
+        {
+            resourceSliderControllers[i].SetSliderMaxValue(resourceData.resourceMax[resourceData.resourceTypes[i]]);
+            resourceSliderControllers[i].SetSliderValue(resourceData.resourceAmount[resourceData.resourceTypes[i]]);
+            resourceSliderControllers[i].SetSliderText(resourceData.resourceAmount[resourceData.resourceTypes[i]].ToString() + "/" + resourceData.resourceMax[resourceData.resourceTypes[i]].ToString());
+            resourceSliderControllers[i].SetIconImage(resourceData.resourceTypes[i].resourceImageUI);
+        }
     }
     private void Instance_OnResourceAmountChange(ResourceTypeSO[] arg1, float[] resourceAmount)
     {
-        for (int i = 0; i < resourceAmountTransforms.Length; i++)
+        for (int i = 0; i < resourceData.resourceTypes.Length; i++)
         {
-            //Slider
-            resourceSliders[i].SetSliderFill(
-                ResourceManager.Instance.GetResourceAmounts()[i],
-                ResourceManager.Instance.GetMaximumResourceAmounts()[i]);
-            resourceSliders[i].SetSliderText(
-                $"{ResourceManager.Instance.GetResourceAmounts()[i]}/" +
-                $"{ResourceManager.Instance.GetMaximumResourceAmounts()[i]}");
+            resourceSliderControllers[i].SetSliderMaxValue(resourceData.resourceMax[resourceData.resourceTypes[i]]);
+            resourceSliderControllers[i].SetSliderValue(resourceData.resourceAmount[resourceData.resourceTypes[i]]);
+            resourceSliderControllers[i].SetSliderText(resourceData.resourceAmount[resourceData.resourceTypes[i]].ToString() + "/" + resourceData.resourceMax[resourceData.resourceTypes[i]].ToString());
         }
     }
 }

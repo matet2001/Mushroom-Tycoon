@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ResourceTypeMaterial
   m_EditorClassIdentifier: 
   resourceName: material
-  resourceImageUI: {fileID: 0}
+  resourceImageUI: {fileID: 21300000, guid: 17259ce437f8213468a222d77ca5c0a5, type: 3}

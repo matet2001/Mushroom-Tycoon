@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ResourceTypeWater
   m_EditorClassIdentifier: 
   resourceName: water
-  resourceImageUI: {fileID: 0}
+  resourceImageUI: {fileID: 21300000, guid: 8946643f2479fb543877686458ba546d, type: 3}
