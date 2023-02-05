@@ -115,7 +115,7 @@ public class YarnController : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (!collision.CompareTag("Earth")) return;
-        GameObject mushroomGameObject = Resources.Load<GameObject>("PfMushroom");
+        GameObject plantObject = Resources.Load<GameObject>("PfTreeOak");
 
         var plantOffset = new Vector3(radiusOffset, radiusOffset);
         
@@ -127,7 +127,7 @@ public class YarnController : MonoBehaviour
  
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         
-        GameObject plant = Instantiate(mushroomGameObject, placePoint, Quaternion.identity);
+        GameObject plant = Instantiate(plantObject, placePoint, Quaternion.identity);
         
         plant.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
 
