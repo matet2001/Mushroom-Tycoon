@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class ConnectionManager : MonoBehaviour
 {
     public List<TreeController> treeControllerList;
     public List<MushroomController> mushroomControllerList;
-    private List<Vector3> mushroomPositions;
+    public List<Vector3> mushroomPositions;
     [Space] private YarnController yarn;
 
     private void Awake()
@@ -28,6 +29,12 @@ public class ConnectionManager : MonoBehaviour
             mushroomPositions.Add(VARIABLE.transform.position - (Vector3.up));
         }
         yarn.SetNewYarnPosition(mushroomPositions[0]);
+        yarn.positions = mushroomPositions;
+    }
+
+    private void LateUpdate()
+    {
+        
     }
 
     public void AddToTreeControllerList(TreeController treeController)
@@ -47,5 +54,12 @@ public class ConnectionManager : MonoBehaviour
         if (mushroomControllerList.Contains(mushroomController)) return;
 
         mushroomControllerList.Add(mushroomController);
+        
+        yarn.positions.Clear();
+        
+        foreach (var VARIABLE in mushroomControllerList)
+        {
+            mushroomPositions.Add(VARIABLE.transform.position - (VARIABLE.transform.up.normalized));
+        }
     }
 }
