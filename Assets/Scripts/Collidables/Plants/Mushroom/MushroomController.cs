@@ -7,7 +7,7 @@ public class MushroomController : PlantBase
     [SerializeField] StartResourceDataSO startResourceData;
     public ResourceData resourceData { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         resourceData = new ResourceData(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), startResourceData);
     }
