@@ -90,6 +90,7 @@ public class TreeController : PlantBase
     private void RefreshResourceAmounts()
     {
         int number = 0;
+        bool shouldDie = false;
 
         foreach (ResourceTypeSO resourceType in resourceData.resourceTypes)
         {
@@ -101,7 +102,18 @@ public class TreeController : PlantBase
 
             resourceData.resourceAmount[resourceType] += resourceData.resourceUsage[resourceType];
 
+            if(resourceData.resourceAmount[resourceType] < 0)
+            {
+                shouldDie = true;
+            }
             number++;
         }
+
+        if (shouldDie) Die();
+    }
+    private void Die()
+    {
+        ResourceManager.Instance.connectionManager.RemoveFromTreeControllerList(this);
+        Destroy(gameObject);
     }
 }
