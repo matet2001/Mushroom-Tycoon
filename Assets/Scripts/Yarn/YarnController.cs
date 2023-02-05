@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Mono.Cecil.Cil;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -22,6 +23,7 @@ public class YarnController : MonoBehaviour
     public GameObject trail;
 
     private Vector2 startPosition;
+    [Space(15f), Range(0f,65f)] public float globeRadius;
 
     private void Awake()
     {
@@ -114,21 +116,28 @@ public class YarnController : MonoBehaviour
     {
         if (!collision.CompareTag("Earth")) return;
         GameObject mushroomGameObject = Resources.Load<GameObject>("PfMushroom");
-        Bounds bounds = collision.bounds;
 
-        Vector3 widthVector = new Vector2(bounds.extents.x, 0);
-        Debug.DrawLine(bounds.center, bounds.center + widthVector, Color.red, 100f);
-        Vector2 rotationVector = (transform.position - bounds.center).normalized;
-        Vector2 finalVector = rotationVector * bounds.size;
-        Vector2 placePoint = (Vector2)bounds.center + finalVector;
+        var plantOffset = new Vector3(globeRadius, globeRadius);
+        
+        var placePoint = transform.position + plantOffset;
+        
+        Vector3 diff = transform.position - Vector3.zero;
+        
+        diff.Normalize();
+ 
+        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        
+        GameObject plant = Instantiate(mushroomGameObject, placePoint, Quaternion.identity);
+        
+        plant.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
 
-        Instantiate(mushroomGameObject, placePoint, Quaternion.identity);
         CancelMovement();
     }
     private void CancelMovement()
     {
         _canMove = false;
-        trailInstance.GetComponent<TrailRenderer>().emitting = false;
+        if (trailInstance != null)
+            trailInstance.GetComponent<TrailRenderer>().emitting = false;
         UnMountStringTrail();
         StartCoroutine(ResetPosition());
     }
