@@ -35,7 +35,7 @@ public class TreeController : PlantBase
     }
     private void SetUpResources()
     {
-        resourceData = new ResourceData(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), treeType.resourceAmount, treeType.resourceUsage, treeType.resourceGet, treeType.resourceProduce, treeType.resourceMax);
+        resourceData = new ResourceData(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), treeType.resourceAmount, treeType.resourceUsage, treeType.resourceUse, treeType.resourceProduce, treeType.resourceMax);
     }
     private void Start()
     {
