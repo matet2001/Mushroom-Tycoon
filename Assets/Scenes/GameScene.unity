@@ -7520,6 +7520,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2586417000194736207, guid: 18d38dc1e9984a4498693dfde2973373, type: 3}
   m_PrefabInstance: {fileID: 732974665}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &932526966 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8936195945328416561, guid: 2fc7ba7a33a54ef469f281896234d3a5, type: 3}
+  m_PrefabInstance: {fileID: 1279152042}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75048f1787b22f94aae0b2d42fb01849, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &936269214
 GameObject:
   m_ObjectHideFlags: 0
@@ -19348,6 +19359,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1587302862836159164, guid: 5be3abad7c45e924f8fc0e6eb68c671f, type: 3}
+      propertyPath: mushroomControllerList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1587302862836159164, guid: 5be3abad7c45e924f8fc0e6eb68c671f, type: 3}
+      propertyPath: mushroomControllerList.Array.data[0]
+      value: 
+      objectReference: {fileID: 932526966}
     - target: {fileID: 5764323902531513114, guid: 5be3abad7c45e924f8fc0e6eb68c671f, type: 3}
       propertyPath: startResourceData
       value: 

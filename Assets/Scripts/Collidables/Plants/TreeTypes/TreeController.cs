@@ -16,6 +16,7 @@ public class TreeController : PlantBase
     private int growTime, growLevel;
 
     private bool shouldDisplayUI;
+    private bool isConnected = false;
     [SerializeField] float showDistance = 4f;
  
     private void Awake()
@@ -58,6 +59,8 @@ public class TreeController : PlantBase
     }
     private void DisplayUI()
     {
+        if (!isConnected) return;
+
         if (selectedUI.activeSelf != shouldDisplayUI) selectedUI.SetActive(shouldDisplayUI);
         if (resourceValuesUI.activeSelf != shouldDisplayUI) resourceValuesUI.SetActive(shouldDisplayUI);
         if (treeMenusUI.activeSelf != shouldDisplayUI) treeMenusUI.SetActive(shouldDisplayUI);
@@ -68,7 +71,10 @@ public class TreeController : PlantBase
     }
     public override void Collision()
     {
+        if (isConnected) return;
+        
         ResourceManager.Instance.connectionManager.AddToTreeControllerList(this);
+        isConnected = true;
     }
     private void Instance_OnResourceAmountRefresh()
     {

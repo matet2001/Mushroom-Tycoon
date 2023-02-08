@@ -16,7 +16,7 @@ public class ResourceData
     public Dictionary<ResourceTypeSO, float> resourceMax;
 
     //Fill resource amounts with same value
-    public ResourceData(ResourceTypeContainer resourceTypeContainer, float amount, float usage, float get, float add, float max)
+    public ResourceData(ResourceTypeContainer resourceTypeContainer, float amount, float usage, float use, float produce, float max)
     {
         resourceTypes = resourceTypeContainer.resourceTypes;
 
@@ -30,13 +30,13 @@ public class ResourceData
         {
             resourceAmount[resourceType] = amount;
             resourceUsage[resourceType] = usage;
-            resourceUse[resourceType] = get;
-            resourceProduce[resourceType] = add;
+            resourceUse[resourceType] = use;
+            resourceProduce[resourceType] = produce;
             resourceMax[resourceType] = max;
         }
     }
     //Fill resource amount with different values
-    public ResourceData(ResourceTypeContainer resourceTypeContainer, float[] amount, float[] usage, float[] get, float[] add, float[] max)
+    public ResourceData(ResourceTypeContainer resourceTypeContainer, float[] amount, float[] usage, float[] use, float[] produce, float[] max)
     {
         resourceTypes = resourceTypeContainer.resourceTypes;
         
@@ -52,8 +52,8 @@ public class ResourceData
         {
             resourceAmount[resourceType] = amount[resourceNumber];
             resourceUsage[resourceType] = usage[resourceNumber];
-            resourceUse[resourceType] = get[resourceNumber];
-            resourceProduce[resourceType] = add[resourceNumber];
+            resourceUse[resourceType] = use[resourceNumber];
+            resourceProduce[resourceType] = produce[resourceNumber];
             resourceMax[resourceType] = max[resourceNumber];
 
             resourceNumber++;
