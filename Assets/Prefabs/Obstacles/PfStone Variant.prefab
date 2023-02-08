@@ -10,10 +10,10 @@ PrefabInstance:
     - target: {fileID: 987510137972805347, guid: e707fc030ce84d54b8629648a2a31362, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 92a1e6bc335c5424889ed59599aa397d, type: 3}
+      objectReference: {fileID: 21300000, guid: 7072e63ea65b53d4ab499c52118dc48f, type: 3}
     - target: {fileID: 987510137972805347, guid: e707fc030ce84d54b8629648a2a31362, type: 3}
       propertyPath: m_Color.a
-      value: 0.45490196
+      value: 0.654902
       objectReference: {fileID: 0}
     - target: {fileID: 987510137972805347, guid: e707fc030ce84d54b8629648a2a31362, type: 3}
       propertyPath: m_Color.b
@@ -33,11 +33,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2517867730209678866, guid: e707fc030ce84d54b8629648a2a31362, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.61
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2517867730209678866, guid: e707fc030ce84d54b8629648a2a31362, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.62
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2517867730209678866, guid: e707fc030ce84d54b8629648a2a31362, type: 3}
       propertyPath: m_LocalPosition.z
@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4931832395130136375, guid: e707fc030ce84d54b8629648a2a31362, type: 3}
       propertyPath: m_Name
-      value: PfStone Variant (3)
+      value: PfStone Variant
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2392545148582892704, guid: e707fc030ce84d54b8629648a2a31362, type: 3}
