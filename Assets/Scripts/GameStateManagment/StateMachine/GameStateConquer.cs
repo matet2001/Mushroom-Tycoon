@@ -21,7 +21,7 @@ public class GameStateConquer : GameState
     }
     public override bool TransitionToThisState()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetMouseButtonDown(1))
         {
             return true;
         }
