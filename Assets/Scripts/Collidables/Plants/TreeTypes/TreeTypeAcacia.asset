@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f360b843fc1cf24b9f8cf0dbbc6fde3, type: 3}
   m_Name: TreeTypeAcacia
   m_EditorClassIdentifier: 
-  treeName: Oak
+  treeName: Acacia
   resourceAmount:
   - 100
   - 100
@@ -21,7 +21,7 @@ MonoBehaviour:
   - 10
   - 10
   - 15
-  resourceGet:
+  resourceUse:
   - 0
   - 0
   - 0
@@ -30,9 +30,9 @@ MonoBehaviour:
   - 15
   - 10
   resourceMax:
-  - 500
-  - 500
-  - 500
+  - 900
+  - 1000
+  - 900
   growTime: 25
   treeSprites:
   - {fileID: 21300000, guid: 585446980ab531946be15ec3f3e1c5d2, type: 3}
