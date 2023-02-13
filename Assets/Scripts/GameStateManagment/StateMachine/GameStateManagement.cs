@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameStateManagement : GameState
 {
     public GameObject managerVirtualCamera;
-    
+
     public override void OnEnter()
     {
         if (Time.timeSinceLevelLoad < 1) return;

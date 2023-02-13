@@ -26,9 +26,9 @@ MonoBehaviour:
   - 0
   - 0
   resourceProduce:
-  - 10
-  - 15
-  - 10
+  - 20
+  - 20
+  - 25
   resourceMax:
   - 500
   - 500

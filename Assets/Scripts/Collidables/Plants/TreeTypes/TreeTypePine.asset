@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f360b843fc1cf24b9f8cf0dbbc6fde3, type: 3}
   m_Name: TreeTypePine
   m_EditorClassIdentifier: 
-  treeName: Oak
+  treeName: Pine
   resourceAmount:
   - 100
   - 100
   - 100
   resourceUsage:
+  - 5
   - 10
-  - 10
-  - 15
+  - 5
   resourceUse:
   - 0
   - 0
@@ -30,9 +30,9 @@ MonoBehaviour:
   - 15
   - 10
   resourceMax:
-  - 500
-  - 500
-  - 500
+  - 750
+  - 800
+  - 750
   growTime: 25
   treeSprites:
   - {fileID: 21300000, guid: 8b89d4d0f99ff294cbb39b2a74882ea0, type: 3}
