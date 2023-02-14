@@ -6,16 +6,18 @@ using UnityEngine;
 
 public class TreeController : PlantBase
 {
-    public ResourceData resourceData;
+    public ResourceData resourceData { get; private set;}
     [SerializeField] TreeTypeSO treeType;
     
     private SpriteRenderer spriteRenderer;
 
     [SerializeField] GameObject selectedUI, resourceValuesUI, treeMenusUI;
+    TreeMenuController treeMenuController;
 
-    private int growTime, growLevel;
+    private int growTime, growLevel = 1;
+    public Dictionary<ResourceTypeSO, float> resourceTradeAmount;
 
-    private bool shouldDisplayUI;
+    private bool shouldDisplayUI = true;
     private bool isConnected = false;
     [SerializeField] float showDistance = 4f;
  
@@ -23,7 +25,8 @@ public class TreeController : PlantBase
     {
         GetComponents();
         SetUpTreeType();
-    }
+        InitResourceTradeAmount();
+    }  
     private void GetComponents()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -36,15 +39,24 @@ public class TreeController : PlantBase
     }
     private void SetUpResources()
     {
-        resourceData = new ResourceData(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), treeType.resourceAmount, treeType.resourceUsage, treeType.resourceUse, treeType.resourceProduce, treeType.resourceMax);
+        resourceData = new ResourceData(treeType);
+    }
+    private void InitResourceTradeAmount()
+    {
+        resourceTradeAmount = new Dictionary<ResourceTypeSO, float>();
+        foreach (ResourceTypeSO resourceType in resourceData.resourceTypes)
+        {
+            resourceTradeAmount.Add(resourceType, 0f);
+        }
     }
     private void Start()
     {
         ResourceManager.Instance.OnResourceAmountRefresh += Instance_OnResourceAmountRefresh;
+        treeMenuController = treeMenusUI.GetComponent<TreeMenuController>();
     }
     private void Update()
     {
-        CheckShouldDisplayUI();
+        //CheckShouldDisplayUI();
         DisplayUI();
     }
     private void CheckShouldDisplayUI()
@@ -59,7 +71,7 @@ public class TreeController : PlantBase
     }
     private void DisplayUI()
     {
-        if (!isConnected) return;
+        //if (!isConnected) return;
 
         if (selectedUI.activeSelf != shouldDisplayUI) selectedUI.SetActive(shouldDisplayUI);
         if (resourceValuesUI.activeSelf != shouldDisplayUI) resourceValuesUI.SetActive(shouldDisplayUI);
@@ -78,7 +90,10 @@ public class TreeController : PlantBase
     }
     private void Instance_OnResourceAmountRefresh()
     {
-        GrowCounter();
+        //if (isConnected) return;
+
+        //GrowCounter();
+        treeMenuController.UpdateResourceTradeValues();
         RefreshResourceAmounts();
     }
     private void GrowCounter()
@@ -88,26 +103,27 @@ public class TreeController : PlantBase
         if (growTime <= 0)
         {
             growLevel++;
-            spriteRenderer.sprite = treeType.treeSprites[growLevel];
+            spriteRenderer.sprite = treeType.treeSprites[growLevel - 1];
             growTime = treeType.growTime * growLevel;
-
         }
     }
     private void RefreshResourceAmounts()
     {
-        int number = 0;
-
         foreach (ResourceTypeSO resourceType in resourceData.resourceTypes)
         {
-            float resourceProduce = resourceData.resourceProduce[resourceType];
-            float resourceGet = resourceData.resourceUse[resourceType];
-
-            resourceData.resourceUsage[resourceType] = treeType.resourceUsage[number] * growLevel + resourceProduce + resourceGet;
-            resourceData.resourceMax[resourceType] += treeType.resourceMax[number] * growLevel;
+            CalculateResourceUsage(resourceType);
 
             resourceData.resourceAmount[resourceType] += resourceData.resourceUsage[resourceType];
-
-            number++;
+            resourceData.resourceAmount[resourceType] += resourceTradeAmount[resourceType];
+            resourceData.resourceAmount[resourceType] = Mathf.Min(resourceData.resourceAmount[resourceType], resourceData.resourceMax[resourceType]);
         }
     }
+    private void CalculateResourceUsage(ResourceTypeSO resourceType)
+    {
+        float resourceProduce = resourceData.resourceProduce[resourceType];
+        float resourceUse = resourceData.resourceUse[resourceType];
+
+        resourceData.resourceUsage[resourceType] = (resourceProduce - resourceUse) * growLevel;
+    }
+    
 }

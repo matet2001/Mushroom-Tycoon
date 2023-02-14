@@ -12,7 +12,7 @@ public class TreeResourceUIController : MonoBehaviour
     private void Start()
     {
         SetUpResourceAmountUI();
-        ResourceManager.Instance.OnResourceAmountRefresh += Instance_OnResourceAmountRefresh;
+        ResourceManager.Instance.OnResourceAmountChange += Instance_OnResourceAmountChange;
     }
     private void SetUpResourceAmountUI()
     {
@@ -31,7 +31,7 @@ public class TreeResourceUIController : MonoBehaviour
             slider.SetBarIcon(resourceData.resourceTypes[i].resourceImageUI);
         }
     }
-    private void Instance_OnResourceAmountRefresh()
+    private void Instance_OnResourceAmountChange()
     {
         RefreshResourceAmountUI();
     }

@@ -10,16 +10,28 @@ public class MushroomController : PlantBase
 
     private void Awake()
     {
-        resourceData = new ResourceData(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), startResourceData);
+        resourceData = new ResourceData(startResourceData);
     }
 
     private void Start()
     {
         ResourceManager.Instance.connectionManager.AddToMushroomControllerList(this);
-    }
 
+        ResourceManager.Instance.OnResourceAmountRefresh += Instance_OnResourceAmountRefresh;
+    } 
     public override void Collision()
     {
         
+    }
+    private void CalculateResourceUsage()
+    {
+        foreach (ResourceTypeSO resourceType in resourceData.resourceTypes)
+        {
+            resourceData.resourceUsage[resourceType] = resourceData.resourceProduce[resourceType] - resourceData.resourceUse[resourceType];
+        }
+    }
+    private void Instance_OnResourceAmountRefresh()
+    {
+        CalculateResourceUsage();
     }
 }

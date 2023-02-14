@@ -6,6 +6,7 @@ using UnityEngine;
 public class StartResourceDataSO : ScriptableObject
 {
     public float[] resourceAmount = new float[3];
+    [HideInInspector]
     public float[] resourceUsage = new float[3];
     public float[] resourceUse = new float[3];
     public float[] resourceProduce = new float[3];

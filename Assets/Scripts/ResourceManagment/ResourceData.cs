@@ -15,16 +15,12 @@ public class ResourceData
     public Dictionary<ResourceTypeSO, float> resourceProduce;
     public Dictionary<ResourceTypeSO, float> resourceMax;
 
-    //Fill resource amounts with same value
-    public ResourceData(ResourceTypeContainer resourceTypeContainer, float amount, float usage, float use, float produce, float max)
-    {
-        resourceTypes = resourceTypeContainer.resourceTypes;
+    private ResourceTypeContainer resourceTypeContainer;
 
-        resourceAmount = new Dictionary<ResourceTypeSO, float>();
-        resourceUsage = new Dictionary<ResourceTypeSO, float>();
-        resourceUse = new Dictionary<ResourceTypeSO, float>();
-        resourceProduce = new Dictionary<ResourceTypeSO, float>();
-        resourceMax = new Dictionary<ResourceTypeSO, float>();
+    //Fill resource amounts with same value
+    public ResourceData(float amount, float usage, float use, float produce, float max)
+    {
+        SetUpResources();
 
         foreach (ResourceTypeSO resourceType in resourceTypeContainer.resourceTypes)
         {
@@ -36,15 +32,9 @@ public class ResourceData
         }
     }
     //Fill resource amount with different values
-    public ResourceData(ResourceTypeContainer resourceTypeContainer, float[] amount, float[] usage, float[] use, float[] produce, float[] max)
+    public ResourceData(float[] amount, float[] usage, float[] use, float[] produce, float[] max)
     {
-        resourceTypes = resourceTypeContainer.resourceTypes;
-        
-        resourceAmount = new Dictionary<ResourceTypeSO, float>();
-        resourceUsage = new Dictionary<ResourceTypeSO, float>();
-        resourceUse = new Dictionary<ResourceTypeSO, float>();
-        resourceProduce = new Dictionary<ResourceTypeSO, float>();
-        resourceMax = new Dictionary<ResourceTypeSO, float>();
+        SetUpResources();
 
         int resourceNumber = 0;
         
@@ -60,15 +50,9 @@ public class ResourceData
         }
     }
     //Fill resource amount from started resource data
-    public ResourceData(ResourceTypeContainer resourceTypeContainer, StartResourceDataSO startResourceData)
+    public ResourceData(StartResourceDataSO startResourceData)
     {
-        resourceTypes = resourceTypeContainer.resourceTypes;
-
-        resourceAmount = new Dictionary<ResourceTypeSO, float>();
-        resourceUsage = new Dictionary<ResourceTypeSO, float>();
-        resourceUse = new Dictionary<ResourceTypeSO, float>();
-        resourceProduce = new Dictionary<ResourceTypeSO, float>();
-        resourceMax = new Dictionary<ResourceTypeSO, float>();
+        SetUpResources();
 
         int resourceNumber = 0;
 
@@ -82,5 +66,34 @@ public class ResourceData
 
             resourceNumber++;
         }
+    }
+    //Fill resource amount from tree type so
+    public ResourceData(TreeTypeSO treeTypeSO)
+    {
+        SetUpResources();
+
+        int resourceNumber = 0;
+
+        foreach (ResourceTypeSO resourceType in resourceTypeContainer.resourceTypes)
+        {
+            resourceAmount[resourceType] = treeTypeSO.resourceAmount[resourceNumber];
+            resourceUsage[resourceType] = treeTypeSO.resourceUsage[resourceNumber];
+            resourceUse[resourceType] = treeTypeSO.resourceUse[resourceNumber];
+            resourceProduce[resourceType] = treeTypeSO.resourceProduce[resourceNumber];
+            resourceMax[resourceType] = treeTypeSO.resourceMax[resourceNumber];
+
+            resourceNumber++;
+        }
+    }
+    private void SetUpResources()
+    {
+        resourceTypeContainer = Resources.Load<ResourceTypeContainer>("ResourceTypeContainer");
+        resourceTypes = resourceTypeContainer.resourceTypes;
+
+        resourceAmount = new Dictionary<ResourceTypeSO, float>();
+        resourceUsage = new Dictionary<ResourceTypeSO, float>();
+        resourceUse = new Dictionary<ResourceTypeSO, float>();
+        resourceProduce = new Dictionary<ResourceTypeSO, float>();
+        resourceMax = new Dictionary<ResourceTypeSO, float>();
     }
 }

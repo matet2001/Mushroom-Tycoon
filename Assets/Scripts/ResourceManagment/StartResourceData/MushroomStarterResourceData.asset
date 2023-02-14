@@ -17,18 +17,18 @@ MonoBehaviour:
   - 0
   - 0
   resourceUsage:
-  - 0
-  - 0
-  - 0
+  - 10
+  - 10
+  - 10
   resourceUse:
-  - 0
-  - 0
-  - 0
+  - 10
+  - 10
+  - 10
   resourceProduce:
   - 0
   - 0
   - 0
   resourceMax:
-  - 100
-  - 100
-  - 100
+  - 50
+  - 50
+  - 50
