@@ -54,7 +54,17 @@ public class ResourceManager : MonoBehaviour
     {
         if (resourceRefreshTime > 0f) resourceRefreshTime -= Time.deltaTime;
         else RefreshResourceData();
-    }   
+    }
+    private void RefreshResourceData()
+    {
+        OnResourceAmountRefresh?.Invoke();
+
+        resourceRefreshTime = resourceRefreshTimeMax;
+
+        CalculateResourceDatas();
+
+        OnResourceAmountChange?.Invoke();
+    }
     private void CalculateResourceUsage()
     {
         ResourceData newResourceData = new ResourceData(startResourceData);
@@ -95,16 +105,6 @@ public class ResourceManager : MonoBehaviour
         }
 
         resourceData.resourceMax = newResourceData.resourceMax;
-    }
-    private void RefreshResourceData()
-    {
-        OnResourceAmountRefresh?.Invoke();
-
-        resourceRefreshTime = resourceRefreshTimeMax;
-
-        CalculateResourceDatas();
-
-        OnResourceAmountChange?.Invoke();
     }
     private void CalculateResourceDatas()
     {

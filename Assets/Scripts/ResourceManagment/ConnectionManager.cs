@@ -11,16 +11,17 @@ public class ConnectionManager : MonoBehaviour
     [Space, HideInInspector] public YarnController yarn;
 
     private void Awake()
-    {      
-        //mushroomPositions = new List<Vector3>();
-        //yarn = GameObject.FindGameObjectWithTag("Player").GetComponent<YarnController>();
-        //AwakeMushroomCheck();
+    {
+        mushroomPositions = new List<Vector3>();
+        yarn = GameObject.FindGameObjectWithTag("Player").GetComponent<YarnController>();
+        AwakeMushroomCheck();
     }
 
     private void AwakeMushroomCheck()
     {
-        mushroomControllerList.Add(
-            GameObject.FindGameObjectWithTag("Mushrooms").GetComponent<MushroomController>());
+        //mushroomControllerList.Add(
+            //GameObject.FindGameObjectWithTag("Mushrooms").GetComponent<MushroomController>());
+
         foreach (var VARIABLE in mushroomControllerList)
         {
             mushroomPositions.Add(VARIABLE.transform.position - (Vector3.up));
@@ -45,12 +46,12 @@ public class ConnectionManager : MonoBehaviour
         if (mushroomControllerList.Contains(mushroomController)) return;
 
         mushroomControllerList.Add(mushroomController);
-        
-        //yarn.positions.Clear();
-        
-        //foreach (var VARIABLE in mushroomControllerList)
-        //{
-        //    mushroomPositions.Add(VARIABLE.transform.position - (VARIABLE.transform.up.normalized));
-        //}
+
+        yarn.positions.Clear();
+
+        foreach (var VARIABLE in mushroomControllerList)
+        {
+            mushroomPositions.Add(VARIABLE.transform.position - (VARIABLE.transform.up.normalized));
+        }
     }
 }

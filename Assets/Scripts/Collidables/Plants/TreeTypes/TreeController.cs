@@ -10,6 +10,7 @@ public class TreeController : PlantBase
     [SerializeField] TreeTypeSO treeType;
     
     private SpriteRenderer spriteRenderer;
+    private new Collider2D collider;
 
     [SerializeField] GameObject selectedUI, resourceValuesUI, treeMenusUI;
     TreeMenuController treeMenuController;
@@ -30,13 +31,23 @@ public class TreeController : PlantBase
     private void GetComponents()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        collider = GetComponent<Collider2D>();
     }
     private void SetUpTreeType()
     {
         spriteRenderer.sprite = treeType.treeSprites[0];
+        ResetCollider();
         growTime = treeType.growTime;
         SetUpResources();
     }
+
+    private void ResetCollider()
+    {
+        Destroy(collider);
+        collider = gameObject.AddComponent<PolygonCollider2D>();
+        collider.isTrigger = true;
+    }
+
     private void SetUpResources()
     {
         resourceData = new ResourceData(treeType);
@@ -56,7 +67,7 @@ public class TreeController : PlantBase
     }
     private void Update()
     {
-        //CheckShouldDisplayUI();
+        CheckShouldDisplayUI();
         DisplayUI();
     }
     private void CheckShouldDisplayUI()
@@ -71,7 +82,7 @@ public class TreeController : PlantBase
     }
     private void DisplayUI()
     {
-        //if (!isConnected) return;
+        if (!isConnected) return;
 
         if (selectedUI.activeSelf != shouldDisplayUI) selectedUI.SetActive(shouldDisplayUI);
         if (resourceValuesUI.activeSelf != shouldDisplayUI) resourceValuesUI.SetActive(shouldDisplayUI);
@@ -90,7 +101,7 @@ public class TreeController : PlantBase
     }
     private void Instance_OnResourceAmountRefresh()
     {
-        //if (isConnected) return;
+        if (isConnected) return;
 
         //GrowCounter();
         treeMenuController.UpdateResourceTradeValues();
@@ -105,6 +116,7 @@ public class TreeController : PlantBase
             growLevel++;
             spriteRenderer.sprite = treeType.treeSprites[growLevel - 1];
             growTime = treeType.growTime * growLevel;
+            ResetCollider();
         }
     }
     private void RefreshResourceAmounts()

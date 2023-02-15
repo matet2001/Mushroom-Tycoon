@@ -9,7 +9,7 @@ public class GameStateConquer : GameState
     
     public override void OnEnter()
     {
-        //StartCoroutine(ResourceManager.Instance.connectionManager.yarn.spawnProtection());
+        StartCoroutine(ResourceManager.Instance.connectionManager.yarn.spawnProtection());
         //tutorialManager.hasSeenTutorial = true;
         gameStateControllerDataContainer.gameStateController.FireOnConquerStateEnter();
     }

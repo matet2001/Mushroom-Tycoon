@@ -8,7 +8,7 @@ public class ResourcesSliderWorldController : MonoBehaviour
     public ResourceTypeSO resourceType { get; set; }
     public float barValueMax { get; protected set; }
     
-    protected float barValue;
+    protected float barValue = 0f;
 
     public Transform barTransform;
     [SerializeField] TextMeshPro barText;

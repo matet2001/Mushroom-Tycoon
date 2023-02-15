@@ -60,7 +60,10 @@ public class TreeMenuController : MonoBehaviour
     {
         foreach (ResourceSliderMenuController slider in resourceSliderMenuControllers)
         {
-            treeController.resourceTradeAmount[slider.resourceType] = slider.GetBarValue();
+            if (slider.resourceType == null) continue;
+            
+            float sliderValue = slider.GetBarValue();              
+            treeController.resourceTradeAmount[slider.resourceType] = sliderValue;
         }
     }
 }

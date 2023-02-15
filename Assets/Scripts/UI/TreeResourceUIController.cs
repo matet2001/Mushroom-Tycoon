@@ -29,6 +29,7 @@ public class TreeResourceUIController : MonoBehaviour
             slider.SetBarValue(barValue);
             slider.SetBarText(barValue.ToString() + "/" + barMaxValue.ToString());
             slider.SetBarIcon(resourceData.resourceTypes[i].resourceImageUI);
+            slider.resourceType = resourceData.resourceTypes[i];
         }
     }
     private void Instance_OnResourceAmountChange()
