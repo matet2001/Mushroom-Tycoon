@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
+    public DeathHandler deathHandler;
     private ResourceData resourceData;
     private ResourceSliderController[] resourceSliderControllers;
 
@@ -42,7 +43,7 @@ public class CanvasManager : MonoBehaviour
             if(currentValue <= 0)
             {
                 currentValue = 0;
-                Debug.Log("Min amount of " + resourceData.resourceTypes[i].resourceName + " reached, at resource manager");
+                deathHandler.SetHandle(true);
             }
             if (currentValue >= maxValue)
             {

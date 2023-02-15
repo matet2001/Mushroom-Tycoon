@@ -6,9 +6,12 @@ public class TreeMenuController : MonoBehaviour
 {
     [SerializeField] ResourceSliderMenuController[] resourceSliderMenuControllers;
     [SerializeField] TreeController treeController;
+    
     private ResourceData resourceData;
 
     [SerializeField] float deafultSliderMax = 10f;
+    private float defaultSliderValue = 0f;
+    private float sliderValueStep = 1;
 
     private void Start()
     {
@@ -16,64 +19,51 @@ public class TreeMenuController : MonoBehaviour
     }
     private void Update()
     {
-        for (int i = 0; i < resourceSliderMenuControllers.Length; i++)
-        {
-            ResourceSliderMenuController currentSlider = resourceSliderMenuControllers[i];
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (currentSlider.IsMouseCloseToPlus())
-                {
-                    if (currentSlider.barValueMax > treeController.resourceData.resourceUse[currentSlider.resourceType])
-                        IncreaseResource(currentSlider.resourceType);
-                }
-                else if (currentSlider.IsMouseCloseToMinus())
-                {
-                    if (0 < treeController.resourceData.resourceUse[currentSlider.resourceType])
-                        DecreaseResource(currentSlider.resourceType);
-                }
-            }
-        }
-       
+        CheckForMouseClick();
     }
     private void SetUpSliderMenu()
     {
         resourceData = treeController.resourceData;
 
         int i = 0;
-        foreach(ResourceTypeSO resourceType in resourceData.resourceTypes)
-        {
-            float resourceGet = resourceData.resourceProduce[resourceType] - resourceData.resourceUsage[resourceType];
-            float barValueMax = (resourceGet != 0) ? resourceGet * 2 : deafultSliderMax;
-
-            resourceSliderMenuControllers[i].SetBarIcon(resourceData.resourceTypes[i].resourceImageUI);
-            resourceSliderMenuControllers[i].SetBarText(resourceGet.ToString());
-            resourceSliderMenuControllers[i].SetBarValueMax(barValueMax);
-            resourceSliderMenuControllers[i].SetBarValue(resourceGet);
-            resourceSliderMenuControllers[i].resourceType = resourceType;
-            resourceData.resourceUse[resourceType] = resourceGet;
-            i++;
-        }
-    }
-    private void RefreshSliderMenu()
-    {
-        int i = 0;
         foreach (ResourceTypeSO resourceType in resourceData.resourceTypes)
         {
-            float resourceGet = resourceData.resourceUse[resourceType];
+            resourceSliderMenuControllers[i].resourceType = resourceType;
 
-            resourceSliderMenuControllers[i].SetBarText(resourceGet.ToString());
-            resourceSliderMenuControllers[i].SetBarValue(resourceGet);
+            resourceSliderMenuControllers[i].SetBarIcon(resourceData.resourceTypes[i].resourceImageUI);
+
+            resourceSliderMenuControllers[i].SetBarValueMax(deafultSliderMax/2);
+            resourceSliderMenuControllers[i].SetBarValueMin(0 - deafultSliderMax / 2);
+            resourceSliderMenuControllers[i].SetBarValue(defaultSliderValue);   
             i++;
         }
     }
-    public void IncreaseResource(ResourceTypeSO resourceType)
+    private void CheckForMouseClick()
     {
-        treeController.resourceData.resourceUse[resourceType]++;
-        RefreshSliderMenu();
+        for (int i = 0; i < resourceSliderMenuControllers.Length; i++)
+        {
+            ResourceSliderMenuController currentSlider = resourceSliderMenuControllers[i];
+
+            if (!Input.GetMouseButtonDown(0)) continue;
+
+            if (currentSlider.IsMouseCloseToPlus())
+            {
+                currentSlider.AddToBarValue(sliderValueStep);
+            }
+            else if (currentSlider.IsMouseCloseToMinus())
+            {
+                currentSlider.AddToBarValue(-sliderValueStep);
+            }
+        }
     }
-    public void DecreaseResource(ResourceTypeSO resourceType)
+    public void UpdateResourceTradeValues()
     {
-        treeController.resourceData.resourceUse[resourceType]--;
-        RefreshSliderMenu();
+        foreach (ResourceSliderMenuController slider in resourceSliderMenuControllers)
+        {
+            if (slider.resourceType == null) continue;
+            
+            float sliderValue = slider.GetBarValue();              
+            treeController.resourceTradeAmount[slider.resourceType] = sliderValue;
+        }
     }
 }

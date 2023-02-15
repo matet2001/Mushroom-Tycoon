@@ -38,9 +38,13 @@ public class ResourceManager : MonoBehaviour
     }
     private void SetUpResources()
     {
-        resourceData = new ResourceData(Resources.Load<ResourceTypeContainer>("ResourceTypeContainer"), startResourceData);
+        resourceData = new ResourceData(startResourceData);
         resourceRefreshTimeMax = resourceRefreshTime;
-        RefreshResourceData();
+
+        CalculateResourceAmountMax();
+        
+        OnResourceAmountRefresh?.Invoke();
+        OnResourceAmountChange?.Invoke();
     }
     private void Update()
     {
@@ -49,60 +53,72 @@ public class ResourceManager : MonoBehaviour
     private void CountDownResourceAmountRefresh()
     {
         if (resourceRefreshTime > 0f) resourceRefreshTime -= Time.deltaTime;
-        else
-        {
-            RefreshResourceData();
-        }
+        else RefreshResourceData();
     }
-    private void CalculateResourceValues()
-    {    
+    private void RefreshResourceData()
+    {
+        OnResourceAmountRefresh?.Invoke();
+
+        resourceRefreshTime = resourceRefreshTimeMax;
+
+        CalculateResourceDatas();
+
+        OnResourceAmountChange?.Invoke();
+    }
+    private void CalculateResourceUsage()
+    {
+        ResourceData newResourceData = new ResourceData(startResourceData);
+
         foreach (ResourceTypeSO resourceType in resourceData.resourceTypes)
         {
             for (int i = 0; i < connectionManager.treeControllerList.Count; i++)
             {
-                resourceData.resourceUsage[resourceType] += connectionManager.treeControllerList[i].resourceData.resourceUsage[resourceType];
-                resourceData.resourceProduce[resourceType] += connectionManager.treeControllerList[i].resourceData.resourceProduce[resourceType];
-                resourceData.resourceUse[resourceType] += connectionManager.treeControllerList[i].resourceData.resourceUse[resourceType];
-                resourceData.resourceMax[resourceType] += connectionManager.treeControllerList[i].resourceData.resourceMax[resourceType];
+                TreeController currentTreeController = connectionManager.treeControllerList[i];
+                newResourceData.resourceUsage[resourceType] -= currentTreeController.resourceTradeAmount[resourceType];
             }
             for (int i = 0; i < connectionManager.mushroomControllerList.Count; i++)
             {
-                resourceData.resourceUsage[resourceType] += connectionManager.mushroomControllerList[i].resourceData.resourceUsage[resourceType];
-                resourceData.resourceUse[resourceType] += connectionManager.mushroomControllerList[i].resourceData.resourceUse[resourceType];
-                resourceData.resourceMax[resourceType] += connectionManager.mushroomControllerList[i].resourceData.resourceMax[resourceType];
+                ResourceData currentMushroomResourceData = connectionManager.mushroomControllerList[i].resourceData;             
+                newResourceData.resourceUsage[resourceType] += currentMushroomResourceData.resourceUsage[resourceType];
             }
         }
-        
+
+        resourceData.resourceUsage = newResourceData.resourceUsage;
     }
-    private void RefreshResourceData()
+    private void CalculateResourceAmountMax()
     {
-        CalculateResourceValues();
-        resourceRefreshTime = resourceRefreshTimeMax;
-        
-        float[] newResourceAmounts = new float[resourceData.resourceAmount.Count];
+        ResourceData newResourceData = new ResourceData(startResourceData);
 
-        for(int i = 0; i < resourceData.resourceTypes.Length; i++)
+        foreach (ResourceTypeSO resourceType in resourceData.resourceTypes)
         {
-            float currentResourceAmount = resourceData.resourceUsage[resourceData.resourceTypes[i]];
-            SubstractResourceAmount(resourceData.resourceTypes[i], currentResourceAmount);
-
-            currentResourceAmount = resourceData.resourceUse[resourceData.resourceTypes[i]];
-            AddResourceAmount(resourceData.resourceTypes[i], currentResourceAmount);
-
-            newResourceAmounts[i] = resourceData.resourceAmount[resourceData.resourceTypes[i]];
+            for (int i = 0; i < connectionManager.treeControllerList.Count; i++)
+            {
+                TreeController currentTreeController = connectionManager.treeControllerList[i];
+                ResourceData currentTreeResourceData = currentTreeController.resourceData;
+                newResourceData.resourceMax[resourceType] += currentTreeResourceData.resourceMax[resourceType];
+            }
+            for (int i = 0; i < connectionManager.mushroomControllerList.Count; i++)
+            {
+                ResourceData currentMushroomResourceData = connectionManager.mushroomControllerList[i].resourceData;
+                newResourceData.resourceMax[resourceType] += currentMushroomResourceData.resourceMax[resourceType];
+            }
         }
 
-        OnResourceAmountRefresh?.Invoke();
-        OnResourceAmountChange?.Invoke();
+        resourceData.resourceMax = newResourceData.resourceMax;
     }
-    public void AddResourceAmount(ResourceTypeSO resourceType, float amount)
+    private void CalculateResourceDatas()
     {
-        resourceData.resourceAmount[resourceType] += amount;
+        CalculateResourceUsage();
+        CalculateResourceAmountMax();
+        CalculateResourceAmount();
     }
-    public void SubstractResourceAmount(ResourceTypeSO resourceType, float amount)
+    private void CalculateResourceAmount()
     {
-        resourceData.resourceAmount[resourceType] -= amount;
-    }  
+        foreach (ResourceTypeSO resourceType in resourceData.resourceTypes)
+        {
+            resourceData.resourceAmount[resourceType] += resourceData.resourceUsage[resourceType];
+        }
+    }
     public void ConsumeResource(float[] resourceToConsume)
     {
         for (int i = 0; i < resourceData.resourceTypes.Length; i++)
@@ -110,5 +126,9 @@ public class ResourceManager : MonoBehaviour
             SubstractResourceAmount(resourceData.resourceTypes[i], resourceToConsume[i]);
         }
         OnResourceAmountChange?.Invoke();
+    }
+    public void SubstractResourceAmount(ResourceTypeSO resourceType, float amount)
+    {
+        resourceData.resourceAmount[resourceType] -= amount;
     }
 }

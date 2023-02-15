@@ -7,7 +7,7 @@ public class ResourceNodeController : CollidableBase
     [SerializeField] private ResourceTypeSO resourceType;
     [SerializeField] private int resourceAmount;
 
-    private Collider2D collider;
+    private new Collider2D collider;
     private SpriteRenderer spriteRenderer;
 
     public float alpha, disappeareTime = 2f, timeElapsed;

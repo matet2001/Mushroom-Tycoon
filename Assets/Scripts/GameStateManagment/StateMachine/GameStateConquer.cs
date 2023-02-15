@@ -5,12 +5,12 @@ using UnityEngine;
 public class GameStateConquer : GameState
 {
     public GameObject conquererVirtualCamera;
-    public TutorialManager tutorialManager;
+    //public TutorialManager tutorialManager;
     
     public override void OnEnter()
     {
         StartCoroutine(ResourceManager.Instance.connectionManager.yarn.spawnProtection());
-        tutorialManager.hasSeenTutorial = true;
+        //tutorialManager.hasSeenTutorial = true;
         gameStateControllerDataContainer.gameStateController.FireOnConquerStateEnter();
     }
     public override void OnUpdate()

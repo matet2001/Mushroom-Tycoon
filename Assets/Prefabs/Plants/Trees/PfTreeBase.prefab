@@ -154,8 +154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeeb56852389b434391a0f3146e572f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceData:
-    resourceTypes: []
   treeType: {fileID: 11400000, guid: 78dbdb09227914648baa9eb6e02c6db3, type: 2}
   selectedUI: {fileID: 3732814059522078791}
   resourceValuesUI: {fileID: 3299854831300869713}
@@ -261,8 +259,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1005159791
-  m_SortingLayer: 1
+  m_SortingLayerID: 2076581001
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c2831694966942147aa2be206981e27b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

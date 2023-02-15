@@ -12,7 +12,7 @@ public class TreeResourceUIController : MonoBehaviour
     private void Start()
     {
         SetUpResourceAmountUI();
-        ResourceManager.Instance.OnResourceAmountRefresh += Instance_OnResourceAmountRefresh;
+        ResourceManager.Instance.OnResourceAmountChange += Instance_OnResourceAmountChange;
     }
     private void SetUpResourceAmountUI()
     {
@@ -29,9 +29,10 @@ public class TreeResourceUIController : MonoBehaviour
             slider.SetBarValue(barValue);
             slider.SetBarText(barValue.ToString() + "/" + barMaxValue.ToString());
             slider.SetBarIcon(resourceData.resourceTypes[i].resourceImageUI);
+            slider.resourceType = resourceData.resourceTypes[i];
         }
     }
-    private void Instance_OnResourceAmountRefresh()
+    private void Instance_OnResourceAmountChange()
     {
         RefreshResourceAmountUI();
     }

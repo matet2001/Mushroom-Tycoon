@@ -5,16 +5,13 @@ using UnityEngine;
 
 public class ConnectionManager : MonoBehaviour
 {
-    public List<TreeController> treeControllerList;
-    public List<MushroomController> mushroomControllerList;
+    public List<TreeController> treeControllerList = new List<TreeController>();
+    public List<MushroomController> mushroomControllerList = new List<MushroomController>();
     public List<Vector3> mushroomPositions;
     [Space, HideInInspector] public YarnController yarn;
 
     private void Awake()
     {
-        treeControllerList = new List<TreeController>();
-        mushroomControllerList = new List<MushroomController>();
-        
         mushroomPositions = new List<Vector3>();
         yarn = GameObject.FindGameObjectWithTag("Player").GetComponent<YarnController>();
         AwakeMushroomCheck();
@@ -22,8 +19,9 @@ public class ConnectionManager : MonoBehaviour
 
     private void AwakeMushroomCheck()
     {
-        mushroomControllerList.Add(
-            GameObject.FindGameObjectWithTag("Mushrooms").GetComponent<MushroomController>());
+        //mushroomControllerList.Add(
+            //GameObject.FindGameObjectWithTag("Mushrooms").GetComponent<MushroomController>());
+
         foreach (var VARIABLE in mushroomControllerList)
         {
             mushroomPositions.Add(VARIABLE.transform.position - (Vector3.up));
@@ -31,12 +29,6 @@ public class ConnectionManager : MonoBehaviour
         yarn.SetNewYarnPosition(mushroomPositions[0]);
         yarn.positions = mushroomPositions;
     }
-
-    private void LateUpdate()
-    {
-        
-    }
-
     public void AddToTreeControllerList(TreeController treeController)
     {
         if (treeControllerList.Contains(treeController)) return;
@@ -54,9 +46,9 @@ public class ConnectionManager : MonoBehaviour
         if (mushroomControllerList.Contains(mushroomController)) return;
 
         mushroomControllerList.Add(mushroomController);
-        
+
         yarn.positions.Clear();
-        
+
         foreach (var VARIABLE in mushroomControllerList)
         {
             mushroomPositions.Add(VARIABLE.transform.position - (VARIABLE.transform.up.normalized));

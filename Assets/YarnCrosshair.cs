@@ -6,6 +6,7 @@ public class YarnCrosshair : MonoBehaviour
 {
     public Transform crosshairObject;
 
+    [HideInInspector]
     public YarnController yarnController;
     
     
