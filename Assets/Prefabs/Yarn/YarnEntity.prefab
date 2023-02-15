@@ -174,14 +174,18 @@ MonoBehaviour:
   _movementSpeed: 1
   _sprintSpeed: 2
   _mousePosition: {x: 0, y: 0}
+  camPosition: {x: 0, y: 0, z: 0}
+  canDie: 0
   obstacleGOTag: Obstacle
   resourceGOTag: Resource
   trail: {fileID: 514241884618455770, guid: d5c771c966c150d40a2a324f1b454bc9, type: 3}
+  positions: []
   radiusOffset: 0
   mushroomAreaCheckRadius: 4.5
   mushroomLayermask:
     serializedVersion: 2
     m_Bits: 64
+  yarnResourceConsume: []
 --- !u!114 &7189475262900720497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,7 +293,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 7.46, y: 7.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
