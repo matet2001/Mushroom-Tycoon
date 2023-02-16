@@ -12,6 +12,7 @@ public class TutorialManager : MonoBehaviour
     private void Start()
     {
         tutorialManagerAnimator = GetComponent<Animator>();
+        DontDestroyOnLoad(this);
     }
 
     private void Update()

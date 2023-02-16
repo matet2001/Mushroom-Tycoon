@@ -26,15 +26,15 @@ MonoBehaviour:
   - 15
   - 10
   resourceProduce:
-  - 10
-  - 5
-  - 15
+  - 7
+  - 26
+  - 12
   resourceMax:
   - 100
   - 100
   - 100
   growTime: 25
   treeSprites:
+  - {fileID: 21300000, guid: 829d8f96dd6e10643a075a96bb9e8d85, type: 3}
   - {fileID: 21300000, guid: 79af227bcf442c44ea97257f854e2342, type: 3}
   - {fileID: 21300000, guid: d96a15b6a408e0045986a7db80c52130, type: 3}
-  - {fileID: 21300000, guid: 829d8f96dd6e10643a075a96bb9e8d85, type: 3}

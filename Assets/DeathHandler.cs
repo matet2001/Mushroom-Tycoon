@@ -23,4 +23,9 @@ public class DeathHandler : MonoBehaviour
     {
         hasDied = newHandle;
     }
+    public void Die()
+    {
+        hasDied = true;
+        GameStateController.Instance.ChangeToDeadState();
+    }
 }

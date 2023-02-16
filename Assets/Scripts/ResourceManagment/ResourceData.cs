@@ -17,6 +17,17 @@ public class ResourceData
 
     private ResourceTypeContainer resourceTypeContainer;
 
+    private void SetUpResources()
+    {
+        resourceTypeContainer = Resources.Load<ResourceTypeContainer>("ResourceTypeContainer");
+        resourceTypes = resourceTypeContainer.resourceTypes;
+
+        resourceAmount = new Dictionary<ResourceTypeSO, float>();
+        resourceUsage = new Dictionary<ResourceTypeSO, float>();
+        resourceUse = new Dictionary<ResourceTypeSO, float>();
+        resourceProduce = new Dictionary<ResourceTypeSO, float>();
+        resourceMax = new Dictionary<ResourceTypeSO, float>();
+    }
     //Fill resource amounts with same value
     public ResourceData(float amount, float usage, float use, float produce, float max)
     {
@@ -76,24 +87,21 @@ public class ResourceData
 
         foreach (ResourceTypeSO resourceType in resourceTypeContainer.resourceTypes)
         {
-            resourceAmount[resourceType] = treeTypeSO.resourceAmount[resourceNumber];
-            resourceUsage[resourceType] = treeTypeSO.resourceUsage[resourceNumber];
-            resourceUse[resourceType] = treeTypeSO.resourceUse[resourceNumber];
-            resourceProduce[resourceType] = treeTypeSO.resourceProduce[resourceNumber];
+            resourceAmount[resourceType] = treeTypeSO.resourceAmount[resourceNumber]; 
+            
+            float useBaseValue =  treeTypeSO.resourceUse[resourceNumber];
+            resourceUse[resourceType] = RandomizeValue(useBaseValue);
+            float produceBaseValue = treeTypeSO.resourceProduce[resourceNumber];
+            resourceProduce[resourceType] = RandomizeValue(produceBaseValue);
             resourceMax[resourceType] = treeTypeSO.resourceMax[resourceNumber];
 
             resourceNumber++;
         }
     }
-    private void SetUpResources()
+    private float RandomizeValue(float baseValue)
     {
-        resourceTypeContainer = Resources.Load<ResourceTypeContainer>("ResourceTypeContainer");
-        resourceTypes = resourceTypeContainer.resourceTypes;
-
-        resourceAmount = new Dictionary<ResourceTypeSO, float>();
-        resourceUsage = new Dictionary<ResourceTypeSO, float>();
-        resourceUse = new Dictionary<ResourceTypeSO, float>();
-        resourceProduce = new Dictionary<ResourceTypeSO, float>();
-        resourceMax = new Dictionary<ResourceTypeSO, float>();
+        float randomizedValue = UnityEngine.Random.Range(baseValue * 0.7f, baseValue * 1.3f);
+        return Mathf.Round(randomizedValue);
     }
+    
 }

@@ -27,7 +27,7 @@ public class CanvasManager : MonoBehaviour
         {
             resourceSliderControllers[i].SetSliderMaxValue(resourceData.resourceMax[resourceData.resourceTypes[i]]);
             resourceSliderControllers[i].SetSliderValue(resourceData.resourceAmount[resourceData.resourceTypes[i]]);
-            resourceSliderControllers[i].SetSliderText(resourceData.resourceAmount[resourceData.resourceTypes[i]].ToString() + "/" + resourceData.resourceMax[resourceData.resourceTypes[i]].ToString());
+            resourceSliderControllers[i].SetSliderText(resourceData.resourceAmount[resourceData.resourceTypes[i]].ToString("0") + "/" + resourceData.resourceMax[resourceData.resourceTypes[i]].ToString("0"));
             resourceSliderControllers[i].SetIconImage(resourceData.resourceTypes[i].resourceImageUI);
         }
     }
@@ -43,7 +43,7 @@ public class CanvasManager : MonoBehaviour
             if(currentValue <= 0)
             {
                 currentValue = 0;
-                deathHandler.SetHandle(true);
+                deathHandler.Die();
             }
             if (currentValue >= maxValue)
             {
@@ -53,7 +53,7 @@ public class CanvasManager : MonoBehaviour
 
             resourceSliderControllers[i].SetSliderMaxValue(maxValue);
             resourceSliderControllers[i].SetSliderValue(currentValue);
-            resourceSliderControllers[i].SetSliderText(currentValue.ToString("0") + "/" + maxValue.ToString());
+            resourceSliderControllers[i].SetSliderText(currentValue.ToString("0") + "/" + maxValue.ToString("0"));
         }
     }
 }

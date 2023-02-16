@@ -22,19 +22,19 @@ MonoBehaviour:
   - 10
   - 15
   resourceUse:
-  - 0
-  - 0
-  - 0
+  - 8
+  - 13
+  - 8
   resourceProduce:
   - 10
   - 15
   - 10
   resourceMax:
-  - 900
-  - 1000
-  - 900
+  - 100
+  - 100
+  - 100
   growTime: 25
   treeSprites:
+  - {fileID: 21300000, guid: c64415c6e25f05d45b915041b2f050c0, type: 3}
   - {fileID: 21300000, guid: 585446980ab531946be15ec3f3e1c5d2, type: 3}
   - {fileID: 21300000, guid: 88541baddbdc89f4087e936914e9bfe2, type: 3}
-  - {fileID: 21300000, guid: c64415c6e25f05d45b915041b2f050c0, type: 3}

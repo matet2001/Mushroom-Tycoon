@@ -6,8 +6,11 @@ using UnityEngine;
 
 public class TreeController : PlantBase
 {
-    public ResourceData resourceData { get; private set;}
+    public ResourceData resourceData { 
+        get; 
+        private set;}
     [SerializeField] TreeTypeSO treeType;
+    
     
     private SpriteRenderer spriteRenderer;
     private new Collider2D collider;
@@ -19,7 +22,7 @@ public class TreeController : PlantBase
     public Dictionary<ResourceTypeSO, float> resourceTradeAmount;
 
     private bool shouldDisplayUI = true;
-    private bool isConnected = false;
+    public bool isConnected = false;
     [SerializeField] float showDistance = 4f;
  
     private void Awake()
@@ -101,7 +104,7 @@ public class TreeController : PlantBase
     }
     private void Instance_OnResourceAmountRefresh()
     {
-        if (isConnected) return;
+        if (!isConnected) return;
 
         //GrowCounter();
         treeMenuController.UpdateResourceTradeValues();

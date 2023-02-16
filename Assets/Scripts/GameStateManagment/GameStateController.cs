@@ -11,8 +11,9 @@ public class GameStateController : MonoBehaviour
 
     public event Action OnManagementStateEnter;
     public event Action OnConquerStateEnter;
+    public event Action OnDeadStateEnter;
 
-    [SerializeField] GameState managerState;
+    [SerializeField] GameState managerState, deadState;
 
     private TreeController currentUIShowTree;
 
@@ -44,9 +45,17 @@ public class GameStateController : MonoBehaviour
     {
         OnConquerStateEnter?.Invoke(); 
     }
+    public void FireOnDeadStateEnter()
+    {
+        OnDeadStateEnter?.Invoke();
+    }
     public void ChangeToManagerState()
     {
         gameStateControllerDataContainer.stateMachine.ChangeState(managerState);
+    }
+    public void ChangeToDeadState()
+    {
+        gameStateControllerDataContainer.stateMachine.ChangeState(deadState);
     }
     public bool CanShowUI()
     {
